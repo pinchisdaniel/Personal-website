@@ -108,3 +108,7 @@ Screenshot17.png filter=lfs diff=lfs merge=lfs -text
 Screenshot18.png filter=lfs diff=lfs merge=lfs -text
 Screenshot19.png filter=lfs diff=lfs merge=lfs -text
 Screenshot20.png filter=lfs diff=lfs merge=lfs -text
+videos/zombieanimations.mp4 !filter !diff !merge text=auto
+videos/stickmantest.mp4 !filter !diff !merge text=auto
+videos/stickmandance.mp4 !filter !diff !merge text=auto
+videos/daggershowcase.mp4 !filter !diff !merge text=auto
