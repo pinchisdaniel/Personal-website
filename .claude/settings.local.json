@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(ls -1 \"E:\\\\GitHub\\\\website.github.io\\\\images\"\" 2>/dev/null || echo \"Directory not found \")"
-    ]
-  }
-}
