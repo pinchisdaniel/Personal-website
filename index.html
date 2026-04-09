@@ -2,842 +2,615 @@
 <html lang="en">
 
 <head>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio of Pinchiș Daniel — game developer, 3D artist, and multimedia creator based in Antwerp. Showcasing Unity games, Blender animations, and 3D environments.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
     <title>Pinchiș Daniel | Digital Alchemist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap');
-
-        /* Cursor Ball */
-        .cursor-ball {
-            position: fixed;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: linear-gradient(90deg, #8e44ad 0%, #3498db 100%);
-            pointer-events: none;
-            mix-blend-mode: screen;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out;
-            will-change: transform;
-        }
-
-        /* Text hover effect */
-        .hover-text-effect:hover {
-            color: transparent;
-            background: linear-gradient(90deg, #8e44ad 0%, #3498db 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            scroll-behavior: smooth;
-        }
-
-        .title-font {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #8e44ad 0%, #3498db 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .project-card {
-            transition: all 0.3s ease;
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid rgba(138, 43, 226, 0.2);
-        }
-
-        .project-carousel-btn {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            background: linear-gradient(90deg, #8e44ad 0%, #3498db 100%) !important;
-            border: none !important;
-        }
-
-        .project-card:hover .project-carousel-btn {
-            opacity: 1;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(132, 59, 206, 0.3);
-            border-color: rgba(138, 43, 226, 0.4);
-        }
-
-        .glow {
-            text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
-        }
-
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(138, 43, 226, 0.5) 50%, transparent 100%);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: linear-gradient(90deg, #8e44ad 0%, #3498db 100%);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .hero-overlay {
-            background: radial-gradient(circle, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.8) 100%);
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-
-            100% {
-                transform: translateY(0px);
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['DM Serif Display', 'serif'] },
+                    colors: {
+                        forest: {
+                            50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
+                            400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
+                            800: '#166534', 900: '#14532d', 950: '#052e16'
+                        }
+                    }
+                }
             }
         }
+    </script>
 
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @media (hover: none) and (pointer: coarse) {
-
-            .project-media-container,
-            .media-items-wrapper,
-            .media-item {
-                position: relative !important;
-                min-height: 300px !important;
-                /* gives the browser a box to render into */
-                height: auto !important;
-            }
-
-            .media-item img,
-            .media-item video {
-                display: block !important;
-                position: relative !important;
-                width: 100% !important;
-                height: auto !important;
-                display: block !important;
-                object-fit: cover !important;
-                z-index: 2 !important;
-            }
-
-            .media-item {
-                opacity: 1 !important;
-                position: relative !important;
-            }
-
-            .project-media-container {
-                min-height: 300px !important;
-                overflow: visible !important;
-            }
-        }
-
-        .project-media-container {
-            touch-action: pan-y;
-            /* allow horizontal swipes without scrolling interference */
-            overflow: hidden;
-            position: relative;
-        }
-
-        .media-track {
-            display: flex;
-            transition: transform 0.4s ease;
-            will-change: transform;
-        }
-
-        .media-item {
-            flex: 0 0 100%;
-            user-select: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
-<body class="min-h-screen">
+<body class="font-sans min-h-screen">
+
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-ring"></div>
+        <p class="preloader-text" id="preloader-text"></p>
+    </div>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- PAGE TINT -->
     <div class="page-tint"></div>
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold gradient-text title-font">Pinchiș Daniel</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home"
-                            class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover-text-effect transition duration-300">HOME</a>
-                        <a href="#work"
-                            class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover-text-effect transition duration-300">WORK</a>
-                        <a href="#about"
-                            class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover-text-effect transition duration-300">ABOUT</a>
+
+    <!-- PARTICLES -->
+    <div id="particles" aria-hidden="true"></div>
+
+    <!-- SECTION NAV DOTS -->
+    <nav class="section-dots" id="section-dots" aria-label="Section navigation">
+        <button class="section-dot active" data-target="#home" data-label="Home" aria-label="Go to Home"></button>
+        <button class="section-dot" data-target="#work" data-label="Work" aria-label="Go to Work"></button>
+        <button class="section-dot" data-target="#about" data-label="About" aria-label="Go to About"></button>
+        <button class="section-dot" data-target="#contact" data-label="Contact" aria-label="Go to Contact"></button>
+    </nav>
+
+    <!-- NAVIGATION -->
+    <nav id="main-nav" class="glass-nav fixed w-full z-50 transition-all duration-300">
+        <div class="w-full px-5 sm:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#home" class="text-xl font-serif gradient-text magnetic-wrap nav-name">Pinchiș Daniel</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home"
+                        class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">Home</a>
+                    <a href="#work"
+                        class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">Work</a>
+                    <a href="#about"
+                        class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">About</a>
+                    <div class="magnetic-wrap">
                         <a href="#contact"
-                            class="nav-link px-3 py-2 text-sm font-medium text-gray-300 hover-text-effect transition duration-300">CONTACT</a>
+                            class="ripple-btn text-sm font-medium px-5 py-2 rounded-full bg-forest-700 text-white hover:bg-forest-800 transition">Contact</a>
                     </div>
                 </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+                <button id="mobile-menu-button" class="md:hidden text-slate-950 text-xl" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
-
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/20"
+            style="background:rgba(255,255,255,0.15);backdrop-filter:blur(12px)">
+            <div class="px-5 py-4 flex flex-col gap-2">
                 <a href="#home"
-                    class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-900 rounded-md">HOME</a>
+                    class="py-2 px-3 rounded-lg text-slate-950 hover:bg-white/15 transition font-medium">Home</a>
                 <a href="#work"
-                    class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-900 rounded-md">WORK</a>
+                    class="py-2 px-3 rounded-lg text-slate-950 hover:bg-white/15 transition font-medium">Work</a>
                 <a href="#about"
-                    class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-900 rounded-md">ABOUT</a>
+                    class="py-2 px-3 rounded-lg text-slate-950 hover:bg-white/15 transition font-medium">About</a>
                 <a href="#contact"
-                    class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-900 rounded-md">CONTACT</a>
+                    class="py-2 px-3 rounded-lg text-slate-950 hover:bg-white/15 transition font-medium">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center px-4 pt-16">
+        <!-- Floating decorative shapes -->
+        <div class="floating-shape float-1 bg-forest-400"
+            style="width:300px;height:300px;top:15%;left:-5%;"></div>
+        <div class="floating-shape float-2 bg-emerald-300"
+            style="width:200px;height:200px;bottom:20%;right:-3%;"></div>
+        <div class="floating-shape float-3 bg-green-500"
+            style="width:250px;height:250px;top:60%;left:50%;"></div>
 
-
-        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 title-font glow">
-                <span class="gradient-text">Pinchiș Daniel</span>
+        <div class="hero-card glass-card rounded-3xl text-center px-8 py-14 sm:px-14 sm:py-16 max-w-2xl w-full relative z-10"
+            id="hero-card">
+            <div class="tilt-shine"></div>
+            <p class="section-label mb-4" style="opacity:0;animation:word-in 0.5s ease 2s forwards">Portfolio</p>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif shimmer-text pb-2 leading-tight">
+                Pinchiș Daniel
             </h1>
-            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-2xl mx-auto">
-                I'm the Digital Alchemist: combining ideas, pixels, and code to create something extraordinary
+            <p class="text-base sm:text-lg text-slate-950 mb-8 max-w-lg mx-auto leading-relaxed min-h-[3rem]"
+                id="hero-subtitle">
+                <span id="typed-text"></span><span class="typed-cursor">&nbsp;</span>
             </p>
-            <div class="flex justify-center space-x-4">
-                <a href="#work"
-                    class="px-8 py-3 bg-gradient-to-r from-purple-800 to-blue-600 rounded-full text-white font-medium hover:opacity-90 transition duration-300 transform hover:scale-105">
-                    EXPLORE WORK
-                </a>
-                <a href="#contact"
-                    class="px-8 py-3 border border-purple-600 rounded-full text-purple-300 font-medium hover:bg-purple-900 hover:bg-opacity-30 transition duration-300 transform hover:scale-105">
-                    CONTACT ME
-                </a>
+            <div class="flex flex-col sm:flex-row justify-center gap-3"
+                style="opacity:0;animation:word-in 0.5s ease 3.2s forwards">
+                <div class="magnetic-wrap">
+                    <a href="#work"
+                        class="ripple-btn inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-forest-700 text-white font-medium hover:bg-forest-800 transition transform hover:scale-105 text-sm">
+                        Explore Work <i class="fas fa-arrow-down text-xs"></i>
+                    </a>
+                </div>
+                <div class="magnetic-wrap">
+                    <a href="#contact"
+                        class="ripple-btn inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full border-2 border-forest-600/40 text-forest-700 font-medium hover:bg-forest-50/40 transition transform hover:scale-105 text-sm">
+                        Get in Touch
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="absolute bottom-10 left-0 right-0 flex justify-center">
-            <a href="#work" class="text-gray-400 hover:text-white animate-bounce">
-                <i class="fas fa-chevron-down text-2xl"></i>
+        <div class="absolute bottom-8 left-0 right-0 flex justify-center"
+            style="opacity:0;animation:word-in 0.5s ease 3.5s forwards">
+            <a href="#work" class="text-forest-400 hover:text-forest-600 animate-bounce transition">
+                <i class="fas fa-chevron-down text-lg"></i>
             </a>
         </div>
     </section>
 
-    <!-- Work Section -->
-    <section id="work" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 title-font">
-                <span class="gradient-text">Selected Works</span>
-            </h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">
-                Where code, design, and imagination converge, my own digital alchemy at work.
-            </p>
+    <!-- ============================================================
+         WORK
+         ============================================================ -->
+    <section id="work" class="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16 reveal-slide max-w-lg mx-auto">
+            <div class="glass-card rounded-2xl px-8 py-6 relative z-10">
+                <p class="section-label mb-2">Projects</p>
+                <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-2 scramble-text"
+                    data-scramble="Selected Works">Selected Works</h2>
+                <p class="text-slate-950 max-w-md mx-auto mb-0">Where code, design, and imagination converge.</p>
+            </div>
         </div>
 
-        <div class="space-y-16">
-            <!-- Project 1 - Unity Game -->
-            <div class="project-card rounded-xl overflow-hidden flex flex-col md:flex-row items-center">
-                <!-- Text Content (Left) -->
-                <div class="md:w-1/2 p-8 md:p-12">
-                    <span
-                        class="text-xs font-semibold px-2 py-1 bg-purple-900 bg-opacity-70 text-purple-200 rounded-full">UNITY
-                        GAME</span>
-                    <h3 class="text-3xl font-bold mt-4 mb-4">Forged in Shadows</h3>
-                    <p class="text-gray-300 mb-6 text-lg">A horror adventure game set in the edo period where your goal
-                        is to help a former blacksmith.
-                    </p>
-                    <p style="text-align: justify; margin-bottom: 15px; ">
-                        <strong>Forged in Shadows</strong> was the very first horror game I ever worked on, set in a
-                        haunted blacksmith’s workshop.
-                        It’s where I learned the basics of Unity and figured out how to actually turn an idea into
-                        something playable.
-                    </p>
+        <div class="flex flex-col gap-20">
 
+            <!-- PROJECT 1: Forged in Shadows -->
+            <article class="glass-card rounded-2xl reveal-scale">
 
-                    <h3 class="text-3xl font-bold mt-6 mb-4"
-                        style="font-family: 'Montserrat', sans-serif !important; font-weight: 800; font-size: 32px;">
-                        <span class="gradient-text">What I Learned:</span>
-                    </h3>
-                    <ul style="text-align: justify; margin-bottom: 15px;">
-                        <li><strong>Unity Basics</strong> : importing assets, building environments, and getting things
-                            to run without breaking every five minutes.</li>
-                        <li><strong>Lighting & Atmosphere</strong> - making shadows feel creepy instead of just dark.
-                        </li>
-                        <li><strong>Scripting</strong> : doors that open, triggers that fire, all the small things that
-                            make a game feel alive.</li>
-                        <li><strong>Problem-Solving</strong> : every new feature meant Googling, experimenting, or
-                            breaking things until they finally worked.</li>
-                        <li><strong>Collaboration</strong> : My friend, Markus Mayrhofer, helped with the design and
-                            arrangements, while I handled the other aspects such as scripting, lighting, and some of the
-                            models. We achieved using Unity version control.</li>
-                    </ul>
-
-                    <h3 class="text-3xl font-bold mt-8 mb-4"
-                        style="font-family: 'Montserrat', sans-serif !important; font-weight: 800; font-size: 32px;">
-                        <span class="gradient-text">Looking Back:</span>
-                    </h3>
-                    <p style="text-align: justify; margin-bottom: 15px;">
-                        This project was messy, frustrating, and super rewarding. I learned that horror isn't just
-                        about cheap scares,
-                        but about atmosphere, pacing, and detail. Even though <strong>Forged in Shadows</strong> is only
-                        a prototype,
-                        it's the project that got me hooked on making games.
-                    </p>
-                </div>
-
-                <!-- Media (Right) -->
-                <div class="md:w-1/2 relative project-media-container overflow-hidden" tabindex="0">
-                    <!-- Carousel Navigation -->
-                    <button class="media-prev-btn absolute left-3 top-1/2 transform -translate-y-1/2 z-20 
-                w-10 h-10 rounded-full bg-gradient-to-r from-purple-800 to-blue-600 
-                text-white opacity-80 hover:scale-110 transition">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-
-                    <button class="media-next-btn absolute right-3 top-1/2 transform -translate-y-1/2 z-20 
-                w-10 h-10 rounded-full bg-gradient-to-r from-purple-800 to-blue-600 
-                text-white opacity-80 hover:scale-110 transition">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-
-                    <!-- Real carousel wrapper -->
-                    <div class="media-track flex w-full h-96 transition-transform duration-500 ease-out">
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot1.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 1">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot2.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 2">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot3.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 3">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot4.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 4">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot5.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 5">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot6.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 6">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot7.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 7">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot8.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 8">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot9.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 9">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot10.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 10">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot11.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 11">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot12.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 12">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot13.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 13">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot14.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 14">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot15.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 15">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot16.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 16">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot17.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 17">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot18.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 18">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot19.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 19">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/screenshot20.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Forged in Shadows - screenshot 20">
-                        </div>
+                <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="/images/screenshot1.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 1"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot2.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 2"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot3.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 3"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot4.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 4"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot5.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 5"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot6.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 6"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot7.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 7"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot8.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 8"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot9.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 9"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot10.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 10"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot11.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 11"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot12.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 12"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot13.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 13"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot14.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 14"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot15.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 15"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot16.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 16"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot17.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 17"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot18.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 18"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot19.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 19"></div>
+                        <div class="carousel-slide"><img src="/images/screenshot20.jpeg" loading="lazy"
+                                alt="Forged in Shadows screenshot 20"></div>
                     </div>
+                    <button class="carousel-btn prev" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots"></div>
                 </div>
-
-            </div>
-
-            <!-- Project 2 - 3D Animation -->
-            <div class="project-card rounded-xl overflow-hidden flex flex-col md:flex-row-reverse items-center">
-                <!-- Text Content (Right) -->
-                <div class="md:w-1/2 p-8 md:p-12">
+                <div class="p-8 sm:p-10 relative z-10">
                     <span
-                        class="text-xs font-semibold px-2 py-1 bg-pink-900 bg-opacity-70 text-pink-200 rounded-full">3D
-                        ANIMATIONS</span>
-                    <h3 class="text-3xl font-bold mt-4 mb-4">Character Animations</h3>
-                    <p class="text-gray-300 mb-6 text-lg">
-                        A collection of my rigged and animated characters made in Blender.
+                        class="section-label px-3 py-1 rounded-full bg-forest-50/60 border border-forest-200/50 inline-block mb-4">Unity
+                        Game</span>
+                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3 scramble-text"
+                        data-scramble="Forged in Shadows">Forged in Shadows</h3>
+                    <p class="text-slate-950 text-base mb-6 max-w-2xl">
+                        A horror adventure game set in the Edo period where your goal is to help a former blacksmith.
                     </p>
-
-                    <p style="text-align: justify; margin-bottom: 15px;">
-                        My journey started with simple walk and run cycles and
-                        gradually evolved into
-                        more advanced animations like parkour dance sequences. These projects made
-                        me better understand body mechanics, timing, and personality in animation, while also paying
-                        attention to details.
+                    <p class="text-slate-950 mb-5" style="text-align:justify">
+                        <strong>Forged in Shadows</strong> was the very first horror game I ever worked on, set in a
+                        haunted blacksmith's workshop. It's where I learned the basics of Unity and figured out how to
+                        actually turn an idea into something playable.
                     </p>
-
-                    <h3 class="text-3xl font-bold mt-6 mb-4"
-                        style="font-family: 'Montserrat', sans-serif !important; font-weight: 800; font-size: 32px;">
-                        <span class="gradient-text">What I Learned:</span>
-                    </h3>
-                    <ul style="text-align: justify; margin-bottom: 15px;">
-                        <li><strong>Rigging</strong> : learned how to create rigs, use and attach bones, controllers,
-                            and IK/FK setups.
-                        </li>
-                        <li><strong>Movement mechanics</strong> : creating believable jumps, vaults, and rolls as well
-                            as idle, walk, run
-                            and turn cycles with smooth transitions</li>
-                        <li><strong>Camera usage</strong> : positioning, tracking and creating smooth movements to make
-                            the render feel natural</li>
-                        <li><strong>Animation Principles</strong> : applying timing, spacing, and flow across different
-                            styles of motion.</li>
+                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">What I Learned</h4>
+                    <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
+                        <li><strong class="text-slate-950">Unity Basics</strong> : importing assets, building
+                            environments, and getting things to run without breaking every five minutes.</li>
+                        <li><strong class="text-slate-950">Lighting &amp; Atmosphere</strong> : making shadows feel
+                            creepy instead of just dark.</li>
+                        <li><strong class="text-slate-950">Scripting</strong> : doors that open, triggers that fire, all
+                            the small things that make a game feel alive.</li>
+                        <li><strong class="text-slate-950">Problem Solving</strong> : every new feature meant Googling,
+                            experimenting, or breaking things until they finally worked.</li>
+                        <li><strong class="text-slate-950">Collaboration</strong> : My friend Markus Mayrhofer helped
+                            with the design and arrangements, while I handled scripting, lighting, and some of the
+                            models. We used Unity version control.</li>
                     </ul>
-
-                    <h3 class="text-3xl font-bold mt-8 mb-4"
-                        style="font-family: 'Montserrat', sans-serif !important; font-weight: 800; font-size: 32px;">
-                        <span class="gradient-text">Looking Back:</span>
-                    </h3>
-                    <p style="text-align: justify; margin-bottom: 15px;">
-                        These animations started simple but gave me an idea of what I should continue to focus on.
-                        Working on these gave me a feel for how characters move and express themselves through motion.
-                        Best part was getting up from the chair and trying to mimic the movements myself to understand
-                        joint movement.
-
-                        Disclaimer: Some assets are original creations, while others belong to their respective owners.
+                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">Looking Back</h4>
+                    <p class="text-slate-950" style="text-align:justify">
+                        This project was messy, frustrating, and super rewarding. I learned that horror isn't just about
+                        cheap scares, but about atmosphere, pacing, and detail. Even though <strong>Forged in
+                            Shadows</strong> is only a prototype, it's the project that got me hooked on making games.
                     </p>
                 </div>
+            </article>
 
-                <!-- Media (Left) -->
-                <div class="md:w-1/2 relative project-media-container overflow-hidden" tabindex="0">
-                    <!-- Carousel Navigation -->
-                    <button class="media-prev-btn absolute left-3 top-1/2 transform -translate-y-1/2 z-20 
-                w-10 h-10 rounded-full bg-gradient-to-r from-purple-800 to-blue-600 
-                text-white opacity-80 hover:scale-110 transition">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
+            <!-- PROJECT 2: Character Animations -->
+            <article class="glass-card rounded-2xl reveal-scale">
 
-                    <button class="media-next-btn absolute right-3 top-1/2 transform -translate-y-1/2 z-20 
-                w-10 h-10 rounded-full bg-gradient-to-r from-purple-800 to-blue-600 
-                text-white opacity-80 hover:scale-110 transition">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-
-                    <div class="media-track flex w-full h-96 transition-transform duration-500 ease-out">
-                        <div class="media-item flex-shrink-0 w-full h-full relative">
-                            <video class="w-full h-full object-cover" loop muted controls preload="none">
-                                <source src="/videos/fixed_zombieanimations.mp4" type="video/mp4">
+                <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <video loop muted controls preload="none" playsinline>
+                                <source src="/videos/zombieanimations.mp4" type="video/mp4">
                             </video>
                         </div>
-                        <div class="media-item flex-shrink-0 w-full h-full relative">
-                            <video class="w-full h-full object-cover" loop muted controls preload="none">
-                                <source src="/videos/fixed_stickmantest.mp4" type="video/mp4">
+                        <div class="carousel-slide">
+                            <video loop muted controls preload="none" playsinline>
+                                <source src="/videos/stickmantest.mp4" type="video/mp4">
                             </video>
                         </div>
-                        <div class="media-item flex-shrink-0 w-full h-full relative">
-                            <video class="w-full h-full object-cover" loop muted controls preload="none">
+                        <div class="carousel-slide">
+                            <video loop muted controls preload="none" playsinline>
                                 <source src="/videos/stickmandance.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
+                    <button class="carousel-btn prev" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots"></div>
                 </div>
-
-            </div>
-
-
-            <!-- Project 3 - 3D Models -->
-            <div class="project-card rounded-xl overflow-hidden flex flex-col md:flex-row items-center">
-
-                <!-- Text Content (Left) -->
-                <div class="md:w-1/2 p-8 md:p-12">
+                <div class="p-8 sm:p-10 relative z-10">
                     <span
-                        class="text-xs font-semibold px-2 py-1 bg-orange-900 bg-opacity-70 text-orange-200 rounded-full">3D
-                        MODELS</span>
-                    <h3 class="text-3xl font-bold mt-4 mb-4">3D Models</h3>
-                    <p class="text-gray-300 mb-6 text-lg">
-                        Some of my own 3D environment designs and models created in Blender.
+                        class="section-label px-3 py-1 rounded-full bg-emerald-50/60 border border-emerald-200/50 inline-block mb-4">3D
+                        Animations</span>
+                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3 scramble-text"
+                        data-scramble="Character Animations">Character Animations</h3>
+                    <p class="text-slate-950 text-base mb-6 max-w-2xl">
+                        A collection of my rigged and animated characters made in Blender.
                     </p>
-                    <ul style="text-align: justify; margin-bottom: 15px;">
-                        <li><strong>Greek Temple Ruin</strong> was my first ever project where I experimented with
-                            environment
-                            design.
-                            I modeled a classical-style temple, added surrounding details like trees, bushes, street
-                            lamps, vehicles and a
-                            path,
-                            and set it all against a nighttime backdrop. This project was my introduction to
-                            composition,
-                            lighting, and everything related to 3D really.</li>
-                        <li><strong>Snowday</strong> was a fun little project where I worked with the environment
-                            more
-                            to create things like snow, water and mountains as well as a couple of snowed-on pine trees.
-                        </li>
-                        <li><strong>Hidden Ruins</strong> was my most recent project where I focused on setting the
-                            perfect
-                            scene for a fantasy sword made by myself using environmental props, lighting, realistic
-                            water,
-                            glowing magic circle and god rays shining on the sword</li>
+                    <p class="text-slate-950 mb-5" style="text-align:justify">
+                        My journey started with simple walk and run cycles and gradually evolved into more advanced
+                        animations like parkour and dance sequences. These projects made me better understand body
+                        mechanics,
+                        timing, and personality in animation.
+                    </p>
+                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">What I Learned</h4>
+                    <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
+                        <li><strong class="text-slate-950">Rigging</strong> : learned how to create rigs, use and attach
+                            bones, controllers, and IK/FK setups.</li>
+                        <li><strong class="text-slate-950">Movement Mechanics</strong> : creating believable jumps,
+                            vaults, and rolls as well as idle, walk, run and turn cycles with smooth transitions.</li>
+                        <li><strong class="text-slate-950">Camera Usage</strong> : positioning, tracking and creating
+                            smooth movements to make the render feel natural.</li>
+                        <li><strong class="text-slate-950">Animation Principles</strong> : applying timing, spacing, and
+                            flow across different styles of motion.</li>
                     </ul>
-
-                    <h3 class="text-3xl font-bold mt-6 mb-4"
-                        style="font-family: 'Montserrat', sans-serif !important; font-weight: 800; font-size: 32px;">
-                        <span class="gradient-text">What I Learned:</span>
-                    </h3>
-                    <ul style="text-align: justify; margin-bottom: 15px;">
-                        <li><strong>Modeling Basics</strong> : building architectural shapes like columns, stairs,
-                            arches and so on</li>
-                        <li><strong>Environment Composition</strong> : arranging and creating props such as trees,
-                            signs, bushes,
-                            lamps, cars and more to make the scene feel alive.</li>
-                        <li><strong>Lighting and Atmosphere</strong> : experimenting with spot, area and world lighting
-                            according to the environment </li>
-                        <li><strong>Rendering</strong> : setting up camera angles, depth of field, and configuring
-                            render settings for the best quality.
-                        </li>
-                    </ul>
-
-                    <h3 class="text-3xl font-bold mt-8 mb-4"
-                        style="font-family: 'Montserrat', sans-serif !important; font-weight: 800; font-size: 32px;">
-                        <span class="gradient-text">Looking Back:</span>
-                    </h3>
-                    <p style="text-align: justify; margin-bottom: 15px;">
-                        These projects were a big milestone because they were my first attempts at creating a full
-                        environment
-                        rather than a single object.
-                        As fun as it was to create everything, I underestimated how hard learning to render properly
-                        without it taking hours is.
-
+                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">Looking Back</h4>
+                    <p class="text-slate-950" style="text-align:justify">
+                        These animations started simple but gave me an idea of what I should continue to focus on.
+                        Working on these gave me a feel for how characters move and express themselves through motion.
+                        Best part was getting up from the chair and trying to mimic the movements myself to understand
+                        joint movement.
+                    </p>
+                    <p class="text-slate-950 text-sm mt-3 italic">
+                        Disclaimer: Some assets are original creations, while others belong to their respective owners.
                     </p>
                 </div>
+            </article>
 
-                <!-- Media (Right) -->
-                <div class="md:w-1/2 relative project-media-container overflow-hidden" tabindex="0">
-                    <!-- Carousel Navigation -->
-                    <button class="media-prev-btn absolute left-3 top-1/2 transform -translate-y-1/2 z-20 
-                w-10 h-10 rounded-full bg-gradient-to-r from-purple-800 to-blue-600 
-                text-white opacity-80 hover:scale-110 transition">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
+            <!-- PROJECT 3: 3D Models -->
+            <article class="glass-card rounded-2xl reveal-scale">
 
-                    <button class="media-next-btn absolute right-3 top-1/2 transform -translate-y-1/2 z-20 
-                w-10 h-10 rounded-full bg-gradient-to-r from-purple-800 to-blue-600 
-                text-white opacity-80 hover:scale-110 transition">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-
-                    <div class="media-track flex w-full h-96 transition-transform duration-500 ease-out">
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/projectscene.jpg" class="w-full h-full object-cover" loading="lazy" alt="Greek Temple Ruin - nighttime environment">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/projectscene2.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Greek Temple Ruin - alternate angle">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/snowday.jpeg" class="w-full h-full object-cover" loading="lazy" alt="Snowday - winter environment with pine trees">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <img src="/images/ruinsfinal.png" class="w-full h-full object-cover" loading="lazy" alt="Hidden Ruins - fantasy sword scene">
-                        </div>
-                        <div class="media-item flex-shrink-0 w-full h-full">
-                            <video class="w-full h-full object-cover" loop muted controls preload="none">
+                <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="/images/projectscene.jpg" loading="lazy"
+                                alt="Greek Temple Ruin nighttime environment"></div>
+                        <div class="carousel-slide"><img src="/images/projectscene2.jpeg" loading="lazy"
+                                alt="Greek Temple Ruin alternate angle"></div>
+                        <div class="carousel-slide"><img src="/images/snowday.jpeg" loading="lazy"
+                                alt="Snowday winter environment"></div>
+                        <div class="carousel-slide"><img src="/images/ruinsfinal.jpg" loading="lazy"
+                                alt="Hidden Ruins fantasy sword scene"></div>
+                        <div class="carousel-slide">
+                            <video loop muted controls preload="none" playsinline>
                                 <source src="/videos/daggershowcase.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
+                    <button class="carousel-btn prev" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots"></div>
                 </div>
-
-
-            </div>
+                <div class="p-8 sm:p-10 relative z-10">
+                    <span
+                        class="section-label px-3 py-1 rounded-full bg-teal-50/60 border border-teal-200/50 inline-block mb-4">3D
+                        Models</span>
+                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3 scramble-text"
+                        data-scramble="3D Environments">3D Environments</h3>
+                    <p class="text-slate-950 text-base mb-6 max-w-2xl">
+                        Environment designs and models created in Blender.
+                    </p>
+                    <ul class="text-slate-950 space-y-3 mb-6 list-none" style="text-align:justify">
+                        <li><strong class="text-slate-950">Greek Temple Ruin</strong> was my first project where I
+                            experimented with environment design. I modeled a classical style temple, added surrounding
+                            details like trees, bushes, street lamps, vehicles and a path, and set it against a
+                            nighttime backdrop. My introduction to composition, lighting, and 3D.</li>
+                        <li><strong class="text-slate-950">Snowday</strong> was a fun project where I worked with the
+                            environment more to create snow, water and mountains as well as snowed on pine trees.</li>
+                        <li><strong class="text-slate-950">Hidden Ruins</strong> was my most recent project focused on
+                            setting the perfect scene for a fantasy sword using environmental props, lighting, realistic
+                            water, a glowing magic circle and god rays.</li>
+                    </ul>
+                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">What I Learned</h4>
+                    <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
+                        <li><strong class="text-slate-950">Modeling Basics</strong> : building architectural shapes like
+                            columns, stairs, arches.</li>
+                        <li><strong class="text-slate-950">Environment Composition</strong> : arranging props such as
+                            trees, signs, bushes, lamps, cars to make scenes feel alive.</li>
+                        <li><strong class="text-slate-950">Lighting and Atmosphere</strong> : experimenting with spot,
+                            area and world lighting for each environment.</li>
+                        <li><strong class="text-slate-950">Rendering</strong> : camera angles, depth of field, and
+                            render settings for best quality.</li>
+                    </ul>
+                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">Looking Back</h4>
+                    <p class="text-slate-950" style="text-align:justify">
+                        These projects were a big milestone because they were my first attempts at creating full
+                        environments
+                        rather than single objects. As fun as it was to create everything, I underestimated how hard
+                        learning
+                        to render properly without it taking hours is.
+                    </p>
+                </div>
+            </article>
 
         </div>
-
-
     </section>
 
-    <div class="section-divider max-w-7xl mx-auto my-20"></div>
+    <div class="section-divider max-w-6xl mx-auto"></div>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-            <div class="lg:w-1/2 relative">
-                <div class="relative rounded-xl overflow-hidden h-[36rem] sm:h-[32rem] md:h-[24rem] w-full">
-
-                    <img src="/images/me_fixed.jpg" alt="Pinchiș Daniel portrait"
-                        class="w-full h-full object-cover object-[center_35%] block">
-
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <h3 class="text-2xl font-bold text-white">Pinchiș Daniel</h3>
-                        <p class="text-gray-300">Digital Alchemist</p>
-                    </div>
-                </div>
-
+    <!-- ============================================================
+         SKILLS MARQUEE
+         ============================================================ -->
+    <section class="py-16 overflow-hidden reveal-slide">
+        <div class="text-center mb-10 max-w-md mx-auto">
+            <div class="glass-card rounded-2xl px-8 py-6 relative z-10">
+                <p class="section-label mb-2">Toolkit</p>
+                <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-0">Skills &amp; Tools</h2>
             </div>
-
-            <div class="lg:w-1/2">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 title-font">
-                    <span class="gradient-text">About The Alchemist</span>
-                </h2>
-                <p class="text-gray-400 mb-4">
-                    My name is Pinchiș Daniel. I come from Romania and am currently a student at Karel de Grote in
-                    Antwerp,
-                    pursuing a degree in Multimedia and Creative Technologies. I am developing skills in 3D modeling and
-                    animations, game development, editing, and coding.
-                </p>
-                <p class="text-gray-400 mb-6">
-                    With the skills I’ve been refining throughout my studies, I combine coding, editing, design, and 3D
-                    art into unique projects.
-                    That’s why I call myself a Digital Alchemist.
-                </p>
-
-
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold mb-4 text-gray-300">Creative Focus</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-800 bg-opacity-50 text-gray-300 rounded-full text-sm">Atmospheric
-                            Design</span>
-                        <span class="px-3 py-1 bg-gray-800 bg-opacity-50 text-gray-300 rounded-full text-sm">Interactive
-                            Storytelling</span>
-                        <span
-                            class="px-3 py-1 bg-gray-800 bg-opacity-50 text-gray-300 rounded-full text-sm">Psychological
-                            Horror</span>
-                        <span class="px-3 py-1 bg-gray-800 bg-opacity-50 text-gray-300 rounded-full text-sm">Immersive
-                            Experiences</span>
-                        <span class="px-3 py-1 bg-gray-800 bg-opacity-50 text-gray-300 rounded-full text-sm">World
-                            Building</span>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-300">Technical Skills</h3>
-                    <div class="grid md:grid-cols-3 gap-4">
-                        <!-- Left Column -->
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-pink-900 bg-opacity-50 flex items-center justify-center mr-3">
-                                    <i class="fab fa-html5 text-pink-400"></i>
-                                </div>
-                                <span class="text-gray-300">HTML/CSS</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-indigo-900 bg-opacity-50 flex items-center justify-center mr-3">
-                                    <i class="fas fa-code text-indigo-400"></i>
-                                </div>
-                                <span class="text-gray-300">C#</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-green-900 bg-opacity-50 flex items-center justify-center mr-3">
-                                    <i class="fab fa-js text-green-400"></i>
-                                </div>
-                                <span class="text-gray-300">JavaScript</span>
-                            </div>
-                        </div>
-
-                        <!-- Middle Column -->
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-blue-900 bg-opacity-50 flex items-center justify-center mr-3">
-                                    <i class="fas fa-cube text-blue-400"></i>
-                                </div>
-                                <span class="text-gray-300">Blender</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-purple-900 bg-opacity-50 flex items-center justify-center mr-3">
-                                    <i class="fab fa-unity text-purple-400"></i>
-                                </div>
-                                <span class="text-gray-300">Unity</span>
-                            </div>
-                        </div>
-
-                        <!-- Right Column -->
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-red-900 bg-opacity-50 flex items-center justify-center mr-3">
-                                    <i class="fas fa-pen-fancy text-red-400"></i>
-                                </div>
-                                <span class="text-gray-300">Adobe Illustrator</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-yellow-900 bg-opacity-50 flex items-center justify-center mr-3">
-                                    <i class="fas fa-film text-yellow-400"></i>
-                                </div>
-                                <span class="text-gray-300">Adobe Premiere Pro</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="relative overflow-hidden" style="mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)">
+            <div class="marquee-track" id="marquee-track">
+                <span class="marquee-item"><i class="fab fa-html5"></i> HTML/CSS</span>
+                <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="marquee-item"><i class="fas fa-code"></i> C#</span>
+                <span class="marquee-item"><i class="fas fa-cube"></i> Blender</span>
+                <span class="marquee-item"><i class="fab fa-unity"></i> Unity</span>
+                <span class="marquee-item"><i class="fas fa-pen-fancy"></i> Illustrator</span>
+                <span class="marquee-item"><i class="fas fa-film"></i> Premiere Pro</span>
+                <span class="marquee-item"><i class="fas fa-camera"></i> Photography</span>
+                <span class="marquee-item"><i class="fas fa-gamepad"></i> Game Design</span>
+                <span class="marquee-item"><i class="fas fa-palette"></i> 3D Modeling</span>
+                <span class="marquee-item"><i class="fas fa-running"></i> Animation</span>
+                <!-- duplicated for seamless loop -->
+                <span class="marquee-item"><i class="fab fa-html5"></i> HTML/CSS</span>
+                <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="marquee-item"><i class="fas fa-code"></i> C#</span>
+                <span class="marquee-item"><i class="fas fa-cube"></i> Blender</span>
+                <span class="marquee-item"><i class="fab fa-unity"></i> Unity</span>
+                <span class="marquee-item"><i class="fas fa-pen-fancy"></i> Illustrator</span>
+                <span class="marquee-item"><i class="fas fa-film"></i> Premiere Pro</span>
+                <span class="marquee-item"><i class="fas fa-camera"></i> Photography</span>
+                <span class="marquee-item"><i class="fas fa-gamepad"></i> Game Design</span>
+                <span class="marquee-item"><i class="fas fa-palette"></i> 3D Modeling</span>
+                <span class="marquee-item"><i class="fas fa-running"></i> Animation</span>
             </div>
         </div>
     </section>
 
-    <div class="section-divider max-w-7xl mx-auto my-20"></div>
+    <div class="section-divider max-w-6xl mx-auto"></div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 title-font">
-                <span class="gradient-text">Summon The Alchemist</span>
-            </h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">
-                Interested in collaborating? Let me know!
-            </p>
+    <!-- ============================================================
+         ABOUT
+         ============================================================ -->
+    <section id="about" class="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+
+        <div class="glass-card rounded-2xl p-6 sm:p-10 relative z-10">
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
+                <div class="lg:w-5/12 w-full reveal-left">
+                    <div class="rounded-2xl overflow-hidden">
+                        <div class="relative">
+                            <img src="/images/me_fixed.jpg" alt="Pinchiș Daniel portrait"
+                                class="w-full h-[28rem] sm:h-[32rem] object-cover object-[center_35%] rounded-xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-xl">
+                            </div>
+                            <div class="absolute bottom-0 left-0 p-6">
+                                <h3 class="text-xl font-serif text-white">Pinchiș Daniel</h3>
+                                <p class="text-white/70 text-sm">Digital Alchemist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-7/12 w-full reveal-right">
+                    <p class="section-label mb-1">About</p>
+                    <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-5 scramble-text"
+                        data-scramble="The Alchemist">The Alchemist</h2>
+                    <p class="text-slate-950 mb-3 leading-relaxed">
+                        My name is Pinchiș Daniel. I come from Romania and am currently a student at Karel de Grote in
+                        Antwerp,
+                        pursuing a degree in Multimedia and Creative Technologies. I am developing skills in 3D modeling
+                        and
+                        animations, game development, editing, and coding.
+                    </p>
+                    <p class="text-slate-950 mb-8 leading-relaxed">
+                        With the skills I've been refining throughout my studies, I combine coding, editing, design, and
+                        3D
+                        art into unique projects. That's why I call myself a Digital Alchemist.
+                    </p>
+                    <div>
+                        <h4 class="text-sm font-semibold text-slate-950 uppercase tracking-wider mb-3">Technical Skills
+                        </h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 stagger">
+                            <div class="skill-pill">
+                                <div class="skill-icon"><i class="fab fa-html5"></i></div><span
+                                    class="text-sm text-slate-950">HTML/CSS</span>
+                            </div>
+                            <div class="skill-pill">
+                                <div class="skill-icon"><i class="fas fa-code"></i></div><span
+                                    class="text-sm text-slate-950">C#</span>
+                            </div>
+                            <div class="skill-pill">
+                                <div class="skill-icon"><i class="fab fa-js"></i></div><span
+                                    class="text-sm text-slate-950">JavaScript</span>
+                            </div>
+                            <div class="skill-pill">
+                                <div class="skill-icon"><i class="fas fa-cube"></i></div><span
+                                    class="text-sm text-slate-950">Blender</span>
+                            </div>
+                            <div class="skill-pill">
+                                <div class="skill-icon"><i class="fab fa-unity"></i></div><span
+                                    class="text-sm text-slate-950">Unity</span>
+                            </div>
+                            <div class="skill-pill">
+                                <div class="skill-icon"><i class="fas fa-pen-fancy"></i></div><span
+                                    class="text-sm text-slate-950">Illustrator</span>
+                            </div>
+                            <div class="skill-pill">
+                                <div class="skill-icon"><i class="fas fa-film"></i></div><span
+                                    class="text-sm text-slate-950">Premiere Pro</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="flex flex-col lg:flex-row gap-12">
-            <div class="lg:w-1/2">
-                <form class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Your Name</label>
-                        <input type="text" id="name"
-                            class="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-300 placeholder-gray-600 transition duration-300">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
-                        <input type="email" id="email"
-                            class="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-300 placeholder-gray-600 transition duration-300">
-                    </div>
-                    <div>
-                        <label for="project" class="block text-sm font-medium text-gray-400 mb-1">Project Type</label>
-                        <select id="project"
-                            class="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-300 placeholder-gray-600 transition duration-300">
-                            <option value="" disabled selected>Select a project type</option>
-                            <option value="game">Game Development</option>
-                            <option value="film">Short Film</option>
-                            <option value="animation">3D Animation</option>
-                            <option value="web">Interactive Website</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-400 mb-1">Your Vision</label>
-                        <textarea id="message" rows="5"
-                            class="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-300 placeholder-gray-600 transition duration-300"
-                            placeholder="Describe your project in detail..."></textarea>
-                    </div>
-                    <div>
-                        <div class="g-recaptcha" data-sitekey="6Lds3fArAAAAADDLAFt6NeWlPoy5hsGF5lFUU4_5"></div>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- ============================================================
+         CONTACT
+         ============================================================ -->
+    <section id="contact" class="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-14 reveal-slide max-w-lg mx-auto">
+            <div class="glass-card rounded-2xl px-8 py-6 relative z-10">
+                <p class="section-label mb-2">Contact</p>
+                <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-2 scramble-text"
+                    data-scramble="Get In Touch">Get In Touch</h2>
+                <p class="text-slate-950 max-w-md mx-auto mb-0">Interested in collaborating? Let me know!</p>
+            </div>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-8">
+            <div class="lg:w-1/2 w-full reveal-left">
+                <div class="glass-card rounded-2xl p-8 relative z-10">
+    
+                    <form class="flex flex-col gap-5" id="contact-form">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-slate-950 mb-1.5">Your
+                                Name</label>
+                            <input type="text" id="name" class="form-input" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-slate-950 mb-1.5">Email
+                                Address</label>
+                            <input type="email" id="email" class="form-input" placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label for="project" class="block text-sm font-medium text-slate-950 mb-1.5">Project
+                                Type</label>
+                            <select id="project" class="form-input">
+                                <option value="" disabled selected>Select a project type</option>
+                                <option value="game">Game Development</option>
+                                <option value="film">Short Film</option>
+                                <option value="animation">3D Animation</option>
+                                <option value="web">Interactive Website</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-slate-950 mb-1.5">Your
+                                Vision</label>
+                            <textarea id="message" rows="4" class="form-input"
+                                placeholder="Describe your project..."></textarea>
+                        </div>
+                        <div class="g-recaptcha mb-1" data-sitekey="6Lds3fArAAAAADDLAFt6NeWlPoy5hsGF5lFUU4_5">
+                        </div>
                         <button type="submit"
-                            class="w-full px-6 py-3 bg-gradient-to-r from-purple-800 to-blue-600 rounded-lg text-white font-medium hover:opacity-90 transition duration-300 transform hover:scale-[1.02]">
-                            SEND MESSAGE
+                            class="ripple-btn w-full py-3 rounded-xl bg-forest-700 text-white font-medium hover:bg-forest-800 transition transform hover:scale-[1.02] text-sm magnetic-wrap">
+                            Send Message
                         </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
+            <div class="lg:w-1/2 w-full reveal-right">
+                <div class="glass-card rounded-2xl p-8 flex flex-col relative z-10">
 
-            <div class="lg:w-1/2">
-                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8 h-full">
-                    <h3 class="text-xl font-semibold mb-6 text-gray-300">Other Ways to Connect</h3>
-
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div
-                                class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-900 bg-opacity-50 flex items-center justify-center mr-4">
-                                <i class="fas fa-envelope text-purple-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-400 font-medium mb-1">Email</h4>
-                                <a href="mailto:pinchisdaniel@gmail.com"
-                                    class="text-gray-300 hover:text-white transition duration-300">pinchisdaniel@gmail.com</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div
-                                class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-900 bg-opacity-50 flex items-center justify-center mr-4">
-                                <i class="fab fa-linkedin text-blue-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-400 font-medium mb-1">LinkedIn</h4>
-                                <a href="https://www.linkedin.com/in/pinchis-daniel-b52083333/" target="_blank"
-                                    class="text-gray-300 hover:text-white transition duration-300">Pinchiș Daniel</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div
-                                class="flex-shrink-0 w-10 h-10 rounded-full bg-pink-900 bg-opacity-50 flex items-center justify-center mr-4">
-                                <i class="fab fa-instagram text-pink-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-400 font-medium mb-1">Instagram</h4>
-                                <a href="https://www.instagram.com/danny_m4a1/" target="_blank"
-                                    class="text-gray-300 hover:text-white transition duration-300">danny_m4a1</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div
-                                class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-700 bg-opacity-50 flex items-center justify-center mr-4">
-                                <i class="fab fa-github text-gray-300"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-400 font-medium mb-1">GitHub</h4>
-                                <a href="https://github.com/pinchisdaniel" target="_blank"
-                                    class="text-gray-300 hover:text-white transition duration-300">Pinchiș Daniel</a>
-                            </div>
+                    <div>
+                        <h3 class="text-lg font-serif text-slate-950 mb-6">Other Ways to Connect</h3>
+                        <div class="flex flex-col gap-2">
+                            <a href="mailto:pinchisdaniel@gmail.com" class="contact-link">
+                                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-950 mb-0">Email</p>
+                                    <p class="text-sm text-slate-950 font-medium mb-0">pinchisdaniel@gmail.com</p>
+                                </div>
+                            </a>
+                            <a href="https://www.linkedin.com/in/pinchis-daniel-b52083333/" target="_blank"
+                                class="contact-link">
+                                <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-950 mb-0">LinkedIn</p>
+                                    <p class="text-sm text-slate-950 font-medium mb-0">Pinchiș Daniel</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/danny_m4a1/" target="_blank" class="contact-link">
+                                <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-950 mb-0">Instagram</p>
+                                    <p class="text-sm text-slate-950 font-medium mb-0">danny_m4a1</p>
+                                </div>
+                            </a>
+                            <a href="https://github.com/pinchisdaniel" target="_blank" class="contact-link">
+                                <div class="contact-icon"><i class="fab fa-github"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-950 mb-0">GitHub</p>
+                                    <p class="text-sm text-slate-950 font-medium mb-0">pinchisdaniel</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
-
-                    <div class="mt-12 pt-8 border-t border-gray-800">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-300">Current Availability</h3>
-                        <div class="flex items-center">
-                            <span class="relative flex h-3 w-3 mr-3">
+                    <div class="mt-4 pt-4 border-t border-white/15">
+                        <div class="flex items-center gap-3">
+                            <span class="relative flex h-2.5 w-2.5">
                                 <span
                                     class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                <span
+                                    class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                             </span>
-                            <span class="text-gray-300">Available for select projects</span>
+                            <span class="text-sm text-slate-950">Available for select projects</span>
                         </div>
                     </div>
                 </div>
@@ -845,260 +618,423 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black bg-opacity-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <span class="text-2xl font-bold gradient-text title-font">Pinchiș Daniel</span>
-                    <p class="text-gray-500 text-sm mt-2">© <script>document.write(new Date().getFullYear())</script> Pinchiș Daniel. All rights reserved.</p>
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="glass-nav py-10 px-5 sm:px-8 mt-12">
+        <div class="w-full">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="text-center sm:text-left">
+                    <p class="font-serif gradient-text text-lg">Pinchiș Daniel</p>
+                    <p class="text-slate-950 text-xs mt-1" id="copyright-text"></p>
                 </div>
-
-                <div class="flex space-x-6">
-                    <a href="https://www.instagram.com/danny_m4a1/" target="_blank" class="text-gray-500 hover:text-white transition duration-300">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://github.com/pinchisdaniel" target="_blank" class="text-gray-500 hover:text-white transition duration-300">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/pinchis-daniel-b52083333/" target="_blank" class="text-gray-500 hover:text-white transition duration-300">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
+                <div class="flex items-center gap-5">
+                    <a href="https://www.instagram.com/danny_m4a1/" target="_blank"
+                        class="text-slate-950 hover:text-forest-600 transition text-lg hover:scale-125 inline-block transform duration-300"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/pinchisdaniel" target="_blank"
+                        class="text-slate-950 hover:text-forest-600 transition text-lg hover:scale-125 inline-block transform duration-300"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/pinchis-daniel-b52083333/" target="_blank"
+                        class="text-slate-950 hover:text-forest-600 transition text-lg hover:scale-125 inline-block transform duration-300"><i
+                            class="fab fa-linkedin"></i></a>
                 </div>
             </div>
-
-            <div class="mt-12 pt-8 border-t border-gray-800">
-                <p class="text-gray-500 text-center text-sm">
-                    "Every artist was once an amateur" - Ralph Waldo Emerson
+            <div class="mt-8 pt-6 border-t border-white/10 text-center">
+                <p class="text-slate-950 text-xs italic">"Every artist was once an amateur" ~ Ralph Waldo Emerson
                 </p>
             </div>
         </div>
     </footer>
 
-    <div class="cursor-ball"></div>
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
 
+    <!-- ============================================================
+         SCRIPTS
+         ============================================================ -->
     <script>
+    (function () {
+        'use strict';
 
-        // Cursor Ball Effect
-        const cursorBall = document.querySelector('.cursor-ball');
-        let mouseX = 0;
-        let mouseY = 0;
-        let ballX = 0;
-        let ballY = 0;
-        let speed = 0.1;
+        // ── PRELOADER ──────────────────────────────────────────
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('preloader').classList.add('done');
+            }, 800);
+        });
 
-        // Hide cursor ball on mobile
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-            cursorBall.style.display = 'none';
-        } else {
-            function animate() {
-                let distX = mouseX - ballX;
-                let distY = mouseY - ballY;
-                ballX = ballX + (distX * speed);
-                ballY = ballY + (distY * speed);
-                cursorBall.style.left = ballX + 'px';
-                cursorBall.style.top = ballY + 'px';
-                requestAnimationFrame(animate);
+        // ── PRELOADER TEXT ──────────────────────────────────────
+        var loaderPhrases = [
+            'Alchemizing pixels...',
+            'Forging the experience...',
+            'Summoning creativity...',
+            'Brewing something special...',
+            'Channeling the craft...',
+            'Rendering imagination...',
+            'Transmuting ideas...',
+            'Igniting the forge...',
+            'Conjuring visuals...',
+            'Mixing code and art...'
+        ];
+        document.getElementById('preloader-text').textContent =
+            loaderPhrases[Math.floor(Math.random() * loaderPhrases.length)];
+
+        // ── COPYRIGHT ──────────────────────────────────────────
+        document.getElementById('copyright-text').textContent =
+            '\u00A9 ' + new Date().getFullYear() + ' Pinchi\u0219 Daniel. All rights reserved.';
+
+        // ── SCROLL PROGRESS BAR ────────────────────────────────
+        var progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', function () {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var pct = (scrollTop / docHeight) * 100;
+            progressBar.style.width = pct + '%';
+        });
+
+        // ── PARTICLES (50 particles with glow variants) ────────
+        var particleBox = document.getElementById('particles');
+        var greens = [
+            'rgba(34, 197, 94, 0.5)',
+            'rgba(22, 163, 74, 0.45)',
+            'rgba(5, 150, 105, 0.4)',
+            'rgba(52, 211, 153, 0.5)',
+            'rgba(74, 222, 128, 0.45)',
+            'rgba(16, 185, 129, 0.5)'
+        ];
+        for (var i = 0; i < 50; i++) {
+            var p = document.createElement('div');
+            var isGlow = i > 40;
+            p.className = isGlow ? 'particle-glow' : 'particle';
+            var size = isGlow ? (8 + Math.random() * 14) : (3 + Math.random() * 9);
+            // Only render on left 20% or right 20% of screen
+            var side = Math.random() < 0.5;
+            var leftPos = side ? (Math.random() * 20) : (80 + Math.random() * 20);
+            p.style.cssText =
+                'width:' + size + 'px;height:' + size + 'px;' +
+                'left:' + leftPos + 'vw;' +
+                'top:' + (40 + Math.random() * 60) + 'vh;' +
+                'background:' + greens[Math.floor(Math.random() * greens.length)] + ';' +
+                'animation-duration:' + (8 + Math.random() * 16) + 's;' +
+                'animation-delay:' + (Math.random() * 14) + 's;';
+            particleBox.appendChild(p);
+        }
+
+        // ── TYPED TEXT ─────────────────────────────────────────
+        var typedStr = "Combining ideas, pixels, and code to create something extraordinary.";
+        var typedEl = document.getElementById('typed-text');
+        var ti = 0;
+        function typeChar() {
+            if (ti < typedStr.length) {
+                typedEl.textContent += typedStr.charAt(ti);
+                ti++;
+                setTimeout(typeChar, 25 + Math.random() * 25);
             }
-            animate();
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
+        }
+        setTimeout(typeChar, 2800);
+
+        // ── CUSTOM CURSOR (dot + ring + trail) ─────────────────
+        var dot = document.getElementById('cursor-dot');
+        var mx = -100, my = -100, dx = -100, dy = -100;
+        var isTouch = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+        var trailDots = [];
+
+        if (isTouch) {
+            dot.style.display = 'none';
+        } else {
+            // Create trail dots
+            for (var t = 0; t < 6; t++) {
+                var td = document.createElement('div');
+                td.className = 'cursor-trail';
+                td.style.opacity = (1 - t * 0.15);
+                td.style.width = (5 - t * 0.5) + 'px';
+                td.style.height = (5 - t * 0.5) + 'px';
+                document.body.appendChild(td);
+                trailDots.push({ el: td, x: -100, y: -100 });
+            }
+
+            (function cursorLoop() {
+                // Dot follows tightly
+                dx += (mx - dx) * 0.35;
+                dy += (my - dy) * 0.35;
+                dot.style.left = dx + 'px';
+                dot.style.top = dy + 'px';
+
+                // Trail
+                for (var i = 0; i < trailDots.length; i++) {
+                    var target = i === 0 ? { x: dx, y: dy } : trailDots[i - 1];
+                    trailDots[i].x += (target.x - trailDots[i].x) * (0.25 - i * 0.03);
+                    trailDots[i].y += (target.y - trailDots[i].y) * (0.25 - i * 0.03);
+                    trailDots[i].el.style.left = trailDots[i].x + 'px';
+                    trailDots[i].el.style.top = trailDots[i].y + 'px';
+                }
+
+                requestAnimationFrame(cursorLoop);
+            })();
+
+            document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; });
         }
 
-        // Function to encode image paths
-        function encodeImagePath(path) {
-            // Ensure the path is properly encoded for URLs
-            return encodeURI(path);
-        }
-
-        // ✅ TRUE Swipe Carousel – works everywhere
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".project-media-container").forEach(container => {
-                const track = container.querySelector(".media-track");
-                const slides = Array.from(container.querySelectorAll(".media-item"));
-                const prevBtn = container.querySelector(".media-prev-btn");
-                const nextBtn = container.querySelector(".media-next-btn");
-                let currentIndex = 0;
-                let startX = 0;
-                let currentTranslate = 0;
-                let prevTranslate = 0;
-                let dragging = false;
-
-                function setPosition() {
-                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                }
-
-                function clampIndex(i) {
-                    return Math.max(0, Math.min(i, slides.length - 1));
-                }
-
-                function goToSlide(i) {
-                    currentIndex = clampIndex(i);
-                    setPosition();
-                }
-
-                // Buttons
-                nextBtn?.addEventListener("click", () => goToSlide(currentIndex + 1));
-                prevBtn?.addEventListener("click", () => goToSlide(currentIndex - 1));
-
-                // Touch + mouse swipe
-                const start = x => {
-                    dragging = true;
-                    startX = x;
-                    track.style.transition = "none";
-                };
-                const move = x => {
-                    if (!dragging) return;
-                    const dx = x - startX;
-                    const percentage = (dx / container.offsetWidth) * 100;
-                    track.style.transform = `translateX(calc(-${currentIndex * 100}% + ${percentage}%))`;
-                };
-                const end = x => {
-                    if (!dragging) return;
-                    dragging = false;
-                    const dx = x - startX;
-                    const threshold = container.offsetWidth / 4;
-                    if (dx > threshold) currentIndex = clampIndex(currentIndex - 1);
-                    else if (dx < -threshold) currentIndex = clampIndex(currentIndex + 1);
-                    track.style.transition = "transform 0.4s ease";
-                    setPosition();
-                };
-
-                // Touch listeners
-                container.addEventListener("touchstart", e => start(e.touches[0].clientX));
-                container.addEventListener("touchmove", e => move(e.touches[0].clientX));
-                container.addEventListener("touchend", e => end(e.changedTouches[0].clientX));
-
-                // Mouse listeners (desktop drag)
-                container.addEventListener("mousedown", e => start(e.clientX));
-                container.addEventListener("mousemove", e => move(e.clientX));
-                container.addEventListener("mouseup", e => end(e.clientX));
-                container.addEventListener("mouseleave", e => end(e.clientX));
-
-                // Initial position
-                setPosition();
+        // ── MAGNETIC BUTTONS ───────────────────────────────────
+        document.querySelectorAll('.magnetic-wrap').forEach(function (wrap) {
+            wrap.addEventListener('mousemove', function (e) {
+                if (isTouch) return;
+                var rect = wrap.getBoundingClientRect();
+                var x = e.clientX - rect.left - rect.width / 2;
+                var y = e.clientY - rect.top - rect.height / 2;
+                wrap.style.transform = 'translate(' + (x * 0.2) + 'px, ' + (y * 0.2) + 'px)';
             });
+            wrap.addEventListener('mouseleave', function () {
+                wrap.style.transform = 'translate(0, 0)';
+            });
+        });
 
-            // Native fullscreen for images (no overlay)
-            document.querySelectorAll('.media-item img').forEach(img => {
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('click', async () => {
-                    try {
-                        if (!document.fullscreenElement) {
-                            await img.requestFullscreen();
-                            img.style.cursor = 'zoom-out';
-                        } else {
-                            await document.exitFullscreen();
-                            img.style.cursor = 'zoom-in';
-                        }
-                    } catch (err) {
-                        console.error('Fullscreen failed:', err);
+        // ── RIPPLE BUTTONS ─────────────────────────────────────
+        document.querySelectorAll('.ripple-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                var rect = btn.getBoundingClientRect();
+                var ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                var size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                btn.appendChild(ripple);
+                setTimeout(function () { ripple.remove(); }, 600);
+            });
+        });
+
+        // ── TEXT SCRAMBLE ON HOVER ─────────────────────────────
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        document.querySelectorAll('.scramble-text').forEach(function (el) {
+            var original = el.getAttribute('data-scramble') || el.textContent;
+            var isScrambling = false;
+
+            el.addEventListener('mouseenter', function () {
+                if (isScrambling) return;
+                isScrambling = true;
+                var iteration = 0;
+                var interval = setInterval(function () {
+                    el.textContent = original.split('').map(function (char, index) {
+                        if (index < iteration) return original[index];
+                        if (char === ' ') return ' ';
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    }).join('');
+                    iteration += 1 / 2;
+                    if (iteration >= original.length) {
+                        el.textContent = original;
+                        clearInterval(interval);
+                        isScrambling = false;
                     }
+                }, 30);
+            });
+        });
+
+        // ── SCROLL REVEAL (enhanced) ──────────────────────────
+        var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    // Trigger counters if a counter is visible
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-slide, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .stagger').forEach(function (el) {
+            revealObserver.observe(el);
+        });
+
+        // ── SECTION DOT NAVIGATION ─────────────────────────────
+        var sectionDots = document.querySelectorAll('.section-dot');
+        var sections = document.querySelectorAll('section[id]');
+
+        sectionDots.forEach(function (dot) {
+            dot.addEventListener('click', function () {
+                var target = document.querySelector(dot.getAttribute('data-target'));
+                if (target) {
+                    window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+                }
+            });
+        });
+
+        function updateActiveDot() {
+            var scrollPos = window.scrollY + window.innerHeight / 3;
+            sections.forEach(function (section, i) {
+                if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+                    sectionDots.forEach(function (d) { d.classList.remove('active'); });
+                    if (sectionDots[i]) sectionDots[i].classList.add('active');
+                }
+            });
+        }
+
+        // ── NAVBAR SCROLL ──────────────────────────────────────
+        var nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', function () {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+            updateActiveDot();
+        });
+
+        // ── MOBILE MENU ────────────────────────────────────────
+        var mobileMenuBtn = document.getElementById('mobile-menu-button');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var menuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', function () {
+            var isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.className = isOpen ? 'fas fa-bars' : 'fas fa-times';
+        });
+
+        // ── SMOOTH SCROLL ──────────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.className = 'fas fa-bars';
+                }
+            });
+        });
+
+        // ── CAROUSEL ───────────────────────────────────────────
+        document.querySelectorAll('[data-carousel]').forEach(function (wrap) {
+            var track = wrap.querySelector('.carousel-track');
+            var slides = wrap.querySelectorAll('.carousel-slide');
+            var prevBtn = wrap.querySelector('.carousel-btn.prev');
+            var nextBtn = wrap.querySelector('.carousel-btn.next');
+            var dotsBox = wrap.querySelector('.carousel-dots');
+            var idx = 0, dragging = false, startX = 0;
+
+            slides.forEach(function (_, i) {
+                var d = document.createElement('button');
+                d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                d.addEventListener('click', function () { go(i); });
+                dotsBox.appendChild(d);
+            });
+            var dots = dotsBox.querySelectorAll('.carousel-dot');
+
+            function go(i) {
+                idx = Math.max(0, Math.min(i, slides.length - 1));
+                track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
+                track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+                dots.forEach(function (d, j) { d.classList.toggle('active', j === idx); });
+                // Pause all videos, play the current one if it's a video
+                slides.forEach(function (s) {
+                    var v = s.querySelector('video');
+                    if (v) v.pause();
+                });
+                var currentVideo = slides[idx].querySelector('video');
+                if (currentVideo) currentVideo.play();
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', function () { go(idx - 1); });
+            if (nextBtn) nextBtn.addEventListener('click', function () { go(idx + 1); });
+
+            // Auto advance every 5s
+            var autoTimer = setInterval(function () { go((idx + 1) % slides.length); }, 5000);
+            wrap.addEventListener('mouseenter', function () { clearInterval(autoTimer); });
+            wrap.addEventListener('mouseleave', function () {
+                autoTimer = setInterval(function () { go((idx + 1) % slides.length); }, 5000);
+            });
+
+            function onStart(x) { dragging = true; startX = x; track.style.transition = 'none'; }
+            function onMove(x) {
+                if (!dragging) return;
+                var pct = ((x - startX) / wrap.offsetWidth) * 100;
+                track.style.transform = 'translateX(calc(-' + (idx * 100) + '% + ' + pct + '%))';
+            }
+            function onEnd(x) {
+                if (!dragging) return;
+                dragging = false;
+                var dx = x - startX;
+                if (dx > wrap.offsetWidth / 5) go(idx - 1);
+                else if (dx < -wrap.offsetWidth / 5) go(idx + 1);
+                else go(idx);
+            }
+
+            wrap.addEventListener('touchstart', function (e) { onStart(e.touches[0].clientX); }, { passive: true });
+            wrap.addEventListener('touchmove', function (e) { onMove(e.touches[0].clientX); }, { passive: true });
+            wrap.addEventListener('touchend', function (e) { onEnd(e.changedTouches[0].clientX); });
+            wrap.addEventListener('mousedown', function (e) { e.preventDefault(); onStart(e.clientX); });
+            wrap.addEventListener('mousemove', function (e) { onMove(e.clientX); });
+            wrap.addEventListener('mouseup', function (e) { onEnd(e.clientX); });
+            wrap.addEventListener('mouseleave', function (e) { if (dragging) onEnd(e.clientX); });
+
+            go(0);
+        });
+
+        // ── IMAGE FULLSCREEN ───────────────────────────────────
+        document.querySelectorAll('.carousel-slide img').forEach(function (img) {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', function () {
+                if (!document.fullscreenElement) {
+                    img.requestFullscreen().then(function () { img.style.cursor = 'zoom-out'; }).catch(function () { });
+                } else {
+                    document.exitFullscreen().then(function () { img.style.cursor = 'zoom-in'; }).catch(function () { });
+                }
+            });
+        });
+
+        // ── PARALLAX ON MOUSE MOVE (hero shapes) ───────────────
+        var floatingShapes = document.querySelectorAll('.floating-shape');
+        if (!isTouch) {
+            document.addEventListener('mousemove', function (e) {
+                var xPct = (e.clientX / window.innerWidth - 0.5) * 2;
+                var yPct = (e.clientY / window.innerHeight - 0.5) * 2;
+                floatingShapes.forEach(function (shape, i) {
+                    var speed = (i + 1) * 8;
+                    shape.style.transform = 'translate(' + (xPct * speed) + 'px, ' + (yPct * speed) + 'px)';
                 });
             });
+        }
 
-        });
-
-
-
-
-
-
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function () {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+        // ── ACTIVE NAV LINK HIGHLIGHT ──────────────────────────
+        var navLinks = document.querySelectorAll('.nav-link');
+        var navObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(function (link) {
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
                     });
-
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
                 }
             });
-        });
+        }, { threshold: 0.3 });
+        sections.forEach(function (s) { navObserver.observe(s); });
 
-        // Add shadow to navbar on scroll
-        window.addEventListener('scroll', function () {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg');
-            } else {
-                nav.classList.remove('shadow-lg');
-            }
-        });
-
-        // Form submission
-        const form = document.querySelector("form");
-
+        // ── CONTACT FORM ───────────────────────────────────────
+        var form = document.getElementById('contact-form');
         if (form) {
-            form.addEventListener("submit", async (e) => {
+            form.addEventListener('submit', function (e) {
                 e.preventDefault();
+                var token = grecaptcha.getResponse();
+                var name = document.getElementById('name').value.trim();
+                var email = document.getElementById('email').value.trim();
+                var project = document.getElementById('project').value.trim();
+                var message = document.getElementById('message').value.trim();
 
-                const token = grecaptcha.getResponse();
-                const name = document.getElementById("name").value.trim();
-                const email = document.getElementById("email").value.trim();
-                const project = document.getElementById("project").value.trim();
-                const message = document.getElementById("message").value.trim();
+                if (!name || !email || !project || !message) { alert('Please fill in all fields.'); return; }
+                if (!token) { alert('Please complete the CAPTCHA.'); return; }
 
-                if (!name || !email || !project || !message) {
-                    alert("⚠️ Please fill in all fields before sending.");
-                    return;
-                }
-
-                if (!token) {
-                    alert("Please complete the CAPTCHA.");
-                    return;
-                }
-
-
-                const formData = {
-                    name,
-                    email,
-                    project,
-                    message,
-                    token
-                };
-
-                try {
-                    const res = await fetch("/api/contact", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(formData),
-                    });
-
-                    const data = await res.json();
-
-                    if (res.ok) {
-                        alert("✅ Message sent successfully!");
-                        form.reset();
-                        grecaptcha.reset();
-                    } else {
-                        alert("❌ " + data.message);
-                    }
-                } catch (error) {
-                    console.error(error);
-                    alert("Something went wrong, please try again later.");
-                }
+                fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, email: email, project: project, message: message, token: token })
+                })
+                    .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+                    .then(function (result) {
+                        if (result.ok) { alert('Message sent successfully!'); form.reset(); grecaptcha.reset(); }
+                        else { alert(result.data.message || 'Something went wrong.'); }
+                    })
+                    .catch(function () { alert('Something went wrong, please try again later.'); });
             });
         }
 
+    })();
     </script>
 </body>
+
+</html>
