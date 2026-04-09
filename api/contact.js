@@ -6,7 +6,19 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, project, message } = req.body;
+    const { name, email, project, message, token } = req.body;
+
+    // Verify reCAPTCHA token with Google
+    const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${process.env.RECAPTCHA_SECRET}&response=${token}`,
+    });
+    const recaptchaData = await recaptchaRes.json();
+
+    if (!recaptchaData.success) {
+      return res.status(400).json({ message: "reCAPTCHA verification failed." });
+    }
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
