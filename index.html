@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
+
+    <!-- ═══ SOCIAL SHARING PREVIEWS (Open Graph + Twitter) ═══
+         NOTE: replace YOUR-DOMAIN-HERE with your real domain (e.g. yoursite.vercel.app)
+         so shared links show the image preview correctly. -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pinchiș Daniel | Digital Alchemist">
+    <meta property="og:description"
+        content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
+    <meta property="og:url" content="https://YOUR-DOMAIN-HERE/">
+    <meta property="og:image" content="https://YOUR-DOMAIN-HERE/images/projectscene.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pinchiș Daniel | Digital Alchemist">
+    <meta name="twitter:description"
+        content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
+    <meta name="twitter:image" content="https://YOUR-DOMAIN-HERE/images/projectscene.jpg">
+
     <title>Pinchiș Daniel | Digital Alchemist</title>
     <link rel="icon" type="image/jpg" href="images/monogram.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +84,7 @@
     <nav id="main-nav" class="glass-nav fixed w-full z-50 transition-all duration-300">
         <div class="w-full px-5 sm:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="#home" class="text-xl font-serif gradient-text magnetic-wrap nav-name">Pinchiș Daniel</a>
+                <a href="#home" class="text-xl font-serif gradient-text nav-name">Pinchiș Daniel</a>
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#home"
                         class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">Home</a>
@@ -76,10 +92,8 @@
                         class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">Work</a>
                     <a href="#about"
                         class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">About</a>
-                    <div class="magnetic-wrap">
-                        <a href="#contact"
-                            class="ripple-btn text-sm font-medium px-5 py-2 rounded-full bg-forest-700 text-white hover:bg-forest-800 transition">Contact</a>
-                    </div>
+                    <a href="#contact"
+                        class="text-sm font-medium px-5 py-2 rounded-full bg-forest-700 text-white hover:bg-forest-800 transition">Contact</a>
                 </div>
                 <button id="mobile-menu-button" class="md:hidden text-slate-950 text-xl" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -158,14 +172,49 @@
                 <p class="section-label mb-2">Projects</p>
                 <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-2 scramble-text"
                     data-scramble="Selected Works">Selected Works</h2>
-                <p class="text-slate-950 max-w-md mx-auto mb-0">Where code, design, and imagination converge.</p>
+                <p class="text-slate-950 max-w-md mx-auto mb-1">Where code, design, and imagination converge.</p>
+                <p class="text-slate-950 text-sm italic mb-0">Select a level to explore the project.</p>
             </div>
         </div>
 
-        <div class="flex flex-col gap-20">
+        <!-- ════════════════════════════════════════════════════════
+             LEVEL SELECT
+             The winding path (SVG) and flowing particles are drawn
+             automatically by the "LEVEL SELECT" script at the bottom
+             of this file. Levels are numbered automatically too.
+             ════════════════════════════════════════════════════════ -->
+        <div class="level-path-wrap">
+            <svg id="level-path-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path id="level-path-line" d="" fill="none" />
+            </svg>
+            <div class="level-list">
 
-            <!-- PROJECT 1: Forged in Shadows -->
-            <article class="glass-card rounded-2xl reveal-scale">
+                <!-- ═══════════════ LEVEL: Forged in Shadows ═══════════════
+                     TO ADD A NEW PROJECT: copy everything from this comment
+                     down to the matching "END LEVEL" comment, paste it right
+                     before the "END OF LEVELS" marker below, then change:
+                       1. the icon class on .level-icon (any Font Awesome icon)
+                       2. the id on the panel + the aria-controls on the button
+                          (they must match and be unique, e.g. "panel-mygame")
+                       3. the tag, title, blurb, and panel content
+                       4. the carousel images/videos
+                     Numbering, the path, particles, and the carousel all hook
+                     themselves up automatically. -->
+                <div class="level-stop">
+                    <div class="level-node-row">
+                        <button class="level-node" aria-expanded="false" aria-controls="panel-forged">
+                            <span class="level-num"></span>
+                            <i class="fas fa-hammer level-icon" aria-hidden="true"></i>
+                        </button>
+                        <div class="level-meta">
+                            <span class="level-tag">Unity Game</span>
+                            <h3 class="level-title font-serif gradient-text">Forged in Shadows</h3>
+                            <p class="level-blurb">A horror adventure set in the Edo period.</p>
+                        </div>
+                    </div>
+
+                    <article class="level-panel glass-card rounded-2xl" id="panel-forged">
+                        <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
 
                 <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
                     <div class="carousel-track">
@@ -220,8 +269,7 @@
                     <span
                         class="section-label px-3 py-1 rounded-full bg-forest-50/60 border border-forest-200/50 inline-block mb-4">Unity
                         Game</span>
-                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3 scramble-text"
-                        data-scramble="Forged in Shadows">Forged in Shadows</h3>
+                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3">Forged in Shadows</h3>
                     <p class="text-slate-950 text-base mb-6 max-w-2xl">
                         A horror adventure game set in the Edo period where your goal is to help a former blacksmith.
                     </p>
@@ -230,7 +278,7 @@
                         haunted blacksmith's workshop. It's where I learned the basics of Unity and figured out how to
                         actually turn an idea into something playable.
                     </p>
-                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">What I Learned</h4>
+                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
                     <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
                         <li><strong class="text-slate-950">Unity Basics</strong> : importing assets, building
                             environments, and getting things to run without breaking every five minutes.</li>
@@ -244,17 +292,33 @@
                             with the design and arrangements, while I handled scripting, lighting, and some of the
                             models. We used Unity version control.</li>
                     </ul>
-                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">Looking Back</h4>
+                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">Looking Back</h4>
                     <p class="text-slate-950" style="text-align:justify">
                         This project was messy, frustrating, and super rewarding. I learned that horror isn't just about
                         cheap scares, but about atmosphere, pacing, and detail. Even though <strong>Forged in
                             Shadows</strong> is only a prototype, it's the project that got me hooked on making games.
                     </p>
                 </div>
-            </article>
+                    </article>
+                </div>
+                <!-- ═══════════════ END LEVEL: Forged in Shadows ═══════════════ -->
 
-            <!-- PROJECT 2: Character Animations -->
-            <article class="glass-card rounded-2xl reveal-scale">
+                <!-- ═══════════════ LEVEL: Character Animations ═══════════════ -->
+                <div class="level-stop">
+                    <div class="level-node-row">
+                        <button class="level-node" aria-expanded="false" aria-controls="panel-animations">
+                            <span class="level-num"></span>
+                            <i class="fas fa-running level-icon" aria-hidden="true"></i>
+                        </button>
+                        <div class="level-meta">
+                            <span class="level-tag">3D Animations</span>
+                            <h3 class="level-title font-serif gradient-text">Character Animations</h3>
+                            <p class="level-blurb">Rigged and animated characters made in Blender.</p>
+                        </div>
+                    </div>
+
+                    <article class="level-panel glass-card rounded-2xl" id="panel-animations">
+                        <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
 
                 <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
                     <div class="carousel-track">
@@ -284,8 +348,7 @@
                     <span
                         class="section-label px-3 py-1 rounded-full bg-emerald-50/60 border border-emerald-200/50 inline-block mb-4">3D
                         Animations</span>
-                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3 scramble-text"
-                        data-scramble="Character Animations">Character Animations</h3>
+                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3">Character Animations</h3>
                     <p class="text-slate-950 text-base mb-6 max-w-2xl">
                         A collection of my rigged and animated characters made in Blender.
                     </p>
@@ -295,7 +358,7 @@
                         mechanics,
                         timing, and personality in animation.
                     </p>
-                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">What I Learned</h4>
+                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
                     <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
                         <li><strong class="text-slate-950">Rigging</strong> : learned how to create rigs, use and attach
                             bones, controllers, and IK/FK setups.</li>
@@ -306,7 +369,7 @@
                         <li><strong class="text-slate-950">Animation Principles</strong> : applying timing, spacing, and
                             flow across different styles of motion.</li>
                     </ul>
-                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">Looking Back</h4>
+                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">Looking Back</h4>
                     <p class="text-slate-950" style="text-align:justify">
                         These animations started simple but gave me an idea of what I should continue to focus on.
                         Working on these gave me a feel for how characters move and express themselves through motion.
@@ -317,10 +380,26 @@
                         Disclaimer: Some assets are original creations, while others belong to their respective owners.
                     </p>
                 </div>
-            </article>
+                    </article>
+                </div>
+                <!-- ═══════════════ END LEVEL: Character Animations ═══════════════ -->
 
-            <!-- PROJECT 3: 3D Models -->
-            <article class="glass-card rounded-2xl reveal-scale">
+                <!-- ═══════════════ LEVEL: 3D Environments ═══════════════ -->
+                <div class="level-stop">
+                    <div class="level-node-row">
+                        <button class="level-node" aria-expanded="false" aria-controls="panel-environments">
+                            <span class="level-num"></span>
+                            <i class="fas fa-mountain level-icon" aria-hidden="true"></i>
+                        </button>
+                        <div class="level-meta">
+                            <span class="level-tag">3D Models</span>
+                            <h3 class="level-title font-serif gradient-text">3D Environments</h3>
+                            <p class="level-blurb">Environment designs and models created in Blender.</p>
+                        </div>
+                    </div>
+
+                    <article class="level-panel glass-card rounded-2xl" id="panel-environments">
+                        <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
 
                 <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
                     <div class="carousel-track">
@@ -348,8 +427,7 @@
                     <span
                         class="section-label px-3 py-1 rounded-full bg-teal-50/60 border border-teal-200/50 inline-block mb-4">3D
                         Models</span>
-                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3 scramble-text"
-                        data-scramble="3D Environments">3D Environments</h3>
+                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3">3D Environments</h3>
                     <p class="text-slate-950 text-base mb-6 max-w-2xl">
                         Environment designs and models created in Blender.
                     </p>
@@ -364,7 +442,7 @@
                             setting the perfect scene for a fantasy sword using environmental props, lighting, realistic
                             water, a glowing magic circle and god rays.</li>
                     </ul>
-                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">What I Learned</h4>
+                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
                     <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
                         <li><strong class="text-slate-950">Modeling Basics</strong> : building architectural shapes like
                             columns, stairs, arches.</li>
@@ -375,7 +453,7 @@
                         <li><strong class="text-slate-950">Rendering</strong> : camera angles, depth of field, and
                             render settings for best quality.</li>
                     </ul>
-                    <h4 class="text-xl sm:text-2xl font-serif gradient-text mb-3">Looking Back</h4>
+                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">Looking Back</h4>
                     <p class="text-slate-950" style="text-align:justify">
                         These projects were a big milestone because they were my first attempts at creating full
                         environments
@@ -384,8 +462,13 @@
                         to render properly without it taking hours is.
                     </p>
                 </div>
-            </article>
+                    </article>
+                </div>
+                <!-- ═══════════════ END LEVEL: 3D Environments ═══════════════ -->
 
+                <!-- ═══════════════ END OF LEVELS: paste new levels ABOVE this line ═══════════════ -->
+
+            </div>
         </div>
     </section>
 
@@ -403,29 +486,35 @@
         </div>
         <div class="relative overflow-hidden" style="mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)">
             <div class="marquee-track" id="marquee-track">
-                <span class="marquee-item"><i class="fab fa-html5"></i> HTML/CSS</span>
-                <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
-                <span class="marquee-item"><i class="fas fa-code"></i> C#</span>
-                <span class="marquee-item"><i class="fas fa-cube"></i> Blender</span>
-                <span class="marquee-item"><i class="fab fa-unity"></i> Unity</span>
-                <span class="marquee-item"><i class="fas fa-pen-fancy"></i> Illustrator</span>
-                <span class="marquee-item"><i class="fas fa-film"></i> Premiere Pro</span>
-                <span class="marquee-item"><i class="fas fa-camera"></i> Photography</span>
-                <span class="marquee-item"><i class="fas fa-gamepad"></i> Game Design</span>
-                <span class="marquee-item"><i class="fas fa-palette"></i> 3D Modeling</span>
-                <span class="marquee-item"><i class="fas fa-running"></i> Animation</span>
-                <!-- duplicated for seamless loop -->
-                <span class="marquee-item"><i class="fab fa-html5"></i> HTML/CSS</span>
-                <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
-                <span class="marquee-item"><i class="fas fa-code"></i> C#</span>
-                <span class="marquee-item"><i class="fas fa-cube"></i> Blender</span>
-                <span class="marquee-item"><i class="fab fa-unity"></i> Unity</span>
-                <span class="marquee-item"><i class="fas fa-pen-fancy"></i> Illustrator</span>
-                <span class="marquee-item"><i class="fas fa-film"></i> Premiere Pro</span>
-                <span class="marquee-item"><i class="fas fa-camera"></i> Photography</span>
-                <span class="marquee-item"><i class="fas fa-gamepad"></i> Game Design</span>
-                <span class="marquee-item"><i class="fas fa-palette"></i> 3D Modeling</span>
-                <span class="marquee-item"><i class="fas fa-running"></i> Animation</span>
+                <!-- ═══ SKILLS LIST ═══
+                     TO ADD A SKILL: copy one <span class="marquee-item"> line, change the
+                     icon and text, and paste it in BOTH lists (this one AND the duplicate
+                     below) so the scrolling loop stays seamless. That's the only catch. -->
+                <span class="marquee-item"><span class="m-node"><i class="fab fa-html5"></i></span>HTML/CSS</span>
+                <span class="marquee-item"><span class="m-node"><i class="fab fa-js"></i></span>JavaScript</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-code"></i></span>C#</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-cube"></i></span>Blender</span>
+                <span class="marquee-item"><span class="m-node"><i class="fab fa-unity"></i></span>Unity</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-pen-fancy"></i></span>Illustrator</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-film"></i></span>Premiere Pro</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-camera"></i></span>Photography</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-gamepad"></i></span>Game Design</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-palette"></i></span>3D Modeling</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-running"></i></span>Animation</span>
+                <!-- ═══ DUPLICATE LIST (keep identical to the one above, for the seamless loop) ═══ -->
+                <span aria-hidden="true" style="display:contents">
+                    <span class="marquee-item"><span class="m-node"><i class="fab fa-html5"></i></span>HTML/CSS</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fab fa-js"></i></span>JavaScript</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-code"></i></span>C#</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-cube"></i></span>Blender</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fab fa-unity"></i></span>Unity</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-pen-fancy"></i></span>Illustrator</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-film"></i></span>Premiere Pro</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-camera"></i></span>Photography</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-gamepad"></i></span>Game Design</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-palette"></i></span>3D Modeling</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-running"></i></span>Animation</span>
+                </span>
             </div>
         </div>
     </section>
@@ -657,6 +746,11 @@
     (function () {
         'use strict';
 
+        // ── ACCESSIBILITY: respect the visitor's "reduce motion" OS setting.
+        //    When true, decorative animations are skipped. Everything still works.
+        var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var scrollBehavior = reducedMotion ? 'auto' : 'smooth';
+
         // ── PRELOADER ──────────────────────────────────────────
         window.addEventListener('load', function () {
             setTimeout(function () {
@@ -703,7 +797,7 @@
             'rgba(74, 222, 128, 0.45)',
             'rgba(16, 185, 129, 0.5)'
         ];
-        for (var i = 0; i < 50; i++) {
+        for (var i = 0; i < (reducedMotion ? 0 : 50); i++) {
             var p = document.createElement('div');
             var isGlow = i > 40;
             p.className = isGlow ? 'particle-glow' : 'particle';
@@ -732,7 +826,8 @@
                 setTimeout(typeChar, 25 + Math.random() * 25);
             }
         }
-        setTimeout(typeChar, 2800);
+        if (reducedMotion) { typedEl.textContent = typedStr; }
+        else { setTimeout(typeChar, 2800); }
 
         // ── CUSTOM CURSOR (dot + ring + trail) ─────────────────
         var dot = document.getElementById('cursor-dot');
@@ -740,7 +835,7 @@
         var isTouch = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
         var trailDots = [];
 
-        if (isTouch) {
+        if (isTouch || reducedMotion) {
             dot.style.display = 'none';
         } else {
             // Create trail dots
@@ -779,7 +874,7 @@
         // ── MAGNETIC BUTTONS ───────────────────────────────────
         document.querySelectorAll('.magnetic-wrap').forEach(function (wrap) {
             wrap.addEventListener('mousemove', function (e) {
-                if (isTouch) return;
+                if (isTouch || reducedMotion) return;
                 var rect = wrap.getBoundingClientRect();
                 var x = e.clientX - rect.left - rect.width / 2;
                 var y = e.clientY - rect.top - rect.height / 2;
@@ -812,7 +907,7 @@
             var isScrambling = false;
 
             el.addEventListener('mouseenter', function () {
-                if (isScrambling) return;
+                if (isScrambling || reducedMotion) return;
                 isScrambling = true;
                 var iteration = 0;
                 var interval = setInterval(function () {
@@ -853,7 +948,7 @@
             dot.addEventListener('click', function () {
                 var target = document.querySelector(dot.getAttribute('data-target'));
                 if (target) {
-                    window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+                    window.scrollTo({ top: target.offsetTop - 70, behavior: scrollBehavior });
                 }
             });
         });
@@ -892,7 +987,7 @@
                 e.preventDefault();
                 var target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+                    window.scrollTo({ top: target.offsetTop - 70, behavior: scrollBehavior });
                     mobileMenu.classList.add('hidden');
                     menuIcon.className = 'fas fa-bars';
                 }
@@ -935,10 +1030,10 @@
             if (nextBtn) nextBtn.addEventListener('click', function () { go(idx + 1); });
 
             // Auto advance every 5s
-            var autoTimer = setInterval(function () { go((idx + 1) % slides.length); }, 5000);
+            var autoTimer = setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000);
             wrap.addEventListener('mouseenter', function () { clearInterval(autoTimer); });
             wrap.addEventListener('mouseleave', function () {
-                autoTimer = setInterval(function () { go((idx + 1) % slides.length); }, 5000);
+                autoTimer = setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000);
             });
 
             function onStart(x) { dragging = true; startX = x; track.style.transition = 'none'; }
@@ -981,7 +1076,7 @@
 
         // ── PARALLAX ON MOUSE MOVE (hero shapes) ───────────────
         var floatingShapes = document.querySelectorAll('.floating-shape');
-        if (!isTouch) {
+        if (!isTouch && !reducedMotion) {
             document.addEventListener('mousemove', function (e) {
                 var xPct = (e.clientX / window.innerWidth - 0.5) * 2;
                 var yPct = (e.clientY / window.innerHeight - 0.5) * 2;
@@ -1004,6 +1099,120 @@
             });
         }, { threshold: 0.3 });
         sections.forEach(function (s) { navObserver.observe(s); });
+
+        // ── LEVEL SELECT (Work section) ────────────────────────
+        // Draws the winding path between level nodes, numbers them,
+        // sends particles flowing along the path, and handles
+        // opening/closing the project panels. New .level-stop blocks
+        // pasted into the HTML are picked up automatically.
+        var levelWrap = document.querySelector('.level-path-wrap');
+        if (levelWrap) {
+            var levelSvg = document.getElementById('level-path-svg');
+            var levelLine = document.getElementById('level-path-line');
+            var levelStops = levelWrap.querySelectorAll('.level-stop');
+            var levelNodes = levelWrap.querySelectorAll('.level-node');
+            var levelPathLen = 0;
+
+            // Auto-number the level badges
+            levelNodes.forEach(function (n, i) {
+                n.querySelector('.level-num').textContent = i + 1;
+            });
+
+            function drawLevelPath() {
+                var wr = levelWrap.getBoundingClientRect();
+                levelSvg.setAttribute('width', wr.width);
+                levelSvg.setAttribute('height', wr.height);
+                var pts = [];
+                levelNodes.forEach(function (n) {
+                    var r = n.getBoundingClientRect();
+                    pts.push({ x: r.left - wr.left + r.width / 2, y: r.top - wr.top + r.height / 2 });
+                });
+                if (pts.length < 2) { levelLine.setAttribute('d', ''); levelPathLen = 0; return; }
+                var d = 'M ' + pts[0].x + ' ' + pts[0].y;
+                for (var i = 1; i < pts.length; i++) {
+                    var p0 = pts[i - 1], p1 = pts[i];
+                    var midY = (p0.y + p1.y) / 2;
+                    d += ' C ' + p0.x + ' ' + midY + ', ' + p1.x + ' ' + midY + ', ' + p1.x + ' ' + p1.y;
+                }
+                levelLine.setAttribute('d', d);
+                levelPathLen = levelLine.getTotalLength();
+            }
+
+            // Particles flowing along the path (skipped for reduced motion)
+            if (!reducedMotion) {
+                var flowColors = ['#22c55e', '#4ade80', '#34d399', '#16a34a'];
+                var flowDots = [];
+                for (var fd = 0; fd < 9; fd++) {
+                    var fc = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    fc.setAttribute('r', (2 + Math.random() * 2.5).toFixed(1));
+                    fc.setAttribute('fill', flowColors[fd % flowColors.length]);
+                    fc.setAttribute('opacity', '0');
+                    levelSvg.appendChild(fc);
+                    flowDots.push({ el: fc, t: fd / 9, speed: 0.0008 + Math.random() * 0.0012 });
+                }
+                (function flowLoop() {
+                    if (levelPathLen > 0) {
+                        flowDots.forEach(function (f) {
+                            f.t = (f.t + f.speed) % 1;
+                            var pt = levelLine.getPointAtLength(f.t * levelPathLen);
+                            f.el.setAttribute('cx', pt.x);
+                            f.el.setAttribute('cy', pt.y);
+                            var fade = Math.min(f.t, 1 - f.t);
+                            f.el.setAttribute('opacity', (Math.min(1, fade * 12) * 0.9).toFixed(2));
+                        });
+                    }
+                    requestAnimationFrame(flowLoop);
+                })();
+            }
+
+            function closeAllPanels() {
+                levelStops.forEach(function (s) {
+                    s.querySelector('.level-panel').classList.remove('open');
+                    var n = s.querySelector('.level-node');
+                    n.classList.remove('open');
+                    n.setAttribute('aria-expanded', 'false');
+                });
+                drawLevelPath();
+            }
+
+            levelStops.forEach(function (stop) {
+                var node = stop.querySelector('.level-node');
+                var panel = stop.querySelector('.level-panel');
+                var closeBtn = stop.querySelector('.panel-close');
+
+                node.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var wasOpen = panel.classList.contains('open');
+                    closeAllPanels();
+                    if (!wasOpen) {
+                        panel.classList.add('open');
+                        node.classList.add('open');
+                        node.setAttribute('aria-expanded', 'true');
+                        drawLevelPath();
+                        setTimeout(function () {
+                            panel.scrollIntoView({ behavior: scrollBehavior, block: 'nearest' });
+                        }, 60);
+                    }
+                });
+                closeBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeAllPanels();
+                });
+                panel.addEventListener('click', function (e) { e.stopPropagation(); });
+            });
+
+            // Close with Escape or by clicking outside
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.level-stop')) closeAllPanels();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeAllPanels();
+            });
+
+            window.addEventListener('resize', drawLevelPath);
+            window.addEventListener('load', drawLevelPath);
+            drawLevelPath();
+        }
 
         // ── CONTACT FORM ───────────────────────────────────────
         var form = document.getElementById('contact-form');
