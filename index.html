@@ -7,27 +7,25 @@
     <meta name="description"
         content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
 
-    <!-- ═══ SOCIAL SHARING PREVIEWS (Open Graph + Twitter) ═══
-         NOTE: replace YOUR-DOMAIN-HERE with your real domain (e.g. yoursite.vercel.app)
-         so shared links show the image preview correctly. -->
+    <!-- ═══ SOCIAL SHARING PREVIEWS (Open Graph + Twitter) ═══ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Pinchiș Daniel | Digital Alchemist">
     <meta property="og:description"
         content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
-    <meta property="og:url" content="https://YOUR-DOMAIN-HERE/">
-    <meta property="og:image" content="https://YOUR-DOMAIN-HERE/images/projectscene.jpg">
+    <meta property="og:url" content="https://danielpinchis.com/">
+    <meta property="og:image" content="https://danielpinchis.com/images/projectscene.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pinchiș Daniel | Digital Alchemist">
     <meta name="twitter:description"
         content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
-    <meta name="twitter:image" content="https://YOUR-DOMAIN-HERE/images/projectscene.jpg">
+    <meta name="twitter:image" content="https://danielpinchis.com/images/projectscene.jpg">
 
     <title>Pinchiș Daniel | Digital Alchemist</title>
     <link rel="icon" type="image/jpg" href="images/monogram.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -36,7 +34,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['DM Serif Display', 'serif'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Space Grotesk', 'sans-serif'] },
                     colors: {
                         forest: {
                             50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
@@ -186,6 +184,8 @@
         <div class="level-path-wrap">
             <svg id="level-path-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                 <path id="level-path-line" d="" fill="none" />
+                <!-- The glowing line below draws itself in as you scroll -->
+                <path id="level-path-progress" d="" fill="none" />
             </svg>
             <div class="level-list">
 
@@ -207,16 +207,32 @@
                             <i class="fas fa-hammer level-icon" aria-hidden="true"></i>
                         </button>
                         <div class="level-meta">
-                            <span class="level-tag">Unity Game</span>
-                            <h3 class="level-title font-serif gradient-text">Forged in Shadows</h3>
-                            <p class="level-blurb">A horror adventure set in the Edo period.</p>
+                            <span class="level-tag">Games Created</span>
+                            <h3 class="level-title font-serif gradient-text">Games Created</h3>
+                            <p class="level-blurb">Playable worlds, starting with Forged in Shadows.</p>
                         </div>
                     </div>
 
                     <article class="level-panel glass-card rounded-2xl" id="panel-forged">
                         <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
 
-                <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
+                        <!-- Panel intro. The project tabs below build themselves automatically
+                             from the PROJECT blocks in this panel: no editing needed here. -->
+                        <div class="panel-intro p-6 sm:p-8 relative z-10">
+                            <span class="panel-badge">Games Created</span>
+                            <p class="panel-intro-text">Every game I build gets its own entry here. Pick one below.</p>
+                            <div class="project-tabs" role="tablist"></div>
+                        </div>
+
+                <!-- ═══ PROJECT: Forged in Shadows ═══
+                     TO ADD A NEW PROJECT inside this category: copy from this
+                     comment down to the matching END PROJECT comment, paste it
+                     right before the "END OF PROJECTS" marker in this panel,
+                     then change data-title (that's what the tab will say), the
+                     carousel media, and the description. The tab buttons and
+                     the carousel wire themselves up automatically. -->
+                <div class="project" data-title="Forged in Shadows">
+                <div class="carousel-wrap" data-carousel>
                     <div class="carousel-track">
                         <div class="carousel-slide"><img src="/images/screenshot1.jpeg" loading="lazy"
                                 alt="Forged in Shadows screenshot 1"></div>
@@ -265,19 +281,23 @@
                             class="fas fa-chevron-right"></i></button>
                     <div class="carousel-dots"></div>
                 </div>
-                <div class="p-8 sm:p-10 relative z-10">
-                    <span
-                        class="section-label px-3 py-1 rounded-full bg-forest-50/60 border border-forest-200/50 inline-block mb-4">Unity
-                        Game</span>
-                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3">Forged in Shadows</h3>
+                <div class="p-8 sm:p-10 relative z-10 project-body">
+                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Forged in Shadows</h3>
                     <p class="text-slate-950 text-base mb-6 max-w-2xl">
                         A horror adventure game set in the Edo period where your goal is to help a former blacksmith.
                     </p>
-                    <p class="text-slate-950 mb-5" style="text-align:justify">
+                    <p class="text-slate-950 mb-0" style="text-align:justify">
                         <strong>Forged in Shadows</strong> was the very first horror game I ever worked on, set in a
                         haunted blacksmith's workshop. It's where I learned the basics of Unity and figured out how to
                         actually turn an idea into something playable.
                     </p>
+                </div>
+                </div>
+                <!-- ═══ END PROJECT: Forged in Shadows ═══ -->
+
+                <!-- ═══ END OF PROJECTS (Games Created): paste new projects ABOVE this line ═══ -->
+
+                <div class="panel-notes p-8 sm:p-10 pt-0 relative z-10">
                     <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
                     <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
                         <li><strong class="text-slate-950">Unity Basics</strong> : importing assets, building
@@ -320,18 +340,71 @@
                     <article class="level-panel glass-card rounded-2xl" id="panel-animations">
                         <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
 
-                <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
+                        <!-- Panel intro. Tabs build themselves from the PROJECT blocks below. -->
+                        <div class="panel-intro p-6 sm:p-8 relative z-10">
+                            <span class="panel-badge">3D Animations</span>
+                            <p class="panel-intro-text">Rigged and animated characters made in Blender, from simple
+                                cycles to full sequences. Pick a project below.</p>
+                            <div class="project-tabs" role="tablist"></div>
+                        </div>
+
+                <!-- ═══ PROJECT: Zombie Animations ═══ -->
+                <div class="project" data-title="Zombie Animations">
+                <div class="carousel-wrap" data-carousel>
                     <div class="carousel-track">
                         <div class="carousel-slide">
                             <video loop muted controls preload="none" playsinline>
                                 <source src="/videos/zombieanimations.mp4" type="video/mp4">
                             </video>
                         </div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="p-8 sm:p-10 relative z-10 project-body">
+                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Zombie Animations</h3>
+                    <p class="text-slate-950 mb-0" style="text-align:justify">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rigging bones et IK/FK setups,
+                        vestibulum idle, walk et run cycles. Nulla facilisi, replace this with the story behind the
+                        zombie animation set.
+                    </p>
+                </div>
+                </div>
+                <!-- ═══ END PROJECT: Zombie Animations ═══ -->
+
+                <!-- ═══ PROJECT: Stickman Test ═══ -->
+                <div class="project" data-title="Stickman Test">
+                <div class="carousel-wrap" data-carousel>
+                    <div class="carousel-track">
                         <div class="carousel-slide">
                             <video loop muted controls preload="none" playsinline>
                                 <source src="/videos/stickmantest.mp4" type="video/mp4">
                             </video>
                         </div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="p-8 sm:p-10 relative z-10 project-body">
+                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Stickman Test</h3>
+                    <p class="text-slate-950 mb-0" style="text-align:justify">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent parkour vaults et rolls,
+                        aliquam timing and spacing eget flow. Replace this with what the stickman test taught you.
+                    </p>
+                </div>
+                </div>
+                <!-- ═══ END PROJECT: Stickman Test ═══ -->
+
+                <!-- ═══ PROJECT: Stickman Dance ═══ -->
+                <div class="project" data-title="Stickman Dance">
+                <div class="carousel-wrap" data-carousel>
+                    <div class="carousel-track">
                         <div class="carousel-slide">
                             <video loop muted controls preload="none" playsinline>
                                 <source src="/videos/stickmandance.mp4" type="video/mp4">
@@ -344,20 +417,19 @@
                             class="fas fa-chevron-right"></i></button>
                     <div class="carousel-dots"></div>
                 </div>
-                <div class="p-8 sm:p-10 relative z-10">
-                    <span
-                        class="section-label px-3 py-1 rounded-full bg-emerald-50/60 border border-emerald-200/50 inline-block mb-4">3D
-                        Animations</span>
-                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3">Character Animations</h3>
-                    <p class="text-slate-950 text-base mb-6 max-w-2xl">
-                        A collection of my rigged and animated characters made in Blender.
+                <div class="p-8 sm:p-10 relative z-10 project-body">
+                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Stickman Dance</h3>
+                    <p class="text-slate-950 mb-0" style="text-align:justify">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dance sequence cum personality
+                        in motion, sed camera tracking natural feel. Replace this with the dance project writeup.
                     </p>
-                    <p class="text-slate-950 mb-5" style="text-align:justify">
-                        My journey started with simple walk and run cycles and gradually evolved into more advanced
-                        animations like parkour and dance sequences. These projects made me better understand body
-                        mechanics,
-                        timing, and personality in animation.
-                    </p>
+                </div>
+                </div>
+                <!-- ═══ END PROJECT: Stickman Dance ═══ -->
+
+                <!-- ═══ END OF PROJECTS (3D Animations): paste new projects ABOVE this line ═══ -->
+
+                <div class="panel-notes p-8 sm:p-10 pt-0 relative z-10">
                     <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
                     <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
                         <li><strong class="text-slate-950">Rigging</strong> : learned how to create rigs, use and attach
@@ -401,16 +473,90 @@
                     <article class="level-panel glass-card rounded-2xl" id="panel-environments">
                         <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
 
-                <div class="carousel-wrap" style="border-radius: 20px 20px 0 0;" data-carousel>
+                        <!-- Panel intro. Tabs build themselves from the PROJECT blocks below. -->
+                        <div class="panel-intro p-6 sm:p-8 relative z-10">
+                            <span class="panel-badge">3D Models</span>
+                            <p class="panel-intro-text">Environment designs and models created in Blender. Pick a
+                                scene below.</p>
+                            <div class="project-tabs" role="tablist"></div>
+                        </div>
+
+                <!-- ═══ PROJECT: Greek Temple Ruin ═══ -->
+                <div class="project" data-title="Greek Temple Ruin">
+                <div class="carousel-wrap" data-carousel>
                     <div class="carousel-track">
                         <div class="carousel-slide"><img src="/images/projectscene.jpg" loading="lazy"
                                 alt="Greek Temple Ruin nighttime environment"></div>
                         <div class="carousel-slide"><img src="/images/projectscene2.jpeg" loading="lazy"
                                 alt="Greek Temple Ruin alternate angle"></div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="p-8 sm:p-10 relative z-10 project-body">
+                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Greek Temple Ruin</h3>
+                    <p class="text-slate-950 mb-0" style="text-align:justify">
+                        My first project experimenting with environment design. I modeled a classical style temple,
+                        added surrounding details like trees, bushes, street lamps, vehicles and a path, and set it
+                        against a nighttime backdrop. My introduction to composition, lighting, and 3D.
+                    </p>
+                </div>
+                </div>
+                <!-- ═══ END PROJECT: Greek Temple Ruin ═══ -->
+
+                <!-- ═══ PROJECT: Snowday ═══ -->
+                <div class="project" data-title="Snowday">
+                <div class="carousel-wrap" data-carousel>
+                    <div class="carousel-track">
                         <div class="carousel-slide"><img src="/images/snowday.jpeg" loading="lazy"
                                 alt="Snowday winter environment"></div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="p-8 sm:p-10 relative z-10 project-body">
+                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Snowday</h3>
+                    <p class="text-slate-950 mb-0" style="text-align:justify">
+                        A fun project where I worked with the environment more to create snow, water and mountains as
+                        well as snowed on pine trees.
+                    </p>
+                </div>
+                </div>
+                <!-- ═══ END PROJECT: Snowday ═══ -->
+
+                <!-- ═══ PROJECT: Hidden Ruins ═══ -->
+                <div class="project" data-title="Hidden Ruins">
+                <div class="carousel-wrap" data-carousel>
+                    <div class="carousel-track">
                         <div class="carousel-slide"><img src="/images/ruinsfinal.jpg" loading="lazy"
                                 alt="Hidden Ruins fantasy sword scene"></div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="p-8 sm:p-10 relative z-10 project-body">
+                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Hidden Ruins</h3>
+                    <p class="text-slate-950 mb-0" style="text-align:justify">
+                        My most recent scene, focused on setting the perfect stage for a fantasy sword using
+                        environmental props, lighting, realistic water, a glowing magic circle and god rays.
+                    </p>
+                </div>
+                </div>
+                <!-- ═══ END PROJECT: Hidden Ruins ═══ -->
+
+                <!-- ═══ PROJECT: Dagger Showcase ═══ -->
+                <div class="project" data-title="Dagger Showcase">
+                <div class="carousel-wrap" data-carousel>
+                    <div class="carousel-track">
                         <div class="carousel-slide">
                             <video loop muted controls preload="none" playsinline>
                                 <source src="/videos/daggershowcase.mp4" type="video/mp4">
@@ -423,25 +569,19 @@
                             class="fas fa-chevron-right"></i></button>
                     <div class="carousel-dots"></div>
                 </div>
-                <div class="p-8 sm:p-10 relative z-10">
-                    <span
-                        class="section-label px-3 py-1 rounded-full bg-teal-50/60 border border-teal-200/50 inline-block mb-4">3D
-                        Models</span>
-                    <h3 class="text-3xl sm:text-4xl font-serif gradient-text mb-3">3D Environments</h3>
-                    <p class="text-slate-950 text-base mb-6 max-w-2xl">
-                        Environment designs and models created in Blender.
+                <div class="p-8 sm:p-10 relative z-10 project-body">
+                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Dagger Showcase</h3>
+                    <p class="text-slate-950 mb-0" style="text-align:justify">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blade modeling et material
+                        showcase, quis turntable render. Replace this with the story behind the dagger.
                     </p>
-                    <ul class="text-slate-950 space-y-3 mb-6 list-none" style="text-align:justify">
-                        <li><strong class="text-slate-950">Greek Temple Ruin</strong> was my first project where I
-                            experimented with environment design. I modeled a classical style temple, added surrounding
-                            details like trees, bushes, street lamps, vehicles and a path, and set it against a
-                            nighttime backdrop. My introduction to composition, lighting, and 3D.</li>
-                        <li><strong class="text-slate-950">Snowday</strong> was a fun project where I worked with the
-                            environment more to create snow, water and mountains as well as snowed on pine trees.</li>
-                        <li><strong class="text-slate-950">Hidden Ruins</strong> was my most recent project focused on
-                            setting the perfect scene for a fantasy sword using environmental props, lighting, realistic
-                            water, a glowing magic circle and god rays.</li>
-                    </ul>
+                </div>
+                </div>
+                <!-- ═══ END PROJECT: Dagger Showcase ═══ -->
+
+                <!-- ═══ END OF PROJECTS (3D Models): paste new projects ABOVE this line ═══ -->
+
+                <div class="panel-notes p-8 sm:p-10 pt-0 relative z-10">
                     <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
                     <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
                         <li><strong class="text-slate-950">Modeling Basics</strong> : building architectural shapes like
@@ -490,11 +630,13 @@
                      TO ADD A SKILL: copy one <span class="marquee-item"> line, change the
                      icon and text, and paste it in BOTH lists (this one AND the duplicate
                      below) so the scrolling loop stays seamless. That's the only catch. -->
-                <span class="marquee-item"><span class="m-node"><i class="fab fa-html5"></i></span>HTML/CSS</span>
-                <span class="marquee-item"><span class="m-node"><i class="fab fa-js"></i></span>JavaScript</span>
+                <!-- The data-egg items are clickable: they open the VS Code easter egg -->
+                <span class="marquee-item marquee-egg" data-egg="html" title="Psst... click me"><span class="m-node"><i class="fab fa-html5"></i></span>HTML/CSS</span>
+                <span class="marquee-item marquee-egg" data-egg="js" title="Psst... click me"><span class="m-node"><i class="fab fa-js"></i></span>JavaScript</span>
                 <span class="marquee-item"><span class="m-node"><i class="fas fa-code"></i></span>C#</span>
                 <span class="marquee-item"><span class="m-node"><i class="fas fa-cube"></i></span>Blender</span>
                 <span class="marquee-item"><span class="m-node"><i class="fab fa-unity"></i></span>Unity</span>
+                <span class="marquee-item"><span class="m-node"><i class="fas fa-shapes"></i></span>Construct 3</span>
                 <span class="marquee-item"><span class="m-node"><i class="fas fa-pen-fancy"></i></span>Illustrator</span>
                 <span class="marquee-item"><span class="m-node"><i class="fas fa-film"></i></span>Premiere Pro</span>
                 <span class="marquee-item"><span class="m-node"><i class="fas fa-camera"></i></span>Photography</span>
@@ -503,11 +645,12 @@
                 <span class="marquee-item"><span class="m-node"><i class="fas fa-running"></i></span>Animation</span>
                 <!-- ═══ DUPLICATE LIST (keep identical to the one above, for the seamless loop) ═══ -->
                 <span aria-hidden="true" style="display:contents">
-                    <span class="marquee-item"><span class="m-node"><i class="fab fa-html5"></i></span>HTML/CSS</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fab fa-js"></i></span>JavaScript</span>
+                    <span class="marquee-item marquee-egg" data-egg="html" title="Psst... click me"><span class="m-node"><i class="fab fa-html5"></i></span>HTML/CSS</span>
+                    <span class="marquee-item marquee-egg" data-egg="js" title="Psst... click me"><span class="m-node"><i class="fab fa-js"></i></span>JavaScript</span>
                     <span class="marquee-item"><span class="m-node"><i class="fas fa-code"></i></span>C#</span>
                     <span class="marquee-item"><span class="m-node"><i class="fas fa-cube"></i></span>Blender</span>
                     <span class="marquee-item"><span class="m-node"><i class="fab fa-unity"></i></span>Unity</span>
+                    <span class="marquee-item"><span class="m-node"><i class="fas fa-shapes"></i></span>Construct 3</span>
                     <span class="marquee-item"><span class="m-node"><i class="fas fa-pen-fancy"></i></span>Illustrator</span>
                     <span class="marquee-item"><span class="m-node"><i class="fas fa-film"></i></span>Premiere Pro</span>
                     <span class="marquee-item"><span class="m-node"><i class="fas fa-camera"></i></span>Photography</span>
@@ -735,6 +878,60 @@
             </div>
         </div>
     </footer>
+
+    <!-- ============================================================
+         EASTER EGG: VS Code window
+         Opened by clicking the HTML/CSS or JavaScript bubble in the
+         Skills & Tools marquee. Edit the code lines below freely,
+         each <div class="cl"> is one line, tok-* classes set colors.
+         ============================================================ -->
+    <div class="code-modal" id="code-modal" hidden>
+        <div class="code-window" role="dialog" aria-label="Easter egg code window">
+            <div class="code-titlebar">
+                <span class="tl-dot tl-red"></span>
+                <span class="tl-dot tl-yellow"></span>
+                <span class="tl-dot tl-green"></span>
+                <span class="code-filename" id="code-filename">easter-egg.js</span>
+                <button class="code-close" id="code-close" aria-label="Close code window"><i
+                        class="fas fa-times"></i></button>
+            </div>
+
+            <!-- JavaScript version -->
+            <div class="code-body" id="code-body-js">
+                <div class="cl"><span class="tok-com">// You found the hidden console. Nice.</span></div>
+                <div class="cl"><span class="tok-kw">const</span> <span class="tok-var">site</span> <span class="tok-op">=</span> <span class="tok-punc">{</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-var">builtWith</span><span class="tok-punc">:</span> <span class="tok-punc">[</span><span class="tok-str">'HTML'</span><span class="tok-punc">,</span> <span class="tok-str">'CSS'</span><span class="tok-punc">,</span> <span class="tok-str">'JavaScript'</span><span class="tok-punc">],</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-var">author</span><span class="tok-punc">:</span> <span class="tok-str">'Pinchiș Daniel'</span><span class="tok-punc">,</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-var">poweredBy</span><span class="tok-punc">:</span> <span class="tok-str">'curiosity'</span></div>
+                <div class="cl"><span class="tok-punc">};</span></div>
+                <div class="cl">&nbsp;</div>
+                <div class="cl"><span class="tok-blue">function</span> <span class="tok-fn">reveal</span><span class="tok-punc">(</span><span class="tok-var">section</span><span class="tok-punc">)</span> <span class="tok-punc">{</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-kw">return</span> <span class="tok-str">`This section of the website was made using ${</span><span class="tok-var">site</span><span class="tok-punc">.</span><span class="tok-var">builtWith</span><span class="tok-punc">.</span><span class="tok-fn">join</span><span class="tok-punc">(</span><span class="tok-str">' + '</span><span class="tok-punc">)</span><span class="tok-str">}`</span><span class="tok-punc">;</span></div>
+                <div class="cl"><span class="tok-punc">}</span></div>
+                <div class="cl">&nbsp;</div>
+                <div class="cl"><span class="tok-var">console</span><span class="tok-punc">.</span><span class="tok-fn">log</span><span class="tok-punc">(</span><span class="tok-fn">reveal</span><span class="tok-punc">(</span><span class="tok-str">'Skills &amp; Tools'</span><span class="tok-punc">))</span><span class="tok-punc">;</span></div>
+                <div class="cl"><span class="tok-com">// → "This section of the website was made using HTML + CSS + JavaScript"</span></div>
+            </div>
+
+            <!-- HTML/CSS version -->
+            <div class="code-body" id="code-body-html" hidden>
+                <div class="cl"><span class="tok-com">&lt;!-- The bubble you just clicked, in its natural habitat --&gt;</span></div>
+                <div class="cl"><span class="tok-punc">&lt;</span><span class="tok-tag">span</span> <span class="tok-attr">class</span><span class="tok-op">=</span><span class="tok-str">"marquee-item"</span><span class="tok-punc">&gt;</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-punc">&lt;</span><span class="tok-tag">i</span> <span class="tok-attr">class</span><span class="tok-op">=</span><span class="tok-str">"fab fa-html5"</span><span class="tok-punc">&gt;&lt;/</span><span class="tok-tag">i</span><span class="tok-punc">&gt;</span> HTML/CSS</div>
+                <div class="cl"><span class="tok-punc">&lt;/</span><span class="tok-tag">span</span><span class="tok-punc">&gt;</span></div>
+                <div class="cl">&nbsp;</div>
+                <div class="cl"><span class="tok-punc">&lt;</span><span class="tok-tag">style</span><span class="tok-punc">&gt;</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-fn">.marquee-item</span> <span class="tok-punc">{</span></div>
+                <div class="cl">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-attr">backdrop-filter</span><span class="tok-punc">:</span> <span class="tok-fn">blur</span><span class="tok-punc">(</span><span class="tok-num">6px</span><span class="tok-punc">);</span> <span class="tok-com">/* the frosted glass */</span></div>
+                <div class="cl">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-attr">border-radius</span><span class="tok-punc">:</span> <span class="tok-num">999px</span><span class="tok-punc">;</span> <span class="tok-com">/* the bubble */</span></div>
+                <div class="cl">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-attr">box-shadow</span><span class="tok-punc">:</span> <span class="tok-num">0 0 10px</span> <span class="tok-fn">rgba</span><span class="tok-punc">(</span><span class="tok-num">34, 197, 94, 0.4</span><span class="tok-punc">);</span> <span class="tok-com">/* the glow */</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-punc">}</span></div>
+                <div class="cl"><span class="tok-punc">&lt;/</span><span class="tok-tag">style</span><span class="tok-punc">&gt;</span></div>
+                <div class="cl">&nbsp;</div>
+                <div class="cl"><span class="tok-com">&lt;!-- this section of the website was made using HTML + CSS (and love) --&gt;</span></div>
+            </div>
+        </div>
+    </div>
 
     <!-- CUSTOM CURSOR -->
     <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
@@ -1012,6 +1209,14 @@
             });
             var dots = dotsBox.querySelectorAll('.carousel-dot');
 
+            // Single-media carousels: hide the controls, no auto-advance needed
+            var multi = slides.length > 1;
+            if (!multi) {
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
+                dotsBox.style.display = 'none';
+            }
+
             function go(i) {
                 idx = Math.max(0, Math.min(i, slides.length - 1));
                 track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
@@ -1023,17 +1228,17 @@
                     if (v) v.pause();
                 });
                 var currentVideo = slides[idx].querySelector('video');
-                if (currentVideo) currentVideo.play();
+                if (currentVideo && wrap.offsetParent) currentVideo.play();
             }
 
             if (prevBtn) prevBtn.addEventListener('click', function () { go(idx - 1); });
             if (nextBtn) nextBtn.addEventListener('click', function () { go(idx + 1); });
 
-            // Auto advance every 5s
-            var autoTimer = setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000);
-            wrap.addEventListener('mouseenter', function () { clearInterval(autoTimer); });
+            // Auto advance every 5s (only for carousels with more than one slide)
+            var autoTimer = multi ? setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000) : null;
+            wrap.addEventListener('mouseenter', function () { if (autoTimer) clearInterval(autoTimer); });
             wrap.addEventListener('mouseleave', function () {
-                autoTimer = setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000);
+                if (multi) autoTimer = setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000);
             });
 
             function onStart(x) { dragging = true; startX = x; track.style.transition = 'none'; }
@@ -1109,6 +1314,7 @@
         if (levelWrap) {
             var levelSvg = document.getElementById('level-path-svg');
             var levelLine = document.getElementById('level-path-line');
+            var progressLine = document.getElementById('level-path-progress');
             var levelStops = levelWrap.querySelectorAll('.level-stop');
             var levelNodes = levelWrap.querySelectorAll('.level-node');
             var levelPathLen = 0;
@@ -1127,7 +1333,7 @@
                     var r = n.getBoundingClientRect();
                     pts.push({ x: r.left - wr.left + r.width / 2, y: r.top - wr.top + r.height / 2 });
                 });
-                if (pts.length < 2) { levelLine.setAttribute('d', ''); levelPathLen = 0; return; }
+                if (pts.length < 2) { levelLine.setAttribute('d', ''); progressLine.setAttribute('d', ''); levelPathLen = 0; return; }
                 var d = 'M ' + pts[0].x + ' ' + pts[0].y;
                 for (var i = 1; i < pts.length; i++) {
                     var p0 = pts[i - 1], p1 = pts[i];
@@ -1136,7 +1342,24 @@
                 }
                 levelLine.setAttribute('d', d);
                 levelPathLen = levelLine.getTotalLength();
+                // The progress line shares the same shape and "draws in" with scroll
+                progressLine.setAttribute('d', d);
+                progressLine.style.strokeDasharray = levelPathLen;
+                updatePathProgress();
             }
+
+            // ── SCROLL DRAW: the glowing path draws itself as you scroll ──
+            function updatePathProgress() {
+                if (!levelPathLen) return;
+                if (reducedMotion) { progressLine.style.strokeDashoffset = 0; return; }
+                var wr = levelWrap.getBoundingClientRect();
+                var vh = window.innerHeight;
+                var total = wr.height + vh * 0.4;
+                var passed = vh * 0.85 - wr.top;
+                var p = Math.max(0, Math.min(1, passed / total));
+                progressLine.style.strokeDashoffset = levelPathLen * (1 - p);
+            }
+            window.addEventListener('scroll', updatePathProgress, { passive: true });
 
             // Particles flowing along the path (skipped for reduced motion)
             if (!reducedMotion) {
@@ -1209,9 +1432,69 @@
                 if (e.key === 'Escape') closeAllPanels();
             });
 
+            // ── PROJECT TABS: each panel builds its tab strip from its
+            //    .project blocks automatically (data-title = tab label) ──
+            levelStops.forEach(function (stop) {
+                var panel = stop.querySelector('.level-panel');
+                var tabsBox = panel.querySelector('.project-tabs');
+                var projects = panel.querySelectorAll('.project');
+                if (!tabsBox || !projects.length) return;
+
+                projects.forEach(function (proj, i) {
+                    var tab = document.createElement('button');
+                    tab.type = 'button';
+                    tab.className = 'project-tab' + (i === 0 ? ' active' : '');
+                    tab.setAttribute('role', 'tab');
+                    tab.textContent = proj.getAttribute('data-title') || ('Project ' + (i + 1));
+                    if (i === 0) proj.classList.add('active');
+
+                    tab.addEventListener('click', function () {
+                        projects.forEach(function (p) { p.classList.remove('active'); });
+                        tabsBox.querySelectorAll('.project-tab').forEach(function (t) { t.classList.remove('active'); });
+                        proj.classList.add('active');
+                        tab.classList.add('active');
+                        // pause any videos from the project we just left
+                        panel.querySelectorAll('video').forEach(function (v) { v.pause(); });
+                        drawLevelPath();
+                    });
+                    tabsBox.appendChild(tab);
+                });
+            });
+
             window.addEventListener('resize', drawLevelPath);
             window.addEventListener('load', drawLevelPath);
             drawLevelPath();
+        }
+
+        // ── EASTER EGG: VS Code window in Skills & Tools ───────
+        // Clicking the HTML/CSS or JavaScript bubble opens a little
+        // editor window (markup lives just above the CUSTOM CURSOR div).
+        var codeModal = document.getElementById('code-modal');
+        if (codeModal) {
+            var codeBodyJs = document.getElementById('code-body-js');
+            var codeBodyHtml = document.getElementById('code-body-html');
+            var codeFilename = document.getElementById('code-filename');
+
+            function openEgg(kind) {
+                codeBodyJs.hidden = kind !== 'js';
+                codeBodyHtml.hidden = kind !== 'html';
+                codeFilename.textContent = kind === 'js' ? 'easter-egg.js' : 'easter-egg.html';
+                codeModal.hidden = false;
+                document.body.style.overflow = 'hidden';
+            }
+            function closeEgg() {
+                codeModal.hidden = true;
+                document.body.style.overflow = '';
+            }
+
+            document.querySelectorAll('.marquee-egg').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    openEgg(item.getAttribute('data-egg'));
+                });
+            });
+            document.getElementById('code-close').addEventListener('click', closeEgg);
+            codeModal.addEventListener('click', function (e) { if (e.target === codeModal) closeEgg(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeEgg(); });
         }
 
         // ── CONTACT FORM ───────────────────────────────────────

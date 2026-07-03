@@ -23,10 +23,11 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'DM Serif Display', serif;
-    font-weight: 400;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
     line-height: 1.2;
     color: #0f172a;
+    letter-spacing: -0.02em;
 }
 
 p { color: #0f172a; margin-bottom: 0.75rem; }
@@ -70,7 +71,7 @@ a { text-decoration: none; color: inherit; }
 .preloader-text {
     position: absolute;
     bottom: 30%;
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.1rem;
     color: rgba(255,255,255,0.7);
     letter-spacing: 0.2em;
@@ -105,7 +106,7 @@ a { text-decoration: none; color: inherit; }
 .page-tint {
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.45);
     pointer-events: none;
     z-index: -1;
 }
@@ -115,7 +116,7 @@ a { text-decoration: none; color: inherit; }
    ========================================================== */
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.38);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 20px;
@@ -246,12 +247,9 @@ a { text-decoration: none; color: inherit; }
    ========================================================== */
 
 .gradient-text {
-    color: #16a34a;
-    text-shadow:
-        -1px -1px 0 rgba(0,0,0,0.8),
-         1px -1px 0 rgba(0,0,0,0.8),
-        -1px  1px 0 rgba(0,0,0,0.8),
-         1px  1px 0 rgba(0,0,0,0.8);
+    color: #15803d;
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .nav-name {
@@ -319,13 +317,13 @@ a { text-decoration: none; color: inherit; }
 }
 
 .shimmer-text {
-    background: linear-gradient(90deg, #15803d, #22c55e, #16a34a, #22c55e, #15803d);
+    background: linear-gradient(90deg, #14532d, #16a34a, #15803d, #16a34a, #14532d);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     animation: shimmer 4s linear infinite;
-    filter: drop-shadow(-1px -1px 0 rgba(0,0,0,0.8)) drop-shadow(1px -1px 0 rgba(0,0,0,0.8)) drop-shadow(-1px 1px 0 rgba(0,0,0,0.8)) drop-shadow(1px 1px 0 rgba(0,0,0,0.8));
+    filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.55));
 }
 
 /* ==========================================================
@@ -832,7 +830,7 @@ textarea.form-input { resize: none; }
    ========================================================== */
 
 .counter-value {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 2.5rem;
     line-height: 1;
     background: linear-gradient(135deg, #166534, #22c55e);
@@ -1094,6 +1092,220 @@ textarea.form-input { resize: none; }
     background: #fff;
     transform: scale(1.12);
 }
+
+/* ==========================================================
+   PANEL INTRO + PROJECT TABS (inside level panels)
+   Tabs are generated automatically from the .project blocks.
+   ========================================================== */
+
+.panel-intro {
+    border-bottom: 1px solid rgba(22, 163, 74, 0.15);
+}
+
+.panel-badge {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #166534;
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: rgba(240, 253, 244, 0.7);
+    border: 1px solid rgba(187, 247, 208, 0.6);
+    margin-bottom: 10px;
+    margin-right: 44px; /* keep clear of the close button */
+}
+
+.panel-intro-text {
+    font-size: 0.95rem;
+    color: #0f172a;
+    max-width: 46rem;
+    margin-bottom: 14px;
+}
+
+.project-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-tab {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #0f172a;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(22, 163, 74, 0.3);
+    background: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.project-tab:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(22, 163, 74, 0.55);
+    transform: translateY(-2px);
+}
+
+.project-tab.active {
+    background: #15803d;
+    border-color: #15803d;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35);
+}
+
+/* Each project is its own space; only the active one is visible */
+.project {
+    display: none;
+}
+
+.project.active {
+    display: block;
+    animation: panel-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel-notes {
+    border-top: 1px solid rgba(22, 163, 74, 0.15);
+    padding-top: 28px !important;
+}
+
+/* ==========================================================
+   SCROLL-DRAW PROGRESS PATH (level select)
+   ========================================================== */
+
+#level-path-progress {
+    stroke: #22c55e;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px rgba(34, 197, 94, 0.65));
+    transition: stroke-dashoffset 0.15s linear;
+}
+
+/* ==========================================================
+   EASTER EGG: VS CODE WINDOW
+   ========================================================== */
+
+.marquee-egg { cursor: pointer; }
+
+.code-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(2, 6, 23, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.code-modal[hidden] { display: none; }
+
+.code-window {
+    width: 100%;
+    max-width: 660px;
+    max-height: 80vh;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+    animation: panel-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.code-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 14px;
+    background: #323233;
+    border-bottom: 1px solid #252526;
+}
+
+.tl-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.tl-red { background: #ff5f57; }
+.tl-yellow { background: #febc2e; }
+.tl-green { background: #28c840; }
+
+.code-filename {
+    margin-left: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: #cccccc;
+    background: #1e1e1e;
+    padding: 3px 12px;
+    border-radius: 5px 5px 0 0;
+    border-top: 1px solid #0078d4;
+    transform: translateY(6px);
+}
+
+.code-close {
+    margin-left: auto;
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #cccccc;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.code-close:hover { background: rgba(255, 255, 255, 0.12); }
+
+.code-body {
+    padding: 18px 16px 20px 12px;
+    overflow: auto;
+    max-height: calc(80vh - 46px);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    counter-reset: codeline;
+}
+
+/* line numbers, VS Code style */
+.code-body .cl {
+    white-space: pre-wrap;
+    word-break: break-word;
+    counter-increment: codeline;
+    padding-left: 44px;
+    position: relative;
+    color: #d4d4d4;
+}
+
+.code-body .cl::before {
+    content: counter(codeline);
+    position: absolute;
+    left: 0;
+    width: 30px;
+    text-align: right;
+    color: #6e7681;
+    font-size: 0.72rem;
+}
+
+/* VS Code Dark+ token colors */
+.tok-kw   { color: #c586c0; }  /* const, return */
+.tok-blue { color: #569cd6; }  /* function, tags */
+.tok-fn   { color: #dcdcaa; }  /* function names */
+.tok-str  { color: #ce9178; }  /* strings */
+.tok-com  { color: #6a9955; font-style: italic; }  /* comments */
+.tok-var  { color: #9cdcfe; }  /* variables, attributes */
+.tok-num  { color: #b5cea8; }  /* numbers */
+.tok-tag  { color: #569cd6; }  /* html tags */
+.tok-attr { color: #9cdcfe; }  /* html/css attributes */
+.tok-op   { color: #d4d4d4; }
+.tok-punc { color: #808080; }
 
 /* ==========================================================
    MARQUEE MINI NODES (skills styled like the level nodes)
