@@ -1030,6 +1030,10 @@
                                     class="text-sm text-slate-950">Unity</span>
                             </div>
                             <div class="skill-pill">
+                                <div class="skill-icon"><i class="fas fa-shapes"></i></div><span
+                                    class="text-sm text-slate-950">Construct 3</span>
+                            </div>
+                            <div class="skill-pill">
                                 <div class="skill-icon"><i class="fas fa-pen-fancy"></i></div><span
                                     class="text-sm text-slate-950">Illustrator</span>
                             </div>
@@ -1156,13 +1160,15 @@
     <!-- ============================================================
          FOOTER
          ============================================================ -->
-    <footer class="glass-nav py-10 px-5 sm:px-8 mt-12">
+    <footer class="glass-nav py-5 px-5 sm:px-8 mt-8">
         <div class="w-full">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div class="text-center sm:text-left">
-                    <p class="font-serif gradient-text text-lg">Pinchiș Daniel</p>
-                    <p class="text-slate-950 text-xs mt-1" id="copyright-text"></p>
+                    <p class="font-serif gradient-text text-lg mb-0">Pinchiș Daniel</p>
+                    <p class="text-slate-950 text-xs mt-1 mb-0" id="copyright-text"></p>
                 </div>
+                <p class="text-slate-950 text-xs italic text-center mb-0">"Every artist was once an amateur" ~ Ralph
+                    Waldo Emerson</p>
                 <div class="flex items-center gap-5">
                     <a href="https://www.instagram.com/danny_m4a1/" target="_blank"
                         class="text-slate-950 hover:text-forest-600 transition text-lg hover:scale-125 inline-block transform duration-300"><i
@@ -1174,10 +1180,6 @@
                         class="text-slate-950 hover:text-forest-600 transition text-lg hover:scale-125 inline-block transform duration-300"><i
                             class="fab fa-linkedin"></i></a>
                 </div>
-            </div>
-            <div class="mt-8 pt-6 border-t border-white/10 text-center">
-                <p class="text-slate-950 text-xs italic">"Every artist was once an amateur" ~ Ralph Waldo Emerson
-                </p>
             </div>
         </div>
     </footer>
@@ -1544,9 +1546,10 @@
                 if (multi) autoTimer = setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000);
             });
 
-            function onStart(x) { dragging = true; startX = x; track.style.transition = 'none'; }
+            function onStart(x) { dragging = true; wrap._dragged = false; startX = x; track.style.transition = 'none'; }
             function onMove(x) {
                 if (!dragging) return;
+                if (Math.abs(x - startX) > 8) wrap._dragged = true; // it's a drag, not a click
                 var pct = ((x - startX) / wrap.offsetWidth) * 100;
                 track.style.transform = 'translateX(calc(-' + (idx * 100) + '% + ' + pct + '%))';
             }
@@ -1567,18 +1570,57 @@
             wrap.addEventListener('mouseup', function (e) { onEnd(e.clientX); });
             wrap.addEventListener('mouseleave', function (e) { if (dragging) onEnd(e.clientX); });
 
+            // Arrow keys flip slides while this carousel is fullscreen
+            document.addEventListener('keydown', function (e) {
+                if (document.fullscreenElement !== wrap) return;
+                if (e.key === 'ArrowLeft') go(idx - 1);
+                if (e.key === 'ArrowRight') go(idx + 1);
+            });
+
             go(0);
         });
 
-        // ── IMAGE FULLSCREEN ───────────────────────────────────
+        // ── CAROUSEL FULLSCREEN ────────────────────────────────
+        // Clicking an image fullscreens the WHOLE carousel (not just the
+        // image), so the arrows, dots, swipe and keyboard keep working.
+        // A drag never triggers fullscreen thanks to the _dragged flag.
         document.querySelectorAll('.carousel-slide img').forEach(function (img) {
             img.style.cursor = 'zoom-in';
             img.addEventListener('click', function () {
+                var wrap = img.closest('.carousel-wrap');
+                if (!wrap || wrap._dragged) return; // that was a swipe, not a click
                 if (!document.fullscreenElement) {
-                    img.requestFullscreen().then(function () { img.style.cursor = 'zoom-out'; }).catch(function () { });
+                    if (wrap.requestFullscreen) wrap.requestFullscreen().catch(function () { });
                 } else {
-                    document.exitFullscreen().then(function () { img.style.cursor = 'zoom-in'; }).catch(function () { });
+                    document.exitFullscreen().catch(function () { });
                 }
+            });
+        });
+
+        // ── VIDEO AUDIO: louder + resumes context on play ──────
+        // Videos are boosted ~2x through the Web Audio API because the
+        // source files are quiet. Boost happens on first play (a user
+        // gesture, so the browser allows it).
+        var audioCtx = null;
+        function boostVideo(v) {
+            if (v.dataset.boosted) return;
+            try {
+                var AC = window.AudioContext || window.webkitAudioContext;
+                if (!AC) return;
+                audioCtx = audioCtx || new AC();
+                var srcNode = audioCtx.createMediaElementSource(v);
+                var gainNode = audioCtx.createGain();
+                gainNode.gain.value = 2.0; // volume boost, raise or lower to taste
+                srcNode.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                v.dataset.boosted = '1';
+            } catch (err) { /* keep native audio if Web Audio fails */ }
+        }
+        document.querySelectorAll('video').forEach(function (v) {
+            v.volume = 1;
+            v.addEventListener('play', function () {
+                boostVideo(v);
+                if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
             });
         });
 
@@ -1698,15 +1740,19 @@
                     n.classList.remove('open');
                     n.setAttribute('aria-expanded', 'false');
                 });
+                // stop any video that was left playing inside a panel
+                document.querySelectorAll('.level-panel video').forEach(function (v) { v.pause(); });
                 drawLevelPath();
             }
 
             levelStops.forEach(function (stop) {
                 var node = stop.querySelector('.level-node');
+                var meta = stop.querySelector('.level-meta');
                 var panel = stop.querySelector('.level-panel');
                 var closeBtn = stop.querySelector('.panel-close');
 
-                node.addEventListener('click', function (e) {
+                // Clicking the node OR the title/description chip toggles the panel
+                function togglePanel(e) {
                     e.stopPropagation();
                     var wasOpen = panel.classList.contains('open');
                     closeAllPanels();
@@ -1719,7 +1765,9 @@
                             panel.scrollIntoView({ behavior: scrollBehavior, block: 'nearest' });
                         }, 60);
                     }
-                });
+                }
+                node.addEventListener('click', togglePanel);
+                if (meta) meta.addEventListener('click', togglePanel);
                 closeBtn.addEventListener('click', function (e) {
                     e.stopPropagation();
                     closeAllPanels();

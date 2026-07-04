@@ -437,6 +437,43 @@ a { text-decoration: none; color: inherit; }
     border-radius: 4px;
 }
 
+/* Fullscreen carousel: the whole carousel goes fullscreen so arrows,
+   dots, swipe and keyboard navigation keep working */
+.carousel-wrap:fullscreen {
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carousel-wrap:fullscreen .carousel-slide img,
+.carousel-wrap:fullscreen .carousel-slide video {
+    height: 100vh;
+    object-fit: contain;
+}
+
+.carousel-wrap:fullscreen .carousel-btn { opacity: 1; }
+
+.carousel-wrap:fullscreen .carousel-slide img { cursor: zoom-out !important; }
+
+/* Same rules for Safari's prefixed fullscreen */
+.carousel-wrap:-webkit-full-screen {
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carousel-wrap:-webkit-full-screen .carousel-slide img,
+.carousel-wrap:-webkit-full-screen .carousel-slide video {
+    height: 100vh;
+    object-fit: contain;
+}
+
+.carousel-wrap:-webkit-full-screen .carousel-btn { opacity: 1; }
+
+.carousel-wrap:-webkit-full-screen .carousel-slide img { cursor: zoom-out !important; }
+
 /* ==========================================================
    CURSOR BALL + TRAIL
    ========================================================== */
@@ -736,6 +773,12 @@ textarea.form-input { resize: none; }
     background: rgba(255, 255, 255, 0.4);
 }
 
+/* Center the reCAPTCHA widget in the form */
+.g-recaptcha {
+    display: flex;
+    justify-content: center;
+}
+
 /* ==========================================================
    CONTACT LINKS
    ========================================================== */
@@ -1019,7 +1062,8 @@ textarea.form-input { resize: none; }
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Title, tag and blurb next to the node, on a glass chip so they stay readable */
+/* Title, tag and blurb next to the node, on a glass chip so they stay readable.
+   The whole chip is clickable and toggles the panel, same as the node. */
 .level-meta {
     max-width: 380px;
     min-width: 0;
@@ -1030,6 +1074,23 @@ textarea.form-input { resize: none; }
     border-radius: 16px;
     padding: 14px 20px;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.level-meta:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(34, 197, 94, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Hovering the chip also makes the node pop, so they feel like one control */
+.level-node-row:hover .level-node {
+    transform: scale(1.14);
+    box-shadow:
+        0 10px 36px rgba(0, 0, 0, 0.12),
+        0 0 34px rgba(34, 197, 94, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .level-tag {
