@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "C:\\Users\\Insik\\AppData\\Local\\Temp\\claude\\E--GitHub-website-github-io\\0622aeed-7e9a-4556-86ff-59ac48c9ebc5\\scratchpad\\serve.ps1", "-Root", "E:\\GitHub\\website.github.io", "-Port", "8080"],
+      "port": 8080
+    }
+  ]
+}

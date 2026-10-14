@@ -112,3 +112,4 @@ videos/zombieanimations.mp4 !filter !diff !merge text=auto
 videos/stickmantest.mp4 !filter !diff !merge text=auto
 videos/stickmandance.mp4 !filter !diff !merge text=auto
 videos/daggershowcase.mp4 !filter !diff !merge text=auto
+images/brainiac.png !filter !diff !merge text=auto

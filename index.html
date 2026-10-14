@@ -5,1189 +5,1048 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
+        content="Portfolio of Pinchiș Daniel, 3D animator, game developer and multimedia creator based in Antwerp.">
 
-    <!-- ═══ SOCIAL SHARING PREVIEWS (Open Graph + Twitter) ═══ -->
+    <!-- SOCIAL SHARING PREVIEWS (Open Graph + Twitter) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Pinchiș Daniel | Digital Alchemist">
     <meta property="og:description"
-        content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
+        content="Portfolio of Pinchiș Daniel, 3D animator, game developer and multimedia creator based in Antwerp.">
     <meta property="og:url" content="https://danielpinchis.com/">
     <meta property="og:image" content="https://danielpinchis.com/images/projectscene.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pinchiș Daniel | Digital Alchemist">
     <meta name="twitter:description"
-        content="Portfolio of Pinchiș Daniel, game developer, 3D artist, and multimedia creator based in Antwerp.">
+        content="Portfolio of Pinchiș Daniel, 3D animator, game developer and multimedia creator based in Antwerp.">
     <meta name="twitter:image" content="https://danielpinchis.com/images/projectscene.jpg">
 
     <title>Pinchiș Daniel | Digital Alchemist</title>
-    <link rel="icon" type="image/jpg" href="images/monogram.png">
+    <link rel="icon" type="image/png" href="/images/monogram.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Space Grotesk', 'sans-serif'] },
-                    colors: {
-                        forest: {
-                            50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
-                            400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
-                            800: '#166534', 900: '#14532d', 950: '#052e16'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
     <link rel="stylesheet" href="style.css">
+
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
-<body class="font-sans min-h-screen">
+<body>
 
-    <!-- PRELOADER -->
+    <!-- PRELOADER: bouncing ball (squash and stretch) -->
     <div class="preloader" id="preloader">
-        <div class="preloader-ring"></div>
+        <div class="bounce-stage" aria-hidden="true">
+            <div class="bounce-ground"></div>
+            <div class="bounce-shadow"></div>
+            <div class="bounce-ball"></div>
+        </div>
         <p class="preloader-text" id="preloader-text"></p>
     </div>
 
-    <!-- SCROLL PROGRESS -->
     <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- PAGE TINT -->
     <div class="page-tint"></div>
-
-    <!-- PARTICLES -->
     <div id="particles" aria-hidden="true"></div>
 
-    <!-- SECTION NAV DOTS -->
-    <nav class="section-dots" id="section-dots" aria-label="Section navigation">
+    <!-- SECTION KEYFRAMES (right side) -->
+    <nav class="section-dots" aria-label="Section navigation">
         <button class="section-dot active" data-target="#home" data-label="Home" aria-label="Go to Home"></button>
         <button class="section-dot" data-target="#work" data-label="Work" aria-label="Go to Work"></button>
+        <button class="section-dot" data-target="#skills" data-label="Skills" aria-label="Go to Skills"></button>
         <button class="section-dot" data-target="#about" data-label="About" aria-label="Go to About"></button>
         <button class="section-dot" data-target="#contact" data-label="Contact" aria-label="Go to Contact"></button>
     </nav>
 
     <!-- NAVIGATION -->
-    <nav id="main-nav" class="glass-nav fixed w-full z-50 transition-all duration-300">
-        <div class="w-full px-5 sm:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="#home" class="text-xl font-serif gradient-text nav-name">Pinchiș Daniel</a>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#home"
-                        class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">Home</a>
-                    <a href="#work"
-                        class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">Work</a>
-                    <a href="#about"
-                        class="nav-link text-sm font-medium text-slate-950 hover:text-forest-700 transition">About</a>
-                    <a href="#contact"
-                        class="text-sm font-medium px-5 py-2 rounded-full bg-forest-700 text-white hover:bg-forest-800 transition">Contact</a>
-                </div>
-                <button id="mobile-menu-button" class="md:hidden text-slate-950 text-xl" aria-label="Toggle menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+    <header class="site-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="#home" class="nav-name">Pinchiș Daniel</a>
+            <nav class="nav-links" aria-label="Main">
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button class="btn btn-sm btn-ghost js-tour" type="button"><i class="fas fa-route"></i> Tour</button>
+                <button class="btn btn-sm btn-primary js-reel" type="button"><i class="fas fa-play"></i> Reel</button>
+            </nav>
+            <button class="nav-burger" id="nav-burger" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="mobile-menu"><i class="fas fa-bars"></i></button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden border-t border-white/20"
-            style="background:rgba(255,255,255,0.15);backdrop-filter:blur(12px)">
-            <div class="px-5 py-4 flex flex-col gap-2">
-                <a href="#home"
-                    class="py-2 px-3 rounded-lg text-slate-950 hover:bg-white/15 transition font-medium">Home</a>
-                <a href="#work"
-                    class="py-2 px-3 rounded-lg text-slate-950 hover:bg-white/15 transition font-medium">Work</a>
-                <a href="#about"
-                    class="py-2 px-3 rounded-lg text-slate-950 hover:bg-white/15 transition font-medium">About</a>
-                <a href="#contact"
-                    class="py-2 px-3 rounded-lg text-slate-950 hover:bg-white/15 transition font-medium">Contact</a>
-            </div>
+        <div class="mobile-menu" id="mobile-menu" hidden>
+            <a href="#work">Work</a>
+            <a href="#skills">Skills</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <button type="button" class="js-tour"><i class="fas fa-route"></i> Take the tour</button>
+            <button type="button" class="js-reel"><i class="fas fa-play"></i> Watch reel</button>
         </div>
-    </nav>
+    </header>
 
-    <!-- ============================================================
-         HERO
-         ============================================================ -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center px-4 pt-16">
-        <!-- Floating decorative shapes -->
-        <div class="floating-shape float-1 bg-forest-400"
-            style="width:300px;height:300px;top:15%;left:-5%;"></div>
-        <div class="floating-shape float-2 bg-emerald-300"
-            style="width:200px;height:200px;bottom:20%;right:-3%;"></div>
-        <div class="floating-shape float-3 bg-green-500"
-            style="width:250px;height:250px;top:60%;left:50%;"></div>
+    <main>
 
-        <div class="hero-card glass-card rounded-3xl text-center px-8 py-14 sm:px-14 sm:py-16 max-w-2xl w-full relative z-10"
-            id="hero-card">
-            <div class="tilt-shine"></div>
-            <p class="section-label mb-4" style="opacity:0;animation:word-in 0.5s ease 2s forwards">Portfolio</p>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif shimmer-text pb-2 leading-tight">
-                Pinchiș Daniel
-            </h1>
-            <p class="text-base sm:text-lg text-slate-950 mb-8 max-w-lg mx-auto leading-relaxed min-h-[3rem]"
-                id="hero-subtitle">
-                <span id="typed-text"></span><span class="typed-cursor">&nbsp;</span>
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-3"
-                style="opacity:0;animation:word-in 0.5s ease 3.2s forwards">
-                <div class="magnetic-wrap">
-                    <a href="#work"
-                        class="ripple-btn inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-forest-700 text-white font-medium hover:bg-forest-800 transition transform hover:scale-105 text-sm">
-                        Explore Work <i class="fas fa-arrow-down text-xs"></i>
-                    </a>
-                </div>
-                <div class="magnetic-wrap">
-                    <a href="#contact"
-                        class="ripple-btn inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full border-2 border-forest-600/40 text-forest-700 font-medium hover:bg-forest-50/40 transition transform hover:scale-105 text-sm">
-                        Get in Touch
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="absolute bottom-8 left-0 right-0 flex justify-center"
-            style="opacity:0;animation:word-in 0.5s ease 3.5s forwards">
-            <a href="#work" class="text-forest-400 hover:text-forest-600 animate-bounce transition">
-                <i class="fas fa-chevron-down text-lg"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         WORK
-         ============================================================ -->
-    <section id="work" class="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-16 reveal-slide max-w-lg mx-auto">
-            <div class="glass-card rounded-2xl px-8 py-6 relative z-10">
-                <p class="section-label mb-2">Projects</p>
-                <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-2 scramble-text"
-                    data-scramble="Selected Works">Selected Works</h2>
-                <p class="text-slate-950 max-w-md mx-auto mb-1">Where code, design, and imagination converge.</p>
-                <p class="text-slate-950 text-sm italic mb-0">Select a level to explore the project.</p>
-            </div>
-        </div>
-
-        <!-- ════════════════════════════════════════════════════════
-             LEVEL SELECT
-             The winding path (SVG) and flowing particles are drawn
-             automatically by the "LEVEL SELECT" script at the bottom
-             of this file. Levels are numbered automatically too.
-             ════════════════════════════════════════════════════════ -->
-        <div class="level-path-wrap">
-            <svg id="level-path-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                <path id="level-path-line" d="" fill="none" />
-                <!-- The glowing line below draws itself in as you scroll -->
-                <path id="level-path-progress" d="" fill="none" />
-            </svg>
-            <div class="level-list">
-
-                <!-- ═══════════════ LEVEL: Forged in Shadows ═══════════════
-                     TO ADD A NEW PROJECT: copy everything from this comment
-                     down to the matching "END LEVEL" comment, paste it right
-                     before the "END OF LEVELS" marker below, then change:
-                       1. the icon class on .level-icon (any Font Awesome icon)
-                       2. the id on the panel + the aria-controls on the button
-                          (they must match and be unique, e.g. "panel-mygame")
-                       3. the tag, title, blurb, and panel content
-                       4. the carousel images/videos
-                     Numbering, the path, particles, and the carousel all hook
-                     themselves up automatically. -->
-                <div class="level-stop">
-                    <div class="level-node-row">
-                        <button class="level-node" aria-expanded="false" aria-controls="panel-forged">
-                            <span class="level-num"></span>
-                            <i class="fas fa-hammer level-icon" aria-hidden="true"></i>
-                        </button>
-                        <div class="level-meta">
-                            <span class="level-tag">Games Created</span>
-                            <h3 class="level-title font-serif gradient-text">Games Created</h3>
-                            <p class="level-blurb">Playable worlds, starting with Forged in Shadows.</p>
+        <!-- ============================================================
+             HERO
+             ============================================================ -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="panel">
+                    <div class="bl-header">
+                        <span class="bl-editor"><i class="fas fa-video"></i><i class="fas fa-caret-down"></i></span>
+                        <span>Scene: Portfolio</span>
+                        <span class="bl-right">Frame 0001</span>
+                    </div>
+                    <div class="hero-body">
+                        <p class="label"><span class="kf"></span> Animator &middot; 3D Artist &middot; Game Developer</p>
+                        <h1 class="hero-name shimmer-text">Pinchiș Daniel</h1>
+                        <p class="hero-tag"><span id="typed-text"></span><span class="typed-cursor"></span></p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary js-reel" type="button"><i class="fas fa-play"></i> Watch Reel</button>
+                            <a href="#work" class="btn">Explore Work <i class="fas fa-arrow-down"></i></a>
+                            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
                         </div>
                     </div>
+                </div>
 
-                    <article class="level-panel glass-card rounded-2xl" id="panel-forged">
-                        <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
+                <!-- Danny greets first time visitors and offers the tour -->
+                <div class="hero-guide">
+                    <div class="bubble bubble-down" id="hero-bubble">
+                        <p id="hero-bubble-text">Hi, I'm Danny! Click me and I'll show you around.</p>
+                        <div class="bubble-actions" id="hero-bubble-actions">
+                            <button class="btn btn-sm btn-primary js-tour" type="button">Start the tour</button>
+                            <button class="btn btn-sm btn-ghost" id="tour-decline" type="button">No thanks</button>
+                        </div>
+                    </div>
+                    <button class="danny-btn js-tour" type="button" aria-label="Start the guided tour with Danny">
+                        <div class="danny danny-xl" data-pose="wave"></div>
+                    </button>
+                </div>
+            </div>
+            <a href="#work" class="scroll-cue"><i class="fas fa-chevron-down"></i> Scroll</a>
+        </section>
 
-                        <!-- Panel intro. The project tabs below build themselves automatically
-                             from the PROJECT blocks in this panel: no editing needed here. -->
-                        <div class="panel-intro p-6 sm:p-8 relative z-10">
-                            <span class="panel-badge">Games Created</span>
-                            <p class="panel-intro-text">Every game I build gets its own entry here. Pick one below.</p>
-                            <div class="project-tabs" role="tablist"></div>
+        <!-- ============================================================
+             WORK
+             Each SCENE is a category, each SHOT is a project inside it.
+             Tabs, shot numbers, carousel arrows and the keyframe timeline
+             are all generated by the script. To add a project, copy one
+             <div class="shot"> block and change its content.
+             ============================================================ -->
+        <section id="work" class="section">
+            <div class="container">
+
+                <header class="panel section-head reveal" id="work-head">
+                    <p class="label"><span class="kf"></span> Projects</p>
+                    <h2 class="title scramble">Selected Works</h2>
+                    <p>Each scene holds a few shots. Pick a shot with the tabs, flip through the frames, and click Danny
+                        for the story behind it.</p>
+                    <button class="btn btn-primary btn-sm js-reel" id="work-reel-btn" type="button"><i
+                            class="fas fa-film"></i> Short on time? Watch the reel</button>
+                </header>
+
+                <div class="scenes">
+
+                    <!-- ═══════════════ SCENE 01: GAMES ═══════════════ -->
+                    <article class="scene panel has-danny reveal" id="scene-games">
+                        <div class="perch">
+                            <div class="bubble bubble-right bubble-bob scene-bubble">Click me for the brief!</div>
+                            <button class="danny-btn scene-danny" type="button" aria-expanded="false"
+                                aria-label="Show the brief for this shot">
+                                <div class="danny danny-md" data-pose="point-down"></div>
+                            </button>
+                        </div>
+                        <div class="bl-header">
+                            <span class="bl-editor"><i class="fas fa-gamepad"></i><i class="fas fa-caret-down"></i></span>
+                            <span>Scene 01</span>
+                            <span class="bl-right shot-count"></span>
+                        </div>
+                        <div class="scene-intro">
+                            <h3 class="scene-title title">Games Created</h3>
+                            <p>Playable worlds I built, starting with my very first one.</p>
+                        </div>
+                        <div class="shot-tabs" role="tablist" aria-label="Game projects"></div>
+
+                        <!-- SHOT: Forged in Shadows -->
+                        <div class="shot" data-title="Forged in Shadows">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot1.jpeg" loading="lazy" alt="Forged in Shadows screenshot 1"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot2.jpeg" loading="lazy" alt="Forged in Shadows screenshot 2"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot3.jpeg" loading="lazy" alt="Forged in Shadows screenshot 3"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot4.jpeg" loading="lazy" alt="Forged in Shadows screenshot 4"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot5.jpeg" loading="lazy" alt="Forged in Shadows screenshot 5"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot6.jpeg" loading="lazy" alt="Forged in Shadows screenshot 6"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot7.jpeg" loading="lazy" alt="Forged in Shadows screenshot 7"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot8.jpeg" loading="lazy" alt="Forged in Shadows screenshot 8"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot9.jpeg" loading="lazy" alt="Forged in Shadows screenshot 9"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot10.jpeg" loading="lazy" alt="Forged in Shadows screenshot 10"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot11.jpeg" loading="lazy" alt="Forged in Shadows screenshot 11"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot12.jpeg" loading="lazy" alt="Forged in Shadows screenshot 12"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot13.jpeg" loading="lazy" alt="Forged in Shadows screenshot 13"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot14.jpeg" loading="lazy" alt="Forged in Shadows screenshot 14"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot15.jpeg" loading="lazy" alt="Forged in Shadows screenshot 15"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot16.jpeg" loading="lazy" alt="Forged in Shadows screenshot 16"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot17.jpeg" loading="lazy" alt="Forged in Shadows screenshot 17"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot18.jpeg" loading="lazy" alt="Forged in Shadows screenshot 18"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot19.jpeg" loading="lazy" alt="Forged in Shadows screenshot 19"></div>
+                                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot20.jpeg" loading="lazy" alt="Forged in Shadows screenshot 20"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Forged in Shadows</h3>
+                                    <p class="shot-summary">A horror adventure set in the Edo period, where you help a former blacksmith in his haunted workshop.</p>
+                                    <ul class="tags"><li>Unity</li><li>C#</li><li>Lighting</li><li>Team project</li></ul>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body">
+                                        <p>Build my first playable horror game: a haunted blacksmith's workshop where the fear comes from atmosphere, pacing and detail instead of cheap jump scares.</p>
+                                        <p>It's only a prototype, but it's the project that got me hooked on making games.</p>
+                                    </div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body">
+                                        <ul class="steps">
+                                            <li><strong>Engine:</strong> built it in Unity, learning how to import assets and put together environments that actually run.</li>
+                                            <li><strong>Scripting:</strong> wrote every interaction in C#, from doors that open to triggers that fire.</li>
+                                            <li><strong>Lighting:</strong> tuned the shadows until the workshop felt creepy instead of just dark.</li>
+                                            <li><strong>Teamwork:</strong> my friend Markus Mayrhofer handled the design and arrangements, while I did the scripting, lighting and some of the models, all synced through Unity Version Control.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div></div></div>
                         </div>
 
-                <!-- ═══ PROJECT: Forged in Shadows ═══
-                     TO ADD A NEW PROJECT inside this category: copy from this
-                     comment down to the matching END PROJECT comment, paste it
-                     right before the "END OF PROJECTS" marker in this panel,
-                     then change data-title (that's what the tab will say), the
-                     carousel media, and the description. The tab buttons and
-                     the carousel wire themselves up automatically. -->
-                <div class="project" data-title="Forged in Shadows">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot1.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 1"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot2.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 2"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot3.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 3"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot4.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 4"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot5.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 5"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot6.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 6"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot7.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 7"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot8.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 8"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot9.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 9"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot10.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 10"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot11.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 11"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot12.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 12"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot13.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 13"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot14.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 14"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot15.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 15"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot16.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 16"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot17.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 17"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot18.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 18"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot19.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 19"></div>
-                        <div class="carousel-slide"><img src="/images/forgedinshadows/screenshot20.jpeg" loading="lazy"
-                                alt="Forged in Shadows screenshot 20"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Forged in Shadows</h3>
-                    <p class="text-slate-950 text-base mb-6 max-w-2xl">
-                        A horror adventure game set in the Edo period where your goal is to help a former blacksmith.
-                    </p>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        <strong>Forged in Shadows</strong> was the very first horror game I ever worked on, set in a
-                        haunted blacksmith's workshop. It's where I learned the basics of Unity and figured out how to
-                        actually turn an idea into something playable.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Forged in Shadows ═══ -->
+                        <!-- SHOT: Archers Quest -->
+                        <div class="shot" data-title="Archers Quest">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/archersquest/archerss1.png" loading="lazy" alt="Archers Quest screenshot 1"></div>
+                                        <div class="carousel-slide"><img src="/images/archersquest/archerss2.png" loading="lazy" alt="Archers Quest screenshot 2"></div>
+                                        <div class="carousel-slide"><img src="/images/archersquest/archerss3.png" loading="lazy" alt="Archers Quest screenshot 3"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Archers Quest</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about Archers Quest</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of Archers Quest?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
+                        </div>
 
-                <!-- ═══ PROJECT: Archers Quest ═══ -->
-                <div class="project" data-title="Archers Quest">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/archersquest/archerss1.png" loading="lazy"
-                                alt="Archers Quest screenshot 1"></div>
-                        <div class="carousel-slide"><img src="/images/archersquest/archerss2.png" loading="lazy"
-                                alt="Archers Quest screenshot 2"></div>
-                        <div class="carousel-slide"><img src="/images/archersquest/archerss3.png" loading="lazy"
-                                alt="Archers Quest screenshot 3"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Archers Quest</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis arrow physics et bow
-                        mechanics, vestibulum quest design. Replace this with the story behind Archers Quest.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Archers Quest ═══ -->
+                        <!-- SHOT: Chaotic Knight -->
+                        <div class="shot" data-title="Chaotic Knight">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic1.png" loading="lazy" alt="Chaotic Knight screenshot 1"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic2.png" loading="lazy" alt="Chaotic Knight screenshot 2"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic3.png" loading="lazy" alt="Chaotic Knight screenshot 3"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic4.png" loading="lazy" alt="Chaotic Knight screenshot 4"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic5.png" loading="lazy" alt="Chaotic Knight screenshot 5"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic6.png" loading="lazy" alt="Chaotic Knight screenshot 6"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic7.png" loading="lazy" alt="Chaotic Knight screenshot 7"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic8.png" loading="lazy" alt="Chaotic Knight screenshot 8"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic9.png" loading="lazy" alt="Chaotic Knight screenshot 9"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic10.png" loading="lazy" alt="Chaotic Knight screenshot 10"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic11.png" loading="lazy" alt="Chaotic Knight screenshot 11"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic12.png" loading="lazy" alt="Chaotic Knight screenshot 12"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic13.png" loading="lazy" alt="Chaotic Knight screenshot 13"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic14.png" loading="lazy" alt="Chaotic Knight screenshot 14"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic15.png" loading="lazy" alt="Chaotic Knight screenshot 15"></div>
+                                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic16.png" loading="lazy" alt="Chaotic Knight screenshot 16"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Chaotic Knight</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about Chaotic Knight</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of Chaotic Knight?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
+                        </div>
 
-                <!-- ═══ PROJECT: Chaotic Knight ═══ -->
-                <div class="project" data-title="Chaotic Knight">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic1.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 1"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic2.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 2"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic3.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 3"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic4.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 4"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic5.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 5"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic6.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 6"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic7.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 7"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic8.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 8"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic9.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 9"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic10.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 10"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic11.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 11"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic12.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 12"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic13.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 13"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic14.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 14"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic15.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 15"></div>
-                        <div class="carousel-slide"><img src="/images/chaoticknight/chaotic16.png" loading="lazy"
-                                alt="Chaotic Knight screenshot 16"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Chaotic Knight</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gladius combat loops et chaos
-                        mechanics, curabitur knight armor design. Replace this with the story behind Chaotic Knight.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Chaotic Knight ═══ -->
-
-                <!-- ═══ PROJECT: Mortal Balance ═══ -->
-                <div class="project" data-title="Mortal Balance">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance1.png" loading="lazy"
-                                alt="Mortal Balance screenshot 1"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance2.png" loading="lazy"
-                                alt="Mortal Balance screenshot 2"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance3.png" loading="lazy"
-                                alt="Mortal Balance screenshot 3"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance4.png" loading="lazy"
-                                alt="Mortal Balance screenshot 4"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance5.png" loading="lazy"
-                                alt="Mortal Balance screenshot 5"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance6.png" loading="lazy"
-                                alt="Mortal Balance screenshot 6"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance7.png" loading="lazy"
-                                alt="Mortal Balance screenshot 7"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance8.png" loading="lazy"
-                                alt="Mortal Balance screenshot 8"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance9.png" loading="lazy"
-                                alt="Mortal Balance screenshot 9"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance10.png" loading="lazy"
-                                alt="Mortal Balance screenshot 10"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance11.png" loading="lazy"
-                                alt="Mortal Balance screenshot 11"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance12.png" loading="lazy"
-                                alt="Mortal Balance screenshot 12"></div>
-                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance13.png" loading="lazy"
-                                alt="Mortal Balance screenshot 13"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Mortal Balance</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aequilibrium life and death systems,
-                        vestibulum level flow et pacing. Replace this with the story behind Mortal Balance.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Mortal Balance ═══ -->
-
-                <!-- ═══ END OF PROJECTS (Games Created): paste new projects ABOVE this line ═══ -->
-
-                <div class="panel-notes p-8 sm:p-10 pt-0 relative z-10">
-                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
-                    <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
-                        <li><strong class="text-slate-950">Unity Basics</strong> : importing assets, building
-                            environments, and getting things to run without breaking every five minutes.</li>
-                        <li><strong class="text-slate-950">Lighting &amp; Atmosphere</strong> : making shadows feel
-                            creepy instead of just dark.</li>
-                        <li><strong class="text-slate-950">Scripting</strong> : doors that open, triggers that fire, all
-                            the small things that make a game feel alive.</li>
-                        <li><strong class="text-slate-950">Problem Solving</strong> : every new feature meant Googling,
-                            experimenting, or breaking things until they finally worked.</li>
-                        <li><strong class="text-slate-950">Collaboration</strong> : My friend Markus Mayrhofer helped
-                            with the design and arrangements, while I handled scripting, lighting, and some of the
-                            models. We used Unity version control.</li>
-                    </ul>
-                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">Looking Back</h4>
-                    <p class="text-slate-950" style="text-align:justify">
-                        This project was messy, frustrating, and super rewarding. I learned that horror isn't just about
-                        cheap scares, but about atmosphere, pacing, and detail. Even though <strong>Forged in
-                            Shadows</strong> is only a prototype, it's the project that got me hooked on making games.
-                    </p>
-                </div>
+                        <!-- SHOT: Mortal Balance -->
+                        <div class="shot" data-title="Mortal Balance">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance1.png" loading="lazy" alt="Mortal Balance screenshot 1"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance2.png" loading="lazy" alt="Mortal Balance screenshot 2"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance3.png" loading="lazy" alt="Mortal Balance screenshot 3"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance4.png" loading="lazy" alt="Mortal Balance screenshot 4"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance5.png" loading="lazy" alt="Mortal Balance screenshot 5"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance6.png" loading="lazy" alt="Mortal Balance screenshot 6"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance7.png" loading="lazy" alt="Mortal Balance screenshot 7"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance8.png" loading="lazy" alt="Mortal Balance screenshot 8"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance9.png" loading="lazy" alt="Mortal Balance screenshot 9"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance10.png" loading="lazy" alt="Mortal Balance screenshot 10"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance11.png" loading="lazy" alt="Mortal Balance screenshot 11"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance12.png" loading="lazy" alt="Mortal Balance screenshot 12"></div>
+                                        <div class="carousel-slide"><img src="/images/mortalbalance/mortalbalance13.png" loading="lazy" alt="Mortal Balance screenshot 13"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Mortal Balance</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about Mortal Balance</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of Mortal Balance?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
+                        </div>
                     </article>
-                </div>
-                <!-- ═══════════════ END LEVEL: Forged in Shadows ═══════════════ -->
+                    <!-- ═══════════════ END SCENE 01 ═══════════════ -->
 
-                <!-- ═══════════════ LEVEL: Character Animations ═══════════════ -->
-                <div class="level-stop">
-                    <div class="level-node-row">
-                        <button class="level-node" aria-expanded="false" aria-controls="panel-animations">
-                            <span class="level-num"></span>
-                            <i class="fas fa-running level-icon" aria-hidden="true"></i>
-                        </button>
-                        <div class="level-meta">
-                            <span class="level-tag">3D Animations</span>
-                            <h3 class="level-title font-serif gradient-text">Character Animations</h3>
-                            <p class="level-blurb">Rigged and animated characters made in Blender.</p>
+                    <!-- ═══════════════ SCENE 02: ANIMATION ═══════════════ -->
+                    <article class="scene panel has-danny reveal" id="scene-animation">
+                        <div class="perch">
+                            <div class="bubble bubble-right bubble-bob scene-bubble">Click me for the brief!</div>
+                            <button class="danny-btn scene-danny" type="button" aria-expanded="false"
+                                aria-label="Show the brief for this shot">
+                                <div class="danny danny-md" data-pose="point-down"></div>
+                            </button>
                         </div>
-                    </div>
+                        <div class="bl-header">
+                            <span class="bl-editor"><i class="fas fa-person-running"></i><i class="fas fa-caret-down"></i></span>
+                            <span>Scene 02</span>
+                            <span class="bl-right shot-count"></span>
+                        </div>
+                        <div class="scene-intro">
+                            <h3 class="scene-title title">Character Animations</h3>
+                            <p>Rigged and animated characters made in Blender, from simple cycles to full sequences.</p>
+                        </div>
+                        <div class="shot-tabs" role="tablist" aria-label="Animation projects"></div>
 
-                    <article class="level-panel glass-card rounded-2xl" id="panel-animations">
-                        <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
-
-                        <!-- Panel intro. Tabs build themselves from the PROJECT blocks below. -->
-                        <div class="panel-intro p-6 sm:p-8 relative z-10">
-                            <span class="panel-badge">3D Animations</span>
-                            <p class="panel-intro-text">Rigged and animated characters made in Blender, from simple
-                                cycles to full sequences. Pick a project below.</p>
-                            <div class="project-tabs" role="tablist"></div>
+                        <!-- SHOT: Zombie Animations -->
+                        <div class="shot" data-title="Zombie Animations">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/zombieanimations.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Zombie Animations</h3>
+                                    <p class="shot-summary">A zombie character rigged and animated in Blender, with a set of movement cycles.</p>
+                                    <ul class="tags"><li>Blender</li><li>Rigging</li><li>Cycles</li></ul>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p>Get comfortable with rigging and movement cycles by giving one character a full set of believable motions that blend smoothly into each other.</p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body">
+                                        <ul class="steps">
+                                            <li><strong>Rigging:</strong> created the rig with bones, controllers and IK/FK setups.</li>
+                                            <li><strong>Cycles:</strong> animated idle, walk, run and turn cycles, then smoothed the transitions between them.</li>
+                                            <li><strong>Principles:</strong> worked on timing and spacing so every motion has weight.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div></div></div>
                         </div>
 
-                <!-- ═══ PROJECT: Zombie Animations ═══ -->
-                <div class="project" data-title="Zombie Animations">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/zombieanimations.mp4" type="video/mp4">
-                            </video>
+                        <!-- SHOT: Stickman Test -->
+                        <div class="shot" data-title="Stickman Test">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/stickmantest.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Stickman Test</h3>
+                                    <p class="shot-summary">A stickman movement test with jumps, vaults and rolls.</p>
+                                    <ul class="tags"><li>Blender</li><li>Body mechanics</li><li>Camera</li></ul>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p>Push past basic cycles into fast, acrobatic movement that still feels believable.</p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body">
+                                        <ul class="steps">
+                                            <li><strong>Reference:</strong> got up from the chair and acted out the moves myself to understand how each joint moves.</li>
+                                            <li><strong>Blocking:</strong> posed the key moments of every jump, vault and roll first.</li>
+                                            <li><strong>Polish:</strong> refined timing, spacing and flow until the motion read clearly.</li>
+                                            <li><strong>Camera:</strong> positioned and tracked the camera so the render feels natural.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div></div></div>
                         </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Zombie Animations</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rigging bones et IK/FK setups,
-                        vestibulum idle, walk et run cycles. Nulla facilisi, replace this with the story behind the
-                        zombie animation set.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Zombie Animations ═══ -->
 
-                <!-- ═══ PROJECT: Stickman Test ═══ -->
-                <div class="project" data-title="Stickman Test">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/stickmantest.mp4" type="video/mp4">
-                            </video>
+                        <!-- SHOT: Stickman Dance -->
+                        <div class="shot" data-title="Stickman Dance">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/stickmandance.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Stickman Dance</h3>
+                                    <p class="shot-summary">A full dance sequence animated on a stickman rig.</p>
+                                    <ul class="tags"><li>Blender</li><li>Timing</li><li>Personality</li></ul>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p>Animate a long, expressive sequence and give a simple character personality through motion alone.</p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body">
+                                        <ul class="steps">
+                                            <li><strong>Timing:</strong> applied timing and spacing across many different styles of motion.</li>
+                                            <li><strong>Flow:</strong> kept the transitions between moves smooth so the dance never stops reading as one performance.</li>
+                                            <li><strong>Camera:</strong> created smooth camera moves that follow the dancer.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div></div></div>
                         </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Stickman Test</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent parkour vaults et rolls,
-                        aliquam timing and spacing eget flow. Replace this with what the stickman test taught you.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Stickman Test ═══ -->
 
-                <!-- ═══ PROJECT: Stickman Dance ═══ -->
-                <div class="project" data-title="Stickman Dance">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/stickmandance.mp4" type="video/mp4">
-                            </video>
+                        <!-- SHOT: Lego Jack Sparrow -->
+                        <div class="shot" data-title="Lego Jack Sparrow">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/legojacksparrow.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Lego Jack Sparrow</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about Lego Jack Sparrow</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of Lego Jack Sparrow?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
                         </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Stickman Dance</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dance sequence cum personality
-                        in motion, sed camera tracking natural feel. Replace this with the dance project writeup.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Stickman Dance ═══ -->
 
-                <!-- ═══ PROJECT: Lego Jack Sparrow ═══ -->
-                <div class="project" data-title="Lego Jack Sparrow">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/legojacksparrow.mp4" type="video/mp4">
-                            </video>
+                        <!-- SHOT: KDG Man -->
+                        <div class="shot" data-title="KDG Man">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/kdgman.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">KDG Man</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about KDG Man</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of KDG Man?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
                         </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Lego Jack Sparrow</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Navis pirate swagger in brick form,
-                        vestibulum walk cycle with attitude. Replace this with the story behind Lego Jack Sparrow.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Lego Jack Sparrow ═══ -->
 
-                <!-- ═══ PROJECT: KDG Man ═══ -->
-                <div class="project" data-title="KDG Man">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/kdgman.mp4" type="video/mp4">
-                            </video>
+                        <!-- SHOT: Geometry Nodes -->
+                        <div class="shot" data-title="Geometry Nodes">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/geometrynodes.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Geometry Nodes</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about Geometry Nodes</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of Geometry Nodes?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
                         </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">KDG Man</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Heros campus animatus, curabitur
-                        character rig et personality. Replace this with the story behind KDG Man.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: KDG Man ═══ -->
 
-                <!-- ═══ PROJECT: Geometry Nodes ═══ -->
-                <div class="project" data-title="Geometry Nodes">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/geometrynodes.mp4" type="video/mp4">
-                            </video>
+                        <!-- SHOT: Excavator -->
+                        <div class="shot" data-title="Excavator">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/excavator.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Excavator</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about the Excavator</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of the Excavator?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
                         </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Geometry Nodes</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proceduralis geometry magic in
-                        Blender, aliquam node trees et motion. Replace this with the story behind this experiment.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Geometry Nodes ═══ -->
 
-                <!-- ═══ PROJECT: Excavator ═══ -->
-                <div class="project" data-title="Excavator">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/excavator.mp4" type="video/mp4">
-                            </video>
+                        <!-- SHOT: 3D VFX -->
+                        <div class="shot" data-title="3D VFX">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/3dvfx.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">3D VFX</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about the 3D VFX</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of the 3D VFX?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
                         </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Excavator</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Machina heavy metal in motion,
-                        vestibulum mechanical rigging et hydraulics. Replace this with the story behind the excavator.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Excavator ═══ -->
 
-                <!-- ═══ PROJECT: 3D VFX ═══ -->
-                <div class="project" data-title="3D VFX">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/3dvfx.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">3D VFX</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Effectus visual experiments,
-                        curabitur simulation, particles et compositing. Replace this with the story behind the VFX.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: 3D VFX ═══ -->
-
-                <!-- ═══ END OF PROJECTS (3D Animations): paste new projects ABOVE this line ═══ -->
-
-                <div class="panel-notes p-8 sm:p-10 pt-0 relative z-10">
-                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
-                    <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
-                        <li><strong class="text-slate-950">Rigging</strong> : learned how to create rigs, use and attach
-                            bones, controllers, and IK/FK setups.</li>
-                        <li><strong class="text-slate-950">Movement Mechanics</strong> : creating believable jumps,
-                            vaults, and rolls as well as idle, walk, run and turn cycles with smooth transitions.</li>
-                        <li><strong class="text-slate-950">Camera Usage</strong> : positioning, tracking and creating
-                            smooth movements to make the render feel natural.</li>
-                        <li><strong class="text-slate-950">Animation Principles</strong> : applying timing, spacing, and
-                            flow across different styles of motion.</li>
-                    </ul>
-                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">Looking Back</h4>
-                    <p class="text-slate-950" style="text-align:justify">
-                        These animations started simple but gave me an idea of what I should continue to focus on.
-                        Working on these gave me a feel for how characters move and express themselves through motion.
-                        Best part was getting up from the chair and trying to mimic the movements myself to understand
-                        joint movement.
-                    </p>
-                    <p class="text-slate-950 text-sm mt-3 italic">
-                        Disclaimer: Some assets are original creations, while others belong to their respective owners.
-                    </p>
-                </div>
+                        <p class="disclaimer" style="padding: 0 26px 22px;">Disclaimer: Some assets are original creations, while others belong to their respective owners.</p>
                     </article>
-                </div>
-                <!-- ═══════════════ END LEVEL: Character Animations ═══════════════ -->
+                    <!-- ═══════════════ END SCENE 02 ═══════════════ -->
 
-                <!-- ═══════════════ LEVEL: 3D Environments ═══════════════ -->
-                <div class="level-stop">
-                    <div class="level-node-row">
-                        <button class="level-node" aria-expanded="false" aria-controls="panel-environments">
-                            <span class="level-num"></span>
-                            <i class="fas fa-mountain level-icon" aria-hidden="true"></i>
-                        </button>
-                        <div class="level-meta">
-                            <span class="level-tag">3D Models</span>
-                            <h3 class="level-title font-serif gradient-text">3D Environments</h3>
-                            <p class="level-blurb">Environment designs and models created in Blender.</p>
+                    <!-- ═══════════════ SCENE 03: ENVIRONMENTS ═══════════════ -->
+                    <article class="scene panel has-danny reveal" id="scene-environments">
+                        <div class="perch">
+                            <div class="bubble bubble-right bubble-bob scene-bubble">Click me for the brief!</div>
+                            <button class="danny-btn scene-danny" type="button" aria-expanded="false"
+                                aria-label="Show the brief for this shot">
+                                <div class="danny danny-md" data-pose="point-down"></div>
+                            </button>
                         </div>
-                    </div>
+                        <div class="bl-header">
+                            <span class="bl-editor"><i class="fas fa-mountain"></i><i class="fas fa-caret-down"></i></span>
+                            <span>Scene 03</span>
+                            <span class="bl-right shot-count"></span>
+                        </div>
+                        <div class="scene-intro">
+                            <h3 class="scene-title title">3D Environments</h3>
+                            <p>Environment designs and models created in Blender.</p>
+                        </div>
+                        <div class="shot-tabs" role="tablist" aria-label="Environment projects"></div>
 
-                    <article class="level-panel glass-card rounded-2xl" id="panel-environments">
-                        <button class="panel-close" aria-label="Close project"><i class="fas fa-times"></i></button>
-
-                        <!-- Panel intro. Tabs build themselves from the PROJECT blocks below. -->
-                        <div class="panel-intro p-6 sm:p-8 relative z-10">
-                            <span class="panel-badge">3D Models</span>
-                            <p class="panel-intro-text">Environment designs and models created in Blender. Pick a
-                                scene below.</p>
-                            <div class="project-tabs" role="tablist"></div>
+                        <!-- SHOT: Greek Temple Ruin -->
+                        <div class="shot" data-title="Greek Temple Ruin">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/projectscene.jpg" loading="lazy" alt="Greek Temple Ruin nighttime environment"></div>
+                                        <div class="carousel-slide"><img src="/images/projectscene2.jpeg" loading="lazy" alt="Greek Temple Ruin alternate angle"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Greek Temple Ruin</h3>
+                                    <p class="shot-summary">A classical temple surrounded by trees, lamps and cars, set against a night sky.</p>
+                                    <ul class="tags"><li>Blender</li><li>Modeling</li><li>Composition</li></ul>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p>My first environment project: learn composition, lighting and 3D by building a complete scene instead of a single object.</p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body">
+                                        <ul class="steps">
+                                            <li><strong>Modeling:</strong> built the classical architecture, from columns to stairs and arches.</li>
+                                            <li><strong>Composition:</strong> arranged trees, bushes, street lamps, vehicles and a path so the scene feels alive.</li>
+                                            <li><strong>Lighting:</strong> set it against a nighttime backdrop and experimented with spot, area and world lighting.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div></div></div>
                         </div>
 
-                <!-- ═══ PROJECT: Greek Temple Ruin ═══ -->
-                <div class="project" data-title="Greek Temple Ruin">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/projectscene.jpg" loading="lazy"
-                                alt="Greek Temple Ruin nighttime environment"></div>
-                        <div class="carousel-slide"><img src="/images/projectscene2.jpeg" loading="lazy"
-                                alt="Greek Temple Ruin alternate angle"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Greek Temple Ruin</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        My first project experimenting with environment design. I modeled a classical style temple,
-                        added surrounding details like trees, bushes, street lamps, vehicles and a path, and set it
-                        against a nighttime backdrop. My introduction to composition, lighting, and 3D.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Greek Temple Ruin ═══ -->
-
-                <!-- ═══ PROJECT: Snowday ═══ -->
-                <div class="project" data-title="Snowday">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/snowday.jpeg" loading="lazy"
-                                alt="Snowday winter environment"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Snowday</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        A fun project where I worked with the environment more to create snow, water and mountains as
-                        well as snowed on pine trees.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Snowday ═══ -->
-
-                <!-- ═══ PROJECT: Hidden Ruins ═══ -->
-                <div class="project" data-title="Hidden Ruins">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/ruinsfinal.jpg" loading="lazy"
-                                alt="Hidden Ruins fantasy sword scene"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Hidden Ruins</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        My most recent scene, focused on setting the perfect stage for a fantasy sword using
-                        environmental props, lighting, realistic water, a glowing magic circle and god rays.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Hidden Ruins ═══ -->
-
-                <!-- ═══ PROJECT: Dagger Showcase ═══ -->
-                <div class="project" data-title="Dagger Showcase">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <video loop muted controls preload="none" playsinline>
-                                <source src="/videos/daggershowcase.mp4" type="video/mp4">
-                            </video>
+                        <!-- SHOT: Snowday -->
+                        <div class="shot" data-title="Snowday">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/snowday.jpeg" loading="lazy" alt="Snowday winter environment"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Snowday</h3>
+                                    <p class="shot-summary">A quiet winter scene with mountains, water and snowy pine trees. Yes, it's also the background of this site.</p>
+                                    <ul class="tags"><li>Blender</li><li>Nature</li><li>Lighting</li></ul>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p>Work with the environment itself and create natural elements instead of buildings.</p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body">
+                                        <ul class="steps">
+                                            <li><strong>Landscape:</strong> shaped the mountains and the ground around them.</li>
+                                            <li><strong>Nature:</strong> created the snow, the water and the snowed on pine trees.</li>
+                                            <li><strong>Lighting:</strong> lit the scene with world lighting to sell the winter mood.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div></div></div>
                         </div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Dagger Showcase</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blade modeling et material
-                        showcase, quis turntable render. Replace this with the story behind the dagger.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Dagger Showcase ═══ -->
 
-                <!-- ═══ PROJECT: Brainiac ═══ -->
-                <div class="project" data-title="Brainiac">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/brainiac.png" loading="lazy"
-                                alt="Brainiac 3D environment"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Brainiac</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cerebrum scene design et lighting
-                        experiments. Replace this with the story behind Brainiac.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Brainiac ═══ -->
+                        <!-- SHOT: Hidden Ruins -->
+                        <div class="shot" data-title="Hidden Ruins">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/ruinsfinal.jpg" loading="lazy" alt="Hidden Ruins fantasy sword scene"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Hidden Ruins</h3>
+                                    <p class="shot-summary">A fantasy sword staged in hidden ruins with water, magic and god rays.</p>
+                                    <ul class="tags"><li>Blender</li><li>Lighting</li><li>Rendering</li></ul>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p>Set the perfect scene for a fantasy sword, so the whole environment guides your eye straight to it.</p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body">
+                                        <ul class="steps">
+                                            <li><strong>Props:</strong> dressed the ruins with environmental props.</li>
+                                            <li><strong>Effects:</strong> added realistic water and a glowing magic circle.</li>
+                                            <li><strong>Light:</strong> used god rays to frame the sword.</li>
+                                            <li><strong>Rendering:</strong> tuned camera angle, depth of field and render settings to get quality without hours of render time.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div></div></div>
+                        </div>
 
-                <!-- ═══ PROJECT: Cubestruction ═══ -->
-                <div class="project" data-title="Cubestruction">
-                <div class="carousel-wrap" data-carousel>
-                    <div class="carousel-track">
-                        <div class="carousel-slide"><img src="/images/cubestruction.png" loading="lazy"
-                                alt="Cubestruction 3D environment"></div>
-                    </div>
-                    <button class="carousel-btn prev" aria-label="Previous"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" aria-label="Next"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="p-8 sm:p-10 relative z-10 project-body">
-                    <h3 class="text-2xl sm:text-3xl font-serif gradient-text mb-3">Cubestruction</h3>
-                    <p class="text-slate-950 mb-0" style="text-align:justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cubus destruction physics et
-                        satisfying chaos. Replace this with the story behind Cubestruction.
-                    </p>
-                </div>
-                </div>
-                <!-- ═══ END PROJECT: Cubestruction ═══ -->
+                        <!-- SHOT: Dagger Showcase -->
+                        <div class="shot" data-title="Dagger Showcase">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><video muted loop playsinline controls preload="none"><source src="/videos/daggershowcase.mp4" type="video/mp4"></video></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Dagger Showcase</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about the Dagger Showcase</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of the Dagger Showcase?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
+                        </div>
 
-                <!-- ═══ END OF PROJECTS (3D Models): paste new projects ABOVE this line ═══ -->
+                        <!-- SHOT: Brainiac -->
+                        <div class="shot" data-title="Brainiac">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/brainiac.png" loading="lazy" alt="Brainiac 3D render"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Brainiac</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about Brainiac</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of Brainiac?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
+                        </div>
 
-                <div class="panel-notes p-8 sm:p-10 pt-0 relative z-10">
-                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">What I Learned</h4>
-                    <ul class="text-slate-950 space-y-2 mb-6 list-none" style="text-align:justify">
-                        <li><strong class="text-slate-950">Modeling Basics</strong> : building architectural shapes like
-                            columns, stairs, arches.</li>
-                        <li><strong class="text-slate-950">Environment Composition</strong> : arranging props such as
-                            trees, signs, bushes, lamps, cars to make scenes feel alive.</li>
-                        <li><strong class="text-slate-950">Lighting and Atmosphere</strong> : experimenting with spot,
-                            area and world lighting for each environment.</li>
-                        <li><strong class="text-slate-950">Rendering</strong> : camera angles, depth of field, and
-                            render settings for best quality.</li>
-                    </ul>
-                    <h4 class="text-xl sm:text-2xl font-serif text-slate-950 mb-3">Looking Back</h4>
-                    <p class="text-slate-950" style="text-align:justify">
-                        These projects were a big milestone because they were my first attempts at creating full
-                        environments
-                        rather than single objects. As fun as it was to create everything, I underestimated how hard
-                        learning
-                        to render properly without it taking hours is.
-                    </p>
-                </div>
+                        <!-- SHOT: Cubestruction -->
+                        <div class="shot" data-title="Cubestruction">
+                            <div class="shot-grid">
+                                <div class="carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide"><img src="/images/cubestruction.png" loading="lazy" alt="Cubestruction 3D render"></div>
+                                    </div>
+                                </div>
+                                <div class="shot-info">
+                                    <h3 class="title">Cubestruction</h3>
+                                    <p class="shot-summary"><span class="todo">WRITE: one line about Cubestruction</span></p>
+                                    <button class="btn brief-toggle" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i> <span>Read the brief</span></button>
+                                    <p class="hint">or click Danny on top of the card</p>
+                                </div>
+                            </div>
+                            <div class="brief"><div class="brief-clip"><div class="brief-inner">
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-bullseye"></i> The Goal</div>
+                                    <div class="bl-panel-body"><p><span class="todo">WRITE: what was the goal of Cubestruction?</span></p></div>
+                                </div>
+                                <div class="bl-panel">
+                                    <div class="bl-panel-head"><i class="fas fa-wrench"></i> How I Did It</div>
+                                    <div class="bl-panel-body"><ul class="steps"><li><span class="todo">WRITE: 2 to 4 short steps of how you made it</span></li></ul></div>
+                                </div>
+                            </div></div></div>
+                        </div>
                     </article>
+                    <!-- ═══════════════ END SCENE 03 ═══════════════ -->
+
                 </div>
-                <!-- ═══════════════ END LEVEL: 3D Environments ═══════════════ -->
-
-                <!-- ═══════════════ END OF LEVELS: paste new levels ABOVE this line ═══════════════ -->
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="section-divider max-w-6xl mx-auto"></div>
-
-    <!-- ============================================================
-         SKILLS MARQUEE
-         ============================================================ -->
-    <section class="py-16 overflow-hidden reveal-slide">
-        <div class="text-center mb-10 max-w-md mx-auto">
-            <div class="glass-card rounded-2xl px-8 py-6 relative z-10">
-                <p class="section-label mb-2">Toolkit</p>
-                <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-0">Skills &amp; Tools</h2>
+        <!-- ============================================================
+             SKILLS: film strip
+             To add a skill, add a <span class="marquee-item"> to BOTH lists.
+             ============================================================ -->
+        <section id="skills" class="section">
+            <div class="container">
+                <header class="panel section-head reveal">
+                    <p class="label"><span class="kf"></span> Toolkit</p>
+                    <h2 class="title scramble">Skills &amp; Tools</h2>
+                    <p>The software and crafts I work with every day.</p>
+                </header>
             </div>
-        </div>
-        <div class="relative overflow-hidden" style="mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)">
-            <div class="marquee-track" id="marquee-track">
-                <!-- ═══ SKILLS LIST ═══
-                     TO ADD A SKILL: copy one <span class="marquee-item"> line, change the
-                     icon and text, and paste it in BOTH lists (this one AND the duplicate
-                     below) so the scrolling loop stays seamless. That's the only catch. -->
-                <!-- The data-egg items are clickable: they open the VS Code easter egg -->
-                <span class="marquee-item marquee-egg" data-egg="html" title="Psst... click me"><span class="m-node"><i class="fab fa-html5"></i></span>HTML/CSS</span>
-                <span class="marquee-item marquee-egg" data-egg="js" title="Psst... click me"><span class="m-node"><i class="fab fa-js"></i></span>JavaScript</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-code"></i></span>C#</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-cube"></i></span>Blender</span>
-                <span class="marquee-item"><span class="m-node"><i class="fab fa-unity"></i></span>Unity</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-shapes"></i></span>Construct 3</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-pen-fancy"></i></span>Illustrator</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-film"></i></span>Premiere Pro</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-camera"></i></span>Photography</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-gamepad"></i></span>Game Design</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-palette"></i></span>3D Modeling</span>
-                <span class="marquee-item"><span class="m-node"><i class="fas fa-running"></i></span>Animation</span>
-                <!-- ═══ DUPLICATE LIST (keep identical to the one above, for the seamless loop) ═══ -->
-                <span aria-hidden="true" style="display:contents">
-                    <span class="marquee-item marquee-egg" data-egg="html" title="Psst... click me"><span class="m-node"><i class="fab fa-html5"></i></span>HTML/CSS</span>
-                    <span class="marquee-item marquee-egg" data-egg="js" title="Psst... click me"><span class="m-node"><i class="fab fa-js"></i></span>JavaScript</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-code"></i></span>C#</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-cube"></i></span>Blender</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fab fa-unity"></i></span>Unity</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-shapes"></i></span>Construct 3</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-pen-fancy"></i></span>Illustrator</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-film"></i></span>Premiere Pro</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-camera"></i></span>Photography</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-gamepad"></i></span>Game Design</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-palette"></i></span>3D Modeling</span>
-                    <span class="marquee-item"><span class="m-node"><i class="fas fa-running"></i></span>Animation</span>
-                </span>
+            <div class="filmstrip">
+                <div class="marquee-track">
+                    <!-- The data-egg items open the VS Code easter egg -->
+                    <span class="marquee-item marquee-egg" data-egg="html" title="Psst... click me"><i class="fab fa-html5"></i>HTML/CSS</span>
+                    <span class="marquee-item marquee-egg" data-egg="js" title="Psst... click me"><i class="fab fa-js"></i>JavaScript</span>
+                    <span class="marquee-item"><i class="fas fa-code"></i>C#</span>
+                    <span class="marquee-item"><i class="fas fa-cube"></i>Blender</span>
+                    <span class="marquee-item"><i class="fab fa-unity"></i>Unity</span>
+                    <span class="marquee-item"><i class="fas fa-shapes"></i>Construct 3</span>
+                    <span class="marquee-item"><i class="fas fa-pen-fancy"></i>Illustrator</span>
+                    <span class="marquee-item"><i class="fas fa-film"></i>Premiere Pro</span>
+                    <span class="marquee-item"><i class="fas fa-camera"></i>Photography</span>
+                    <span class="marquee-item"><i class="fas fa-gamepad"></i>Game Design</span>
+                    <span class="marquee-item"><i class="fas fa-palette"></i>3D Modeling</span>
+                    <span class="marquee-item"><i class="fas fa-person-running"></i>Animation</span>
+                    <span class="marquee-item"><i class="fas fa-bone"></i>Rigging</span>
+                    <!-- DUPLICATE LIST (keep identical, for the seamless loop) -->
+                    <span aria-hidden="true" style="display:contents">
+                        <span class="marquee-item marquee-egg" data-egg="html" title="Psst... click me"><i class="fab fa-html5"></i>HTML/CSS</span>
+                        <span class="marquee-item marquee-egg" data-egg="js" title="Psst... click me"><i class="fab fa-js"></i>JavaScript</span>
+                        <span class="marquee-item"><i class="fas fa-code"></i>C#</span>
+                        <span class="marquee-item"><i class="fas fa-cube"></i>Blender</span>
+                        <span class="marquee-item"><i class="fab fa-unity"></i>Unity</span>
+                        <span class="marquee-item"><i class="fas fa-shapes"></i>Construct 3</span>
+                        <span class="marquee-item"><i class="fas fa-pen-fancy"></i>Illustrator</span>
+                        <span class="marquee-item"><i class="fas fa-film"></i>Premiere Pro</span>
+                        <span class="marquee-item"><i class="fas fa-camera"></i>Photography</span>
+                        <span class="marquee-item"><i class="fas fa-gamepad"></i>Game Design</span>
+                        <span class="marquee-item"><i class="fas fa-palette"></i>3D Modeling</span>
+                        <span class="marquee-item"><i class="fas fa-person-running"></i>Animation</span>
+                        <span class="marquee-item"><i class="fas fa-bone"></i>Rigging</span>
+                    </span>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="section-divider max-w-6xl mx-auto"></div>
-
-    <!-- ============================================================
-         ABOUT
-         ============================================================ -->
-    <section id="about" class="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-
-        <div class="glass-card rounded-2xl p-6 sm:p-10 relative z-10">
-            <div class="flex flex-col lg:flex-row gap-12 items-start">
-                <div class="lg:w-5/12 w-full reveal-left">
-                    <div class="rounded-2xl overflow-hidden">
-                        <div class="relative">
-                            <img src="/images/me_fixed.jpg" alt="Pinchiș Daniel portrait"
-                                class="w-full h-[28rem] sm:h-[32rem] object-cover object-[center_35%] rounded-xl">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-xl">
-                            </div>
-                            <div class="absolute bottom-0 left-0 p-6">
-                                <h3 class="text-xl font-serif text-white">Pinchiș Daniel</h3>
-                                <p class="text-white/70 text-sm">Digital Alchemist</p>
+        <!-- ============================================================
+             ABOUT
+             ============================================================ -->
+        <section id="about" class="section">
+            <div class="container">
+                <article class="panel has-danny reveal">
+                    <div class="perch">
+                        <div class="bubble bubble-right">That's the real me. I'm the low poly version!</div>
+                        <div class="danny danny-md" data-pose="thinking"></div>
+                    </div>
+                    <div class="bl-header">
+                        <span class="bl-editor"><i class="fas fa-user"></i><i class="fas fa-caret-down"></i></span>
+                        <span>Properties: Artist</span>
+                    </div>
+                    <div class="about-grid">
+                        <figure class="portrait">
+                            <img src="/images/me_fixed.jpg" alt="Pinchiș Daniel portrait" loading="lazy">
+                            <figcaption><strong>Pinchiș Daniel</strong><span>Digital Alchemist</span></figcaption>
+                        </figure>
+                        <div class="about-text">
+                            <p class="label"><span class="kf"></span> About</p>
+                            <h2 class="title scramble">The Alchemist</h2>
+                            <p>My name is Pinchiș Daniel. I come from Romania and am currently a student at Karel de Grote in
+                                Antwerp, pursuing a degree in Multimedia and Creative Technologies. I am developing skills in
+                                3D modeling and animations, game development, editing, and coding.</p>
+                            <p>With the skills I've been refining throughout my studies, I combine coding, editing, design,
+                                and 3D art into unique projects. That's why I call myself a Digital Alchemist.</p>
+                            <h4 class="subhead">Technical Skills</h4>
+                            <div class="skill-grid">
+                                <div class="skill-pill"><div class="skill-icon"><i class="fab fa-html5"></i></div><span>HTML/CSS</span></div>
+                                <div class="skill-pill"><div class="skill-icon"><i class="fas fa-code"></i></div><span>C#</span></div>
+                                <div class="skill-pill"><div class="skill-icon"><i class="fab fa-js"></i></div><span>JavaScript</span></div>
+                                <div class="skill-pill"><div class="skill-icon"><i class="fas fa-cube"></i></div><span>Blender</span></div>
+                                <div class="skill-pill"><div class="skill-icon"><i class="fab fa-unity"></i></div><span>Unity</span></div>
+                                <div class="skill-pill"><div class="skill-icon"><i class="fas fa-shapes"></i></div><span>Construct 3</span></div>
+                                <div class="skill-pill"><div class="skill-icon"><i class="fas fa-pen-fancy"></i></div><span>Illustrator</span></div>
+                                <div class="skill-pill"><div class="skill-icon"><i class="fas fa-film"></i></div><span>Premiere Pro</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="lg:w-7/12 w-full reveal-right">
-                    <p class="section-label mb-1">About</p>
-                    <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-5 scramble-text"
-                        data-scramble="The Alchemist">The Alchemist</h2>
-                    <p class="text-slate-950 mb-3 leading-relaxed">
-                        My name is Pinchiș Daniel. I come from Romania and am currently a student at Karel de Grote in
-                        Antwerp,
-                        pursuing a degree in Multimedia and Creative Technologies. I am developing skills in 3D modeling
-                        and
-                        animations, game development, editing, and coding.
-                    </p>
-                    <p class="text-slate-950 mb-8 leading-relaxed">
-                        With the skills I've been refining throughout my studies, I combine coding, editing, design, and
-                        3D
-                        art into unique projects. That's why I call myself a Digital Alchemist.
-                    </p>
-                    <div>
-                        <h4 class="text-sm font-semibold text-slate-950 uppercase tracking-wider mb-3">Technical Skills
-                        </h4>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 stagger">
-                            <div class="skill-pill">
-                                <div class="skill-icon"><i class="fab fa-html5"></i></div><span
-                                    class="text-sm text-slate-950">HTML/CSS</span>
-                            </div>
-                            <div class="skill-pill">
-                                <div class="skill-icon"><i class="fas fa-code"></i></div><span
-                                    class="text-sm text-slate-950">C#</span>
-                            </div>
-                            <div class="skill-pill">
-                                <div class="skill-icon"><i class="fab fa-js"></i></div><span
-                                    class="text-sm text-slate-950">JavaScript</span>
-                            </div>
-                            <div class="skill-pill">
-                                <div class="skill-icon"><i class="fas fa-cube"></i></div><span
-                                    class="text-sm text-slate-950">Blender</span>
-                            </div>
-                            <div class="skill-pill">
-                                <div class="skill-icon"><i class="fab fa-unity"></i></div><span
-                                    class="text-sm text-slate-950">Unity</span>
-                            </div>
-                            <div class="skill-pill">
-                                <div class="skill-icon"><i class="fas fa-shapes"></i></div><span
-                                    class="text-sm text-slate-950">Construct 3</span>
-                            </div>
-                            <div class="skill-pill">
-                                <div class="skill-icon"><i class="fas fa-pen-fancy"></i></div><span
-                                    class="text-sm text-slate-950">Illustrator</span>
-                            </div>
-                            <div class="skill-pill">
-                                <div class="skill-icon"><i class="fas fa-film"></i></div><span
-                                    class="text-sm text-slate-950">Premiere Pro</span>
-                            </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             CONTACT
+             ============================================================ -->
+        <section id="contact" class="section">
+            <div class="container">
+                <header class="panel section-head has-danny reveal">
+                    <div class="perch">
+                        <div class="bubble bubble-right" id="contact-bubble">Got an idea? Send it my way!</div>
+                        <div class="danny danny-md" id="contact-danny" data-pose="envelope"></div>
+                    </div>
+                    <p class="label"><span class="kf"></span> Contact</p>
+                    <h2 class="title scramble">Get In Touch</h2>
+                    <p>Interested in collaborating? Let me know!</p>
+                </header>
+
+                <div class="contact-grid">
+                    <div class="panel reveal">
+                        <div class="bl-header">
+                            <span class="bl-editor"><i class="fas fa-envelope"></i><i class="fas fa-caret-down"></i></span>
+                            <span>New Message</span>
+                        </div>
+                        <div class="panel-body">
+                            <form class="contact-form" id="contact-form" novalidate>
+                                <div class="field">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" class="form-input" placeholder="John Doe" autocomplete="name">
+                                </div>
+                                <div class="field">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" class="form-input" placeholder="john@example.com" autocomplete="email">
+                                </div>
+                                <div class="field">
+                                    <label for="project">Project Type</label>
+                                    <select id="project" class="form-input">
+                                        <option value="" disabled selected>Select a project type</option>
+                                        <option value="animation">3D Animation</option>
+                                        <option value="game">Game Development</option>
+                                        <option value="film">Short Film</option>
+                                        <option value="web">Interactive Website</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="message">Your Vision</label>
+                                    <textarea id="message" rows="4" class="form-input" placeholder="Describe your project..."></textarea>
+                                </div>
+                                <div class="g-recaptcha" data-sitekey="6Lds3fArAAAAADDLAFt6NeWlPoy5hsGF5lFUU4_5"></div>
+                                <button type="submit" class="btn btn-primary" id="send-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                                <p class="form-status" id="form-status" role="status"></p>
+                            </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <div class="section-divider max-w-6xl mx-auto"></div>
-
-    <!-- ============================================================
-         CONTACT
-         ============================================================ -->
-    <section id="contact" class="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-14 reveal-slide max-w-lg mx-auto">
-            <div class="glass-card rounded-2xl px-8 py-6 relative z-10">
-                <p class="section-label mb-2">Contact</p>
-                <h2 class="text-3xl sm:text-4xl font-serif gradient-text mb-2 scramble-text"
-                    data-scramble="Get In Touch">Get In Touch</h2>
-                <p class="text-slate-950 max-w-md mx-auto mb-0">Interested in collaborating? Let me know!</p>
-            </div>
-        </div>
-        <div class="flex flex-col lg:flex-row gap-8">
-            <div class="lg:w-1/2 w-full reveal-left">
-                <div class="glass-card rounded-2xl p-8 relative z-10">
-    
-                    <form class="flex flex-col gap-5" id="contact-form">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-slate-950 mb-1.5">Your
-                                Name</label>
-                            <input type="text" id="name" class="form-input" placeholder="John Doe">
+                    <div class="panel reveal">
+                        <div class="bl-header">
+                            <span class="bl-editor"><i class="fas fa-link"></i><i class="fas fa-caret-down"></i></span>
+                            <span>Other Ways to Connect</span>
                         </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-slate-950 mb-1.5">Email
-                                Address</label>
-                            <input type="email" id="email" class="form-input" placeholder="john@example.com">
-                        </div>
-                        <div>
-                            <label for="project" class="block text-sm font-medium text-slate-950 mb-1.5">Project
-                                Type</label>
-                            <select id="project" class="form-input">
-                                <option value="" disabled selected>Select a project type</option>
-                                <option value="game">Game Development</option>
-                                <option value="film">Short Film</option>
-                                <option value="animation">3D Animation</option>
-                                <option value="web">Interactive Website</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-slate-950 mb-1.5">Your
-                                Vision</label>
-                            <textarea id="message" rows="4" class="form-input"
-                                placeholder="Describe your project..."></textarea>
-                        </div>
-                        <div class="g-recaptcha mb-1" data-sitekey="6Lds3fArAAAAADDLAFt6NeWlPoy5hsGF5lFUU4_5">
-                        </div>
-                        <button type="submit"
-                            class="ripple-btn w-full py-3 rounded-xl bg-forest-700 text-white font-medium hover:bg-forest-800 transition transform hover:scale-[1.02] text-sm magnetic-wrap">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="lg:w-1/2 w-full reveal-right">
-                <div class="glass-card rounded-2xl p-8 flex flex-col relative z-10">
-
-                    <div>
-                        <h3 class="text-lg font-serif text-slate-950 mb-6">Other Ways to Connect</h3>
-                        <div class="flex flex-col gap-2">
-                            <a href="mailto:pinchisdaniel@gmail.com" class="contact-link">
-                                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                                <div>
-                                    <p class="text-xs text-slate-950 mb-0">Email</p>
-                                    <p class="text-sm text-slate-950 font-medium mb-0">pinchisdaniel@gmail.com</p>
-                                </div>
-                            </a>
-                            <a href="https://www.linkedin.com/in/pinchis-daniel-b52083333/" target="_blank"
-                                class="contact-link">
-                                <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                                <div>
-                                    <p class="text-xs text-slate-950 mb-0">LinkedIn</p>
-                                    <p class="text-sm text-slate-950 font-medium mb-0">Pinchiș Daniel</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/danny_m4a1/" target="_blank" class="contact-link">
-                                <div class="contact-icon"><i class="fab fa-instagram"></i></div>
-                                <div>
-                                    <p class="text-xs text-slate-950 mb-0">Instagram</p>
-                                    <p class="text-sm text-slate-950 font-medium mb-0">danny_m4a1</p>
-                                </div>
-                            </a>
-                            <a href="https://github.com/pinchisdaniel" target="_blank" class="contact-link">
-                                <div class="contact-icon"><i class="fab fa-github"></i></div>
-                                <div>
-                                    <p class="text-xs text-slate-950 mb-0">GitHub</p>
-                                    <p class="text-sm text-slate-950 font-medium mb-0">pinchisdaniel</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/15">
-                        <div class="flex items-center gap-3">
-                            <span class="relative flex h-2.5 w-2.5">
-                                <span
-                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                <span
-                                    class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-                            </span>
-                            <span class="text-sm text-slate-950">Available for select projects</span>
+                        <div class="panel-body">
+                            <div class="contact-links">
+                                <a href="mailto:pinchisdaniel@gmail.com" class="contact-link">
+                                    <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                                    <span><small>Email</small><strong>pinchisdaniel@gmail.com</strong></span>
+                                </a>
+                                <a href="https://www.linkedin.com/in/pinchis-daniel-b52083333/" target="_blank" rel="noopener" class="contact-link">
+                                    <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
+                                    <span><small>LinkedIn</small><strong>Pinchiș Daniel</strong></span>
+                                </a>
+                                <a href="https://www.instagram.com/danny_m4a1/" target="_blank" rel="noopener" class="contact-link">
+                                    <span class="contact-icon"><i class="fab fa-instagram"></i></span>
+                                    <span><small>Instagram</small><strong>danny_m4a1</strong></span>
+                                </a>
+                                <a href="https://github.com/pinchisdaniel" target="_blank" rel="noopener" class="contact-link">
+                                    <span class="contact-icon"><i class="fab fa-github"></i></span>
+                                    <span><small>GitHub</small><strong>pinchisdaniel</strong></span>
+                                </a>
+                            </div>
+                            <div class="available"><span class="live-dot"></span> Available for select projects</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
-    <footer class="glass-nav py-5 px-5 sm:px-8 mt-8">
-        <div class="w-full">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <div class="text-center sm:text-left">
-                    <p class="font-serif gradient-text text-lg mb-0">Pinchiș Daniel</p>
-                    <p class="text-slate-950 text-xs mt-1 mb-0" id="copyright-text"></p>
-                </div>
-                <p class="text-slate-950 text-xs italic text-center mb-0">It's always winnable</p>
-                <div class="flex items-center gap-5">
-                    <a href="https://www.instagram.com/danny_m4a1/" target="_blank"
-                        class="text-slate-950 hover:text-forest-600 transition text-lg hover:scale-125 inline-block transform duration-300"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/pinchisdaniel" target="_blank"
-                        class="text-slate-950 hover:text-forest-600 transition text-lg hover:scale-125 inline-block transform duration-300"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/pinchis-daniel-b52083333/" target="_blank"
-                        class="text-slate-950 hover:text-forest-600 transition text-lg hover:scale-125 inline-block transform duration-300"><i
-                            class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
+    </main>
+
+    <!-- FOOTER: Blender style status bar -->
+    <footer class="statusbar">
+        <div>
+            <div class="sb-name">Pinchiș Daniel</div>
+            <div id="copyright-text"></div>
+        </div>
+        <div class="sb-quote">It's always winnable</div>
+        <div class="sb-socials">
+            <a href="https://www.instagram.com/danny_m4a1/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/pinchisdaniel" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/pinchis-daniel-b52083333/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
     </footer>
 
     <!-- ============================================================
-         EASTER EGG: VS Code window
-         Opened by clicking the HTML/CSS or JavaScript bubble in the
-         Skills & Tools marquee. Edit the code lines below freely,
-         each <div class="cl"> is one line, tok-* classes set colors.
+         GUIDED TOUR (Danny). Steps are defined in TOUR_STEPS below.
+         ============================================================ -->
+    <div class="tour" id="tour" hidden role="dialog" aria-label="Guided tour" aria-live="polite">
+        <div class="danny danny-sm" id="tour-danny" data-pose="point-right"></div>
+        <div class="panel tour-card">
+            <div class="bl-header">
+                <span>Danny's Tour</span>
+                <span class="bl-right" id="tour-step"></span>
+                <button class="tour-x" id="tour-x" type="button" aria-label="Skip the tour"><i class="fas fa-xmark"></i></button>
+            </div>
+            <p class="tour-text" id="tour-text"></p>
+            <div class="tour-actions" id="tour-actions">
+                <button class="btn btn-sm btn-ghost" id="tour-back" type="button">Back</button>
+                <button class="btn btn-sm btn-primary" id="tour-next" type="button">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         REEL PLAYER (Blender video sequencer). Clips: REEL_CLIPS below.
+         ============================================================ -->
+    <div class="reel" id="reel" hidden role="dialog" aria-modal="true" aria-label="Showreel">
+        <div class="reel-window">
+            <div class="bl-header">
+                <span class="bl-editor"><i class="fas fa-film"></i><i class="fas fa-caret-down"></i></span>
+                <span>Video Sequencer</span>
+                <span class="bl-right" id="reel-title"></span>
+                <button class="reel-close" id="reel-close" type="button" aria-label="Close the reel"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="reel-stage">
+                <video id="reel-video" playsinline controls preload="none"></video>
+            </div>
+            <div class="reel-bar">
+                <button class="reel-ctrl" id="reel-prev" type="button" aria-label="Previous clip"><i class="fas fa-backward-step"></i></button>
+                <button class="reel-ctrl" id="reel-play" type="button" aria-label="Play or pause"><i class="fas fa-pause"></i></button>
+                <button class="reel-ctrl" id="reel-next" type="button" aria-label="Next clip"><i class="fas fa-forward-step"></i></button>
+                <span class="reel-time" id="reel-time"></span>
+            </div>
+            <div class="reel-strips" id="reel-strips"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         EASTER EGG: VS Code window (HTML/CSS and JavaScript in the film strip)
          ============================================================ -->
     <div class="code-modal" id="code-modal" hidden>
         <div class="code-window" role="dialog" aria-label="Easter egg code window">
@@ -1196,11 +1055,9 @@
                 <span class="tl-dot tl-yellow"></span>
                 <span class="tl-dot tl-green"></span>
                 <span class="code-filename" id="code-filename">easter-egg.js</span>
-                <button class="code-close" id="code-close" aria-label="Close code window"><i
-                        class="fas fa-times"></i></button>
+                <button class="code-close" id="code-close" aria-label="Close code window"><i class="fas fa-times"></i></button>
             </div>
 
-            <!-- JavaScript version -->
             <div class="code-body" id="code-body-js">
                 <div class="cl"><span class="tok-com">// You found the hidden console. Nice.</span></div>
                 <div class="cl"><span class="tok-kw">const</span> <span class="tok-var">site</span> <span class="tok-op">=</span> <span class="tok-punc">{</span></div>
@@ -1217,18 +1074,18 @@
                 <div class="cl"><span class="tok-com">// → "This section of the website was made using HTML + CSS + JavaScript"</span></div>
             </div>
 
-            <!-- HTML/CSS version -->
             <div class="code-body" id="code-body-html" hidden>
-                <div class="cl"><span class="tok-com">&lt;!-- The bubble you just clicked, in its natural habitat --&gt;</span></div>
+                <div class="cl"><span class="tok-com">&lt;!-- The film frame you just clicked, in its natural habitat --&gt;</span></div>
                 <div class="cl"><span class="tok-punc">&lt;</span><span class="tok-tag">span</span> <span class="tok-attr">class</span><span class="tok-op">=</span><span class="tok-str">"marquee-item"</span><span class="tok-punc">&gt;</span></div>
-                <div class="cl">&nbsp;&nbsp;<span class="tok-punc">&lt;</span><span class="tok-tag">i</span> <span class="tok-attr">class</span><span class="tok-op">=</span><span class="tok-str">"fab fa-html5"</span><span class="tok-punc">&gt;&lt;/</span><span class="tok-tag">i</span><span class="tok-punc">&gt;</span> HTML/CSS</div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-punc">&lt;</span><span class="tok-tag">i</span> <span class="tok-attr">class</span><span class="tok-op">=</span><span class="tok-str">"fab fa-html5"</span><span class="tok-punc">&gt;&lt;/</span><span class="tok-tag">i</span><span class="tok-punc">&gt;</span>HTML/CSS</div>
                 <div class="cl"><span class="tok-punc">&lt;/</span><span class="tok-tag">span</span><span class="tok-punc">&gt;</span></div>
                 <div class="cl">&nbsp;</div>
                 <div class="cl"><span class="tok-punc">&lt;</span><span class="tok-tag">style</span><span class="tok-punc">&gt;</span></div>
-                <div class="cl">&nbsp;&nbsp;<span class="tok-fn">.marquee-item</span> <span class="tok-punc">{</span></div>
-                <div class="cl">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-attr">backdrop-filter</span><span class="tok-punc">:</span> <span class="tok-fn">blur</span><span class="tok-punc">(</span><span class="tok-num">6px</span><span class="tok-punc">);</span> <span class="tok-com">/* the frosted glass */</span></div>
-                <div class="cl">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-attr">border-radius</span><span class="tok-punc">:</span> <span class="tok-num">999px</span><span class="tok-punc">;</span> <span class="tok-com">/* the bubble */</span></div>
-                <div class="cl">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-attr">box-shadow</span><span class="tok-punc">:</span> <span class="tok-num">0 0 10px</span> <span class="tok-fn">rgba</span><span class="tok-punc">(</span><span class="tok-num">34, 197, 94, 0.4</span><span class="tok-punc">);</span> <span class="tok-com">/* the glow */</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-fn">.filmstrip::before</span> <span class="tok-punc">{</span></div>
+                <div class="cl">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-attr">background-image</span><span class="tok-punc">:</span> <span class="tok-fn">repeating-linear-gradient</span><span class="tok-punc">(</span><span class="tok-num">90deg</span><span class="tok-punc">, ...);</span> <span class="tok-com">/* the sprocket holes */</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-punc">}</span></div>
+                <div class="cl">&nbsp;&nbsp;<span class="tok-fn">.marquee-track</span> <span class="tok-punc">{</span></div>
+                <div class="cl">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-attr">animation</span><span class="tok-punc">:</span> <span class="tok-var">marquee</span> <span class="tok-num">34s</span> <span class="tok-var">linear infinite</span><span class="tok-punc">;</span> <span class="tok-com">/* the film rolling */</span></div>
                 <div class="cl">&nbsp;&nbsp;<span class="tok-punc">}</span></div>
                 <div class="cl"><span class="tok-punc">&lt;/</span><span class="tok-tag">style</span><span class="tok-punc">&gt;</span></div>
                 <div class="cl">&nbsp;</div>
@@ -1237,646 +1094,9 @@
         </div>
     </div>
 
-    <!-- CUSTOM CURSOR -->
     <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
 
-    <!-- ============================================================
-         SCRIPTS
-         ============================================================ -->
-    <script>
-    (function () {
-        'use strict';
-
-        // ── ACCESSIBILITY: respect the visitor's "reduce motion" OS setting.
-        //    When true, decorative animations are skipped. Everything still works.
-        var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var scrollBehavior = reducedMotion ? 'auto' : 'smooth';
-
-        // ── PRELOADER ──────────────────────────────────────────
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                document.getElementById('preloader').classList.add('done');
-            }, 800);
-        });
-
-        // ── PRELOADER TEXT ──────────────────────────────────────
-        var loaderPhrases = [
-            'Loading...',
-            'Hang tight...',
-            'Almost there...',
-            'Just a moment...',
-            'One sec...',
-            'Warming up...',
-            'Loading the good stuff...',
-            'Still loading, promise...',
-            'Patience, hero...',
-            'Loading level...'
-        ];
-        document.getElementById('preloader-text').textContent =
-            loaderPhrases[Math.floor(Math.random() * loaderPhrases.length)];
-
-        // ── COPYRIGHT ──────────────────────────────────────────
-        document.getElementById('copyright-text').textContent =
-            '\u00A9 ' + new Date().getFullYear() + ' Pinchi\u0219 Daniel. All rights reserved.';
-
-        // ── SCROLL PROGRESS BAR ────────────────────────────────
-        var progressBar = document.getElementById('scroll-progress');
-        window.addEventListener('scroll', function () {
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var pct = (scrollTop / docHeight) * 100;
-            progressBar.style.width = pct + '%';
-        });
-
-        // ── PARTICLES (50 particles with glow variants) ────────
-        var particleBox = document.getElementById('particles');
-        var greens = [
-            'rgba(34, 197, 94, 0.5)',
-            'rgba(22, 163, 74, 0.45)',
-            'rgba(5, 150, 105, 0.4)',
-            'rgba(52, 211, 153, 0.5)',
-            'rgba(74, 222, 128, 0.45)',
-            'rgba(16, 185, 129, 0.5)'
-        ];
-        for (var i = 0; i < (reducedMotion ? 0 : 50); i++) {
-            var p = document.createElement('div');
-            var isGlow = i > 40;
-            p.className = isGlow ? 'particle-glow' : 'particle';
-            var size = isGlow ? (8 + Math.random() * 14) : (3 + Math.random() * 9);
-            // Only render on left 20% or right 20% of screen
-            var side = Math.random() < 0.5;
-            var leftPos = side ? (Math.random() * 20) : (80 + Math.random() * 20);
-            p.style.cssText =
-                'width:' + size + 'px;height:' + size + 'px;' +
-                'left:' + leftPos + 'vw;' +
-                'top:' + (40 + Math.random() * 60) + 'vh;' +
-                'background:' + greens[Math.floor(Math.random() * greens.length)] + ';' +
-                'animation-duration:' + (8 + Math.random() * 16) + 's;' +
-                'animation-delay:' + (Math.random() * 14) + 's;';
-            particleBox.appendChild(p);
-        }
-
-        // ── TYPED TEXT ─────────────────────────────────────────
-        var typedStr = "Combining ideas, pixels, and code to create something extraordinary.";
-        var typedEl = document.getElementById('typed-text');
-        var ti = 0;
-        function typeChar() {
-            if (ti < typedStr.length) {
-                typedEl.textContent += typedStr.charAt(ti);
-                ti++;
-                setTimeout(typeChar, 25 + Math.random() * 25);
-            }
-        }
-        if (reducedMotion) { typedEl.textContent = typedStr; }
-        else { setTimeout(typeChar, 2800); }
-
-        // ── CUSTOM CURSOR (dot + ring + trail) ─────────────────
-        var dot = document.getElementById('cursor-dot');
-        var mx = -100, my = -100, dx = -100, dy = -100;
-        var isTouch = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-        var trailDots = [];
-
-        if (isTouch || reducedMotion) {
-            dot.style.display = 'none';
-        } else {
-            // Create trail dots
-            for (var t = 0; t < 6; t++) {
-                var td = document.createElement('div');
-                td.className = 'cursor-trail';
-                td.style.opacity = (1 - t * 0.15);
-                td.style.width = (5 - t * 0.5) + 'px';
-                td.style.height = (5 - t * 0.5) + 'px';
-                document.body.appendChild(td);
-                trailDots.push({ el: td, x: -100, y: -100 });
-            }
-
-            (function cursorLoop() {
-                // Dot follows tightly
-                dx += (mx - dx) * 0.35;
-                dy += (my - dy) * 0.35;
-                dot.style.left = dx + 'px';
-                dot.style.top = dy + 'px';
-
-                // Trail
-                for (var i = 0; i < trailDots.length; i++) {
-                    var target = i === 0 ? { x: dx, y: dy } : trailDots[i - 1];
-                    trailDots[i].x += (target.x - trailDots[i].x) * (0.25 - i * 0.03);
-                    trailDots[i].y += (target.y - trailDots[i].y) * (0.25 - i * 0.03);
-                    trailDots[i].el.style.left = trailDots[i].x + 'px';
-                    trailDots[i].el.style.top = trailDots[i].y + 'px';
-                }
-
-                requestAnimationFrame(cursorLoop);
-            })();
-
-            document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; });
-        }
-
-        // ── MAGNETIC BUTTONS ───────────────────────────────────
-        document.querySelectorAll('.magnetic-wrap').forEach(function (wrap) {
-            wrap.addEventListener('mousemove', function (e) {
-                if (isTouch || reducedMotion) return;
-                var rect = wrap.getBoundingClientRect();
-                var x = e.clientX - rect.left - rect.width / 2;
-                var y = e.clientY - rect.top - rect.height / 2;
-                wrap.style.transform = 'translate(' + (x * 0.2) + 'px, ' + (y * 0.2) + 'px)';
-            });
-            wrap.addEventListener('mouseleave', function () {
-                wrap.style.transform = 'translate(0, 0)';
-            });
-        });
-
-        // ── RIPPLE BUTTONS ─────────────────────────────────────
-        document.querySelectorAll('.ripple-btn').forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
-                var rect = btn.getBoundingClientRect();
-                var ripple = document.createElement('span');
-                ripple.className = 'ripple';
-                var size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-                btn.appendChild(ripple);
-                setTimeout(function () { ripple.remove(); }, 600);
-            });
-        });
-
-        // ── TEXT SCRAMBLE ON HOVER ─────────────────────────────
-        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        document.querySelectorAll('.scramble-text').forEach(function (el) {
-            var original = el.getAttribute('data-scramble') || el.textContent;
-            var isScrambling = false;
-
-            el.addEventListener('mouseenter', function () {
-                if (isScrambling || reducedMotion) return;
-                isScrambling = true;
-                var iteration = 0;
-                var interval = setInterval(function () {
-                    el.textContent = original.split('').map(function (char, index) {
-                        if (index < iteration) return original[index];
-                        if (char === ' ') return ' ';
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    }).join('');
-                    iteration += 1 / 2;
-                    if (iteration >= original.length) {
-                        el.textContent = original;
-                        clearInterval(interval);
-                        isScrambling = false;
-                    }
-                }, 30);
-            });
-        });
-
-        // ── SCROLL REVEAL (enhanced) ──────────────────────────
-        var revealObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    // Trigger counters if a counter is visible
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.reveal, .reveal-slide, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .stagger').forEach(function (el) {
-            revealObserver.observe(el);
-        });
-
-        // ── SECTION DOT NAVIGATION ─────────────────────────────
-        var sectionDots = document.querySelectorAll('.section-dot');
-        var sections = document.querySelectorAll('section[id]');
-
-        sectionDots.forEach(function (dot) {
-            dot.addEventListener('click', function () {
-                var target = document.querySelector(dot.getAttribute('data-target'));
-                if (target) {
-                    window.scrollTo({ top: target.offsetTop - 70, behavior: scrollBehavior });
-                }
-            });
-        });
-
-        function updateActiveDot() {
-            var scrollPos = window.scrollY + window.innerHeight / 3;
-            sections.forEach(function (section, i) {
-                if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-                    sectionDots.forEach(function (d) { d.classList.remove('active'); });
-                    if (sectionDots[i]) sectionDots[i].classList.add('active');
-                }
-            });
-        }
-
-        // ── NAVBAR SCROLL ──────────────────────────────────────
-        var nav = document.getElementById('main-nav');
-        window.addEventListener('scroll', function () {
-            nav.classList.toggle('scrolled', window.scrollY > 40);
-            updateActiveDot();
-        });
-
-        // ── MOBILE MENU ────────────────────────────────────────
-        var mobileMenuBtn = document.getElementById('mobile-menu-button');
-        var mobileMenu = document.getElementById('mobile-menu');
-        var menuIcon = mobileMenuBtn.querySelector('i');
-
-        mobileMenuBtn.addEventListener('click', function () {
-            var isOpen = !mobileMenu.classList.contains('hidden');
-            mobileMenu.classList.toggle('hidden');
-            menuIcon.className = isOpen ? 'fas fa-bars' : 'fas fa-times';
-        });
-
-        // ── SMOOTH SCROLL ──────────────────────────────────────
-        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-            a.addEventListener('click', function (e) {
-                e.preventDefault();
-                var target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({ top: target.offsetTop - 70, behavior: scrollBehavior });
-                    mobileMenu.classList.add('hidden');
-                    menuIcon.className = 'fas fa-bars';
-                }
-            });
-        });
-
-        // ── CAROUSEL ───────────────────────────────────────────
-        document.querySelectorAll('[data-carousel]').forEach(function (wrap) {
-            var track = wrap.querySelector('.carousel-track');
-            var slides = wrap.querySelectorAll('.carousel-slide');
-            var prevBtn = wrap.querySelector('.carousel-btn.prev');
-            var nextBtn = wrap.querySelector('.carousel-btn.next');
-            var dotsBox = wrap.querySelector('.carousel-dots');
-            var idx = 0, dragging = false, startX = 0;
-
-            slides.forEach(function (_, i) {
-                var d = document.createElement('button');
-                d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-                d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-                d.addEventListener('click', function () { go(i); });
-                dotsBox.appendChild(d);
-            });
-            var dots = dotsBox.querySelectorAll('.carousel-dot');
-
-            // Single-media carousels: hide the controls, no auto-advance needed
-            var multi = slides.length > 1;
-            if (!multi) {
-                if (prevBtn) prevBtn.style.display = 'none';
-                if (nextBtn) nextBtn.style.display = 'none';
-                dotsBox.style.display = 'none';
-            }
-
-            function go(i) {
-                idx = Math.max(0, Math.min(i, slides.length - 1));
-                track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
-                track.style.transform = 'translateX(-' + (idx * 100) + '%)';
-                dots.forEach(function (d, j) { d.classList.toggle('active', j === idx); });
-                // Pause all videos, play the current one if it's a video
-                slides.forEach(function (s) {
-                    var v = s.querySelector('video');
-                    if (v) v.pause();
-                });
-                var currentVideo = slides[idx].querySelector('video');
-                if (currentVideo && wrap.offsetParent) currentVideo.play();
-            }
-
-            if (prevBtn) prevBtn.addEventListener('click', function () { go(idx - 1); });
-            if (nextBtn) nextBtn.addEventListener('click', function () { go(idx + 1); });
-
-            // Auto advance every 5s (only for carousels with more than one slide)
-            var autoTimer = multi ? setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000) : null;
-            wrap.addEventListener('mouseenter', function () { if (autoTimer) clearInterval(autoTimer); });
-            wrap.addEventListener('mouseleave', function () {
-                if (multi) autoTimer = setInterval(function () { if (wrap.offsetParent) go((idx + 1) % slides.length); }, 5000);
-            });
-
-            function onStart(x) { dragging = true; wrap._dragged = false; startX = x; track.style.transition = 'none'; }
-            function onMove(x) {
-                if (!dragging) return;
-                if (Math.abs(x - startX) > 8) wrap._dragged = true; // it's a drag, not a click
-                var pct = ((x - startX) / wrap.offsetWidth) * 100;
-                track.style.transform = 'translateX(calc(-' + (idx * 100) + '% + ' + pct + '%))';
-            }
-            function onEnd(x) {
-                if (!dragging) return;
-                dragging = false;
-                var dx = x - startX;
-                if (dx > wrap.offsetWidth / 5) go(idx - 1);
-                else if (dx < -wrap.offsetWidth / 5) go(idx + 1);
-                else go(idx);
-            }
-
-            wrap.addEventListener('touchstart', function (e) { onStart(e.touches[0].clientX); }, { passive: true });
-            wrap.addEventListener('touchmove', function (e) { onMove(e.touches[0].clientX); }, { passive: true });
-            wrap.addEventListener('touchend', function (e) { onEnd(e.changedTouches[0].clientX); });
-            wrap.addEventListener('mousedown', function (e) { e.preventDefault(); onStart(e.clientX); });
-            wrap.addEventListener('mousemove', function (e) { onMove(e.clientX); });
-            wrap.addEventListener('mouseup', function (e) { onEnd(e.clientX); });
-            wrap.addEventListener('mouseleave', function (e) { if (dragging) onEnd(e.clientX); });
-
-            // Arrow keys flip slides while this carousel is fullscreen
-            document.addEventListener('keydown', function (e) {
-                if (document.fullscreenElement !== wrap) return;
-                if (e.key === 'ArrowLeft') go(idx - 1);
-                if (e.key === 'ArrowRight') go(idx + 1);
-            });
-
-            go(0);
-        });
-
-        // ── CAROUSEL FULLSCREEN ────────────────────────────────
-        // Clicking an image fullscreens the WHOLE carousel (not just the
-        // image), so the arrows, dots, swipe and keyboard keep working.
-        // A drag never triggers fullscreen thanks to the _dragged flag.
-        document.querySelectorAll('.carousel-slide img').forEach(function (img) {
-            img.style.cursor = 'zoom-in';
-            img.addEventListener('click', function () {
-                var wrap = img.closest('.carousel-wrap');
-                if (!wrap || wrap._dragged) return; // that was a swipe, not a click
-                if (!document.fullscreenElement) {
-                    if (wrap.requestFullscreen) wrap.requestFullscreen().catch(function () { });
-                } else {
-                    document.exitFullscreen().catch(function () { });
-                }
-            });
-        });
-
-        // ── VIDEO AUDIO: louder + resumes context on play ──────
-        // Videos are boosted ~2x through the Web Audio API because the
-        // source files are quiet. Boost happens on first play (a user
-        // gesture, so the browser allows it).
-        var audioCtx = null;
-        function boostVideo(v) {
-            if (v.dataset.boosted) return;
-            try {
-                var AC = window.AudioContext || window.webkitAudioContext;
-                if (!AC) return;
-                audioCtx = audioCtx || new AC();
-                var srcNode = audioCtx.createMediaElementSource(v);
-                var gainNode = audioCtx.createGain();
-                gainNode.gain.value = 2.0; // volume boost, raise or lower to taste
-                srcNode.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                v.dataset.boosted = '1';
-            } catch (err) { /* keep native audio if Web Audio fails */ }
-        }
-        document.querySelectorAll('video').forEach(function (v) {
-            v.volume = 1;
-            v.addEventListener('play', function () {
-                boostVideo(v);
-                if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-            });
-        });
-
-        // ── PARALLAX ON MOUSE MOVE (hero shapes) ───────────────
-        var floatingShapes = document.querySelectorAll('.floating-shape');
-        if (!isTouch && !reducedMotion) {
-            document.addEventListener('mousemove', function (e) {
-                var xPct = (e.clientX / window.innerWidth - 0.5) * 2;
-                var yPct = (e.clientY / window.innerHeight - 0.5) * 2;
-                floatingShapes.forEach(function (shape, i) {
-                    var speed = (i + 1) * 8;
-                    shape.style.transform = 'translate(' + (xPct * speed) + 'px, ' + (yPct * speed) + 'px)';
-                });
-            });
-        }
-
-        // ── ACTIVE NAV LINK HIGHLIGHT ──────────────────────────
-        var navLinks = document.querySelectorAll('.nav-link');
-        var navObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(function (link) {
-                        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
-        sections.forEach(function (s) { navObserver.observe(s); });
-
-        // ── LEVEL SELECT (Work section) ────────────────────────
-        // Draws the winding path between level nodes, numbers them,
-        // sends particles flowing along the path, and handles
-        // opening/closing the project panels. New .level-stop blocks
-        // pasted into the HTML are picked up automatically.
-        var levelWrap = document.querySelector('.level-path-wrap');
-        if (levelWrap) {
-            var levelSvg = document.getElementById('level-path-svg');
-            var levelLine = document.getElementById('level-path-line');
-            var progressLine = document.getElementById('level-path-progress');
-            var levelStops = levelWrap.querySelectorAll('.level-stop');
-            var levelNodes = levelWrap.querySelectorAll('.level-node');
-            var levelPathLen = 0;
-
-            // Auto-number the level badges
-            levelNodes.forEach(function (n, i) {
-                n.querySelector('.level-num').textContent = i + 1;
-            });
-
-            function drawLevelPath() {
-                var wr = levelWrap.getBoundingClientRect();
-                levelSvg.setAttribute('width', wr.width);
-                levelSvg.setAttribute('height', wr.height);
-                var pts = [];
-                levelNodes.forEach(function (n) {
-                    var r = n.getBoundingClientRect();
-                    pts.push({ x: r.left - wr.left + r.width / 2, y: r.top - wr.top + r.height / 2 });
-                });
-                if (pts.length < 2) { levelLine.setAttribute('d', ''); progressLine.setAttribute('d', ''); levelPathLen = 0; return; }
-                var d = 'M ' + pts[0].x + ' ' + pts[0].y;
-                for (var i = 1; i < pts.length; i++) {
-                    var p0 = pts[i - 1], p1 = pts[i];
-                    var midY = (p0.y + p1.y) / 2;
-                    d += ' C ' + p0.x + ' ' + midY + ', ' + p1.x + ' ' + midY + ', ' + p1.x + ' ' + p1.y;
-                }
-                levelLine.setAttribute('d', d);
-                levelPathLen = levelLine.getTotalLength();
-                // The progress line shares the same shape and "draws in" with scroll
-                progressLine.setAttribute('d', d);
-                progressLine.style.strokeDasharray = levelPathLen;
-                updatePathProgress();
-            }
-
-            // ── SCROLL DRAW: the glowing path draws itself as you scroll ──
-            function updatePathProgress() {
-                if (!levelPathLen) return;
-                if (reducedMotion) { progressLine.style.strokeDashoffset = 0; return; }
-                var wr = levelWrap.getBoundingClientRect();
-                var vh = window.innerHeight;
-                var total = wr.height + vh * 0.4;
-                var passed = vh * 0.85 - wr.top;
-                var p = Math.max(0, Math.min(1, passed / total));
-                progressLine.style.strokeDashoffset = levelPathLen * (1 - p);
-            }
-            window.addEventListener('scroll', updatePathProgress, { passive: true });
-
-            // Particles flowing along the path (skipped for reduced motion)
-            if (!reducedMotion) {
-                var flowColors = ['#22c55e', '#4ade80', '#34d399', '#16a34a'];
-                var flowDots = [];
-                for (var fd = 0; fd < 9; fd++) {
-                    var fc = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    fc.setAttribute('r', (2 + Math.random() * 2.5).toFixed(1));
-                    fc.setAttribute('fill', flowColors[fd % flowColors.length]);
-                    fc.setAttribute('opacity', '0');
-                    levelSvg.appendChild(fc);
-                    flowDots.push({ el: fc, t: fd / 9, speed: 0.0008 + Math.random() * 0.0012 });
-                }
-                (function flowLoop() {
-                    if (levelPathLen > 0) {
-                        flowDots.forEach(function (f) {
-                            f.t = (f.t + f.speed) % 1;
-                            var pt = levelLine.getPointAtLength(f.t * levelPathLen);
-                            f.el.setAttribute('cx', pt.x);
-                            f.el.setAttribute('cy', pt.y);
-                            var fade = Math.min(f.t, 1 - f.t);
-                            f.el.setAttribute('opacity', (Math.min(1, fade * 12) * 0.9).toFixed(2));
-                        });
-                    }
-                    requestAnimationFrame(flowLoop);
-                })();
-            }
-
-            function closeAllPanels() {
-                levelStops.forEach(function (s) {
-                    s.querySelector('.level-panel').classList.remove('open');
-                    var n = s.querySelector('.level-node');
-                    n.classList.remove('open');
-                    n.setAttribute('aria-expanded', 'false');
-                });
-                // stop any video that was left playing inside a panel
-                document.querySelectorAll('.level-panel video').forEach(function (v) { v.pause(); });
-                drawLevelPath();
-            }
-
-            levelStops.forEach(function (stop) {
-                var node = stop.querySelector('.level-node');
-                var meta = stop.querySelector('.level-meta');
-                var panel = stop.querySelector('.level-panel');
-                var closeBtn = stop.querySelector('.panel-close');
-
-                // Clicking the node OR the title/description chip toggles the panel
-                function togglePanel(e) {
-                    e.stopPropagation();
-                    var wasOpen = panel.classList.contains('open');
-                    closeAllPanels();
-                    if (!wasOpen) {
-                        panel.classList.add('open');
-                        node.classList.add('open');
-                        node.setAttribute('aria-expanded', 'true');
-                        drawLevelPath();
-                        setTimeout(function () {
-                            panel.scrollIntoView({ behavior: scrollBehavior, block: 'nearest' });
-                        }, 60);
-                    }
-                }
-                node.addEventListener('click', togglePanel);
-                if (meta) meta.addEventListener('click', togglePanel);
-                closeBtn.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    closeAllPanels();
-                });
-                panel.addEventListener('click', function (e) { e.stopPropagation(); });
-            });
-
-            // Close with Escape or by clicking outside
-            document.addEventListener('click', function (e) {
-                if (!e.target.closest('.level-stop')) closeAllPanels();
-            });
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') closeAllPanels();
-            });
-
-            // ── PROJECT TABS: each panel builds its tab strip from its
-            //    .project blocks automatically (data-title = tab label) ──
-            levelStops.forEach(function (stop) {
-                var panel = stop.querySelector('.level-panel');
-                var tabsBox = panel.querySelector('.project-tabs');
-                var projects = panel.querySelectorAll('.project');
-                if (!tabsBox || !projects.length) return;
-
-                projects.forEach(function (proj, i) {
-                    var tab = document.createElement('button');
-                    tab.type = 'button';
-                    tab.className = 'project-tab' + (i === 0 ? ' active' : '');
-                    tab.setAttribute('role', 'tab');
-                    tab.textContent = proj.getAttribute('data-title') || ('Project ' + (i + 1));
-                    if (i === 0) proj.classList.add('active');
-
-                    tab.addEventListener('click', function () {
-                        projects.forEach(function (p) { p.classList.remove('active'); });
-                        tabsBox.querySelectorAll('.project-tab').forEach(function (t) { t.classList.remove('active'); });
-                        proj.classList.add('active');
-                        tab.classList.add('active');
-                        // pause any videos from the project we just left
-                        panel.querySelectorAll('video').forEach(function (v) { v.pause(); });
-                        drawLevelPath();
-                    });
-                    tabsBox.appendChild(tab);
-                });
-            });
-
-            window.addEventListener('resize', drawLevelPath);
-            window.addEventListener('load', drawLevelPath);
-            drawLevelPath();
-        }
-
-        // ── EASTER EGG: VS Code window in Skills & Tools ───────
-        // Clicking the HTML/CSS or JavaScript bubble opens a little
-        // editor window (markup lives just above the CUSTOM CURSOR div).
-        var codeModal = document.getElementById('code-modal');
-        if (codeModal) {
-            var codeBodyJs = document.getElementById('code-body-js');
-            var codeBodyHtml = document.getElementById('code-body-html');
-            var codeFilename = document.getElementById('code-filename');
-
-            function openEgg(kind) {
-                codeBodyJs.hidden = kind !== 'js';
-                codeBodyHtml.hidden = kind !== 'html';
-                codeFilename.textContent = kind === 'js' ? 'easter-egg.js' : 'easter-egg.html';
-                codeModal.hidden = false;
-                document.body.style.overflow = 'hidden';
-            }
-            function closeEgg() {
-                codeModal.hidden = true;
-                document.body.style.overflow = '';
-            }
-
-            document.querySelectorAll('.marquee-egg').forEach(function (item) {
-                item.addEventListener('click', function () {
-                    openEgg(item.getAttribute('data-egg'));
-                });
-            });
-            document.getElementById('code-close').addEventListener('click', closeEgg);
-            codeModal.addEventListener('click', function (e) { if (e.target === codeModal) closeEgg(); });
-            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeEgg(); });
-        }
-
-        // ── CONTACT FORM ───────────────────────────────────────
-        var form = document.getElementById('contact-form');
-        if (form) {
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var token = grecaptcha.getResponse();
-                var name = document.getElementById('name').value.trim();
-                var email = document.getElementById('email').value.trim();
-                var project = document.getElementById('project').value.trim();
-                var message = document.getElementById('message').value.trim();
-
-                if (!name || !email || !project || !message) { alert('Please fill in all fields.'); return; }
-                if (!token) { alert('Please complete the CAPTCHA.'); return; }
-
-                fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: name, email: email, project: project, message: message, token: token })
-                })
-                    .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
-                    .then(function (result) {
-                        if (result.ok) { alert('Message sent successfully!'); form.reset(); grecaptcha.reset(); }
-                        else { alert(result.data.message || 'Something went wrong.'); }
-                    })
-                    .catch(function () { alert('Something went wrong, please try again later.'); });
-            });
-        }
-
-    })();
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
