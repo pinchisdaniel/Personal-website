@@ -27,3 +27,5 @@ yarn-error.log*
 
 # OS
 Thumbs.db
+# Full resolution Danny renders (web versions live in images/guide/)
+images/guide/originals/

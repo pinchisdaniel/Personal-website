@@ -482,27 +482,28 @@ img, video { max-width: 100%; display: block; }
    DANNY (guide character) + PLACEHOLDERS
    ========================================================== */
 
+/* Danny is sized by HEIGHT so every pose shows him at the same size,
+   whether his arms are down or spread wide. */
 .danny {
     position: relative;
-    width: 140px;
-    aspect-ratio: 3 / 4;
+    height: 190px;
     flex-shrink: 0;
 }
 
 .danny img {
-    width: 100%;
     height: 100%;
-    object-fit: contain;
-    object-position: bottom center;
+    width: auto;
+    max-width: none;
     filter: drop-shadow(3px 4px 0 rgba(15, 23, 42, 0.25));
 }
 
-.danny-xl { width: 300px; }
-.danny-md { width: 140px; }
-.danny-sm { width: 104px; }
+.danny-xl { height: 420px; }
+.danny-md { height: 190px; }
+.danny-sm { height: 140px; }
 
 /* Shown until the PNG exists in /images/guide/ */
 .danny.is-missing {
+    aspect-ratio: 3 / 4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1116,7 +1117,7 @@ img, video { max-width: 100%; display: block; }
     width: 100%;
     height: 480px;
     object-fit: cover;
-    object-position: center 35%;
+    object-position: center 30%;
 }
 
 .portrait figcaption {
@@ -1641,7 +1642,7 @@ textarea.form-input { resize: none; }
     .contact-grid { grid-template-columns: 1fr; }
 
     .hero-guide { order: -1; }
-    .danny-xl { width: 210px; }
+    .danny-xl { height: 280px; }
 
     .section-dots { display: none; }
 }
@@ -1653,8 +1654,8 @@ textarea.form-input { resize: none; }
 
     .has-danny,
     .section-head.has-danny { margin-top: 130px; }
-    .perch { top: -124px; right: 10px; gap: 8px; }
-    .perch .danny-md { width: 96px; }
+    .perch { top: -112px; right: 10px; gap: 8px; }
+    .perch .danny-md { height: 130px; }
     .perch .bubble { max-width: 170px; font-size: 0.8rem; padding: 8px 10px; }
     .perch .ph small { display: none; }
 
@@ -1677,7 +1678,7 @@ textarea.form-input { resize: none; }
     .panel-body { padding: 18px; }
 
     .tour { left: 10px; right: 10px; bottom: 10px; max-width: none; }
-    .tour .danny-sm { width: 70px; }
+    .tour .danny-sm { height: 96px; }
     .tour-card { width: auto; flex: 1; }
 
     .statusbar { flex-direction: column; text-align: center; }

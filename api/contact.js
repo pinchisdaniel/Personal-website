@@ -8,11 +8,13 @@ export default async function handler(req, res) {
   try {
     const { name, email, project, message, token } = req.body;
 
-    // Verify reCAPTCHA token with Google
+    // Verify reCAPTCHA token with Google.
+    // The secret is stored in Vercel as RECAPTCHA_SECRET_KEY.
+    const secret = process.env.RECAPTCHA_SECRET_KEY || process.env.RECAPTCHA_SECRET;
     const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `secret=${process.env.RECAPTCHA_SECRET}&response=${token}`,
+      body: new URLSearchParams({ secret: secret || "", response: token || "" }).toString(),
     });
     const recaptchaData = await recaptchaRes.json();
 
@@ -31,6 +33,7 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
+      replyTo: email,
       subject: `New Message from ${name || "Anonymous"} (${project || "General"})`,
       text: `
 Name: ${name}

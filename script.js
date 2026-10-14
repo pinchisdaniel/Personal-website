@@ -7,21 +7,20 @@
 
     // Danny's poses. Each one loads /images/guide/guide-<name>.png.
     // Until that file exists, a dashed placeholder shows what to render.
+    // To add a pose later: render it, run it through the same crop/resize, drop it in
+    // /images/guide/ and add its name here.
     var DANNY_POSES = {
         'wave':        'Danny waving hello',
-        'point-down':  'Danny sitting, pointing down',
-        'thumbsup':    'Danny giving a thumbs up',
+        'presenting':  'Danny presenting with an open palm toward screen left',
         'point-right': 'Danny pointing toward screen right',
-        'clapper':     'Danny holding a clapperboard',
         'thinking':    'Danny with hand on chin, thinking',
-        'beckon':      'Danny waving you closer',
-        'envelope':    'Danny holding an envelope'
+        'wide-arms':   'Danny with arms spread wide, ta da'
     };
 
     // The guided tour. target = what to scroll to, focus = what to highlight.
     var TOUR_STEPS = [
         {
-            target: '#work-head', focus: '#work-reel-btn', pose: 'clapper',
+            target: '#work-head', focus: '#work-reel-btn', pose: 'wide-arms',
             text: "Short on time? Hit this button and I'll play all my animations back to back."
         },
         {
@@ -33,7 +32,7 @@
             text: "This is the human behind me: where I come from and what I work with."
         },
         {
-            target: '#contact', focus: '#contact-form', pose: 'beckon',
+            target: '#contact', focus: '#contact-form', pose: 'wave',
             text: "Got a project in mind? Leave me a message here and I'll get back to you."
         }
     ];
@@ -551,7 +550,7 @@
                 $('span', b).textContent = open ? 'Hide the brief' : 'Read the brief';
             });
             dannyBtn.setAttribute('aria-expanded', String(open));
-            setPose(dannyEl, open ? 'thumbsup' : 'point-down');
+            setPose(dannyEl, open ? 'wide-arms' : 'presenting');
             bubble.textContent = open ? 'Click me again to close it.' : 'Click me for the brief!';
             bubble.classList.toggle('bubble-bob', !open);
 
@@ -633,7 +632,7 @@
         storage('dannyTour', 'done');
         renderHeroBubble();
         if (!completed) { tour.hidden = true; return; }
-        setPose(tourDanny, 'thumbsup');
+        setPose(tourDanny, 'wide-arms');
         tourText.textContent = TOUR_DONE_TEXT;
         tourStepEl.textContent = 'Done';
         tourActions.hidden = true;
@@ -814,7 +813,7 @@
                     setStatus("Message sent! I'll get back to you soon.", true);
                     form.reset();
                     if (window.grecaptcha) grecaptcha.reset();
-                    setPose(contactDanny, 'thumbsup');
+                    setPose(contactDanny, 'wide-arms');
                     contactBubble.textContent = 'Got it! Talk soon.';
                 } else {
                     setStatus((result.data && result.data.message) || 'Something went wrong.', false);
