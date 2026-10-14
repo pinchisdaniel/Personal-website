@@ -1316,7 +1316,7 @@ textarea.form-input { resize: none; }
     position: fixed;
     left: 20px;
     bottom: 20px;
-    z-index: 900;
+    z-index: 1000; /* above the spotlight dimming */
     display: flex;
     align-items: flex-end;
     gap: 10px;
@@ -1347,16 +1347,85 @@ textarea.form-input { resize: none; }
     padding: 10px 16px 16px;
 }
 
-.tour-focus {
-    outline: 4px solid var(--green-bright) !important;
-    outline-offset: 6px;
-    border-radius: var(--radius);
-    animation: focus-pulse 1.4s ease-in-out infinite;
+/* Spotlight: dims the page and rings what the tour is talking about.
+   It never blocks clicks (pointer-events: none), so the visitor can press the real thing. */
+.tour-spot {
+    position: fixed;
+    z-index: 950;
+    pointer-events: none;
+    border: 4px solid var(--green-bright);
+    border-radius: 16px;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 26px 6px rgba(34, 197, 94, 0.75),
+        0 0 0 200vmax rgba(15, 23, 42, 0.55);
+    transition: opacity 0.25s ease;
 }
 
-@keyframes focus-pulse {
-    0%, 100% { outline-color: var(--green-bright); }
-    50% { outline-color: rgba(34, 197, 94, 0.3); }
+/* Two rings that ripple outward, like a radar ping */
+.tour-spot::before,
+.tour-spot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 4px solid var(--green-bright);
+    border-radius: 18px;
+    animation: spot-ping 1.6s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+.tour-spot::after { animation-delay: 0.8s; }
+
+@keyframes spot-ping {
+    0% { inset: -4px; opacity: 1; }
+    100% { inset: -30px; opacity: 0; border-radius: 30px; }
+}
+
+/* Bouncing "click here" tag on top of the spotlight */
+.tour-spot-label {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 16px);
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    background: var(--green-bright);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--ink);
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    animation: label-bounce 0.8s ease-in-out infinite alternate;
+}
+
+.tour-spot-label::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 12px;
+    height: 12px;
+    margin: -5px 0 0 -6px;
+    background: var(--green-bright);
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    transform: rotate(45deg);
+}
+
+.tour-spot.label-below .tour-spot-label { bottom: auto; top: calc(100% + 16px); }
+.tour-spot.label-below .tour-spot-label::after {
+    top: auto;
+    bottom: 100%;
+    margin: 0 0 -5px -6px;
+    transform: rotate(225deg);
+}
+
+@keyframes label-bounce {
+    from { transform: translate(-50%, 0); }
+    to { transform: translate(-50%, -8px); }
 }
 
 /* ==========================================================

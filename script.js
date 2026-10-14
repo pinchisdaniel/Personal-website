@@ -17,22 +17,24 @@
         'wide-arms':   'Danny with arms spread wide, ta da'
     };
 
-    // The guided tour. target = what to scroll to, focus = what to highlight.
+    // The guided tour.
+    //   show  = everything that should end up on screen (the page centres these)
+    //   focus = what gets the spotlight, label = the bouncing tag above it
     var TOUR_STEPS = [
         {
-            target: '#work-head', focus: '#work-reel-btn', pose: 'wide-arms',
+            show: ['#work-head'], focus: '#work-reel-btn', label: 'Click here', pose: 'wide-arms',
             text: "Short on time? Hit this button and I'll play all my animations back to back."
         },
         {
-            target: '#scene-games .perch', focus: '#scene-games .shot-tabs', pose: 'point-right',
+            show: ['#scene-games .perch', '#scene-games .shot-tabs'], focus: '#scene-games .shot-tabs', label: 'Pick a shot', pose: 'point-right',
             text: 'My work is split into scenes. Pick a shot with these tabs, flip through it with the arrows, and click me on top of the card to read the brief.'
         },
         {
-            target: '#about', focus: null, pose: 'thinking',
+            show: ['#about .portrait'], focus: '#about .portrait', label: "That's me!", pose: 'thinking',
             text: "This is the human behind me: where I come from and what I work with."
         },
         {
-            target: '#contact', focus: '#contact-form', pose: 'wave',
+            show: ['#contact-form'], focus: '#contact-form', label: 'Write to me here', pose: 'wave',
             text: "Got a project in mind? Leave me a message here and I'll get back to you."
         }
     ];
@@ -588,7 +590,9 @@
     var tourNext = $('#tour-next');
     var heroText = $('#hero-bubble-text');
     var heroActions = $('#hero-bubble-actions');
-    var tourIndex = 0, tourHideTimer = null, focusedEl = null;
+    var tourSpot = $('#tour-spot');
+    var tourSpotLabel = $('#tour-spot-label');
+    var tourIndex = 0, tourHideTimer = null, focusedEl = null, spotLoop = null;
 
     function renderHeroBubble(msg) {
         var done = storage('dannyTour') === 'done';
@@ -599,8 +603,62 @@
     }
 
     function clearFocus() {
-        if (focusedEl) focusedEl.classList.remove('tour-focus');
         focusedEl = null;
+        tourSpot.hidden = true;
+        if (spotLoop) cancelAnimationFrame(spotLoop);
+        spotLoop = null;
+    }
+
+    // Keep the spotlight glued to its element while the page scrolls
+    function trackSpot() {
+        if (!focusedEl) return;
+        var r = focusedEl.getBoundingClientRect();
+        var pad = 10;
+        tourSpot.style.top = (r.top - pad) + 'px';
+        tourSpot.style.left = (r.left - pad) + 'px';
+        tourSpot.style.width = (r.width + pad * 2) + 'px';
+        tourSpot.style.height = (r.height + pad * 2) + 'px';
+        // Flip the label under the element if there is no room above it
+        tourSpot.classList.toggle('label-below', r.top < $('#main-nav').offsetHeight + 50 && r.bottom < window.innerHeight - 80);
+        spotLoop = requestAnimationFrame(trackSpot);
+    }
+
+    // Scroll so everything in step.show sits nicely inside the visible area:
+    // centred (slightly above middle) when it fits, otherwise its top just under
+    // the nav with room for the bouncing label.
+    // Page position from layout only, so slide-in animations don't skew it
+    function docTop(el) {
+        var y = 0;
+        while (el) { y += el.offsetTop; el = el.offsetParent; }
+        return y;
+    }
+
+    function tourScroll(step, focusOnly) {
+        var els = (focusOnly ? [step.focus] : step.show).map(function (s) { return $(s); }).filter(Boolean);
+        if (!els.length) return;
+        var top = Infinity, bottom = -Infinity;
+        els.forEach(function (el) {
+            // finish any slide-in now so the final position matches what we measure
+            var rev = el.closest('.reveal');
+            if (rev) rev.classList.add('revealed');
+            var t = docTop(el) - window.pageYOffset;
+            top = Math.min(top, t);
+            bottom = Math.max(bottom, t + el.offsetHeight);
+        });
+        var navH = $('#main-nav').offsetHeight;
+        var vh = window.innerHeight;
+        // The tour card sits along the bottom, so keep the target above it
+        var coveredBottom = tour.offsetHeight + 20;
+        var areaTop = navH + 76;                // room for the label
+        var areaBottom = vh - coveredBottom - 20;
+        var areaH = areaBottom - areaTop;
+        var h = bottom - top;
+        // Short screen: if the whole group can't fit, make sure the highlighted bit does
+        if (h > areaH && !focusOnly && step.focus && step.show.length > 1) return tourScroll(step, true);
+        var delta = h <= areaH
+            ? (top + h / 2) - (areaTop + areaH * 0.45)
+            : top - areaTop;
+        window.scrollTo({ top: Math.max(0, window.pageYOffset + delta), behavior: scrollBehavior });
     }
 
     function showStep(i) {
@@ -613,10 +671,13 @@
         tourActions.hidden = false;
         tourBack.disabled = i === 0;
         tourNext.textContent = i === TOUR_STEPS.length - 1 ? 'Finish' : 'Next';
-        scrollToEl($(step.target));
-        if (step.focus) {
-            focusedEl = $(step.focus);
-            if (focusedEl) focusedEl.classList.add('tour-focus');
+        tourScroll(step);
+        focusedEl = step.focus ? $(step.focus) : null;
+        if (focusedEl) {
+            tourSpotLabel.textContent = step.label || '';
+            tourSpotLabel.hidden = !step.label;
+            tourSpot.hidden = false;
+            trackSpot();
         }
     }
 
