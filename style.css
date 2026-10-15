@@ -822,7 +822,7 @@ img, video { max-width: 100%; display: block; }
 
 .brief-inner {
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
+    grid-template-columns: 1fr 1fr;
     gap: 18px;
     padding-top: 24px;
 }
