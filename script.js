@@ -42,14 +42,14 @@
 
     // The showreel, played in order. Reorder or remove clips freely.
     var REEL_CLIPS = [
+        { src: '/videos/stickmantest.mp4', title: 'Stickman Parkour' },
+        { src: '/videos/3dvfx.mp4', title: '3D VFX' },
+        { src: '/videos/legojacksparrow.mp4', title: 'Lego Jack Sparrow' },
         { src: '/videos/kdgman.mp4', title: 'KDG Man' },
         { src: '/videos/stickmandance.mp4', title: 'Stickman Dance' },
-        { src: '/videos/legojacksparrow.mp4', title: 'Lego Jack Sparrow' },
-        { src: '/videos/zombieanimations.mp4', title: 'Zombie Animations' },
-        { src: '/videos/stickmantest.mp4', title: 'Stickman Test' },
-        { src: '/videos/excavator.mp4', title: 'Excavator' },
         { src: '/videos/geometrynodes.mp4', title: 'Geometry Nodes' },
-        { src: '/videos/3dvfx.mp4', title: '3D VFX' },
+        { src: '/videos/excavator.mp4', title: 'Excavator' },
+        { src: '/videos/zombieanimations.mp4', title: 'Zombie Animations' },
         { src: '/videos/daggershowcase.mp4', title: 'Dagger Showcase' }
     ];
 
