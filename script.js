@@ -877,7 +877,10 @@
                     setPose(contactDanny, 'wide-arms');
                     contactBubble.textContent = 'Got it! Talk soon.';
                 } else {
-                    setStatus((result.data && result.data.message) || 'Something went wrong.', false);
+                    var msg = (result.data && result.data.message) || 'Something went wrong.';
+                    if (result.data && result.data.codes && result.data.codes.length) msg += ' (' + result.data.codes.join(', ') + ')';
+                    setStatus(msg, false);
+                    if (window.grecaptcha) grecaptcha.reset(); // a token only works once
                 }
             })
             .catch(function () { setStatus('Something went wrong, please try again later.', false); })
