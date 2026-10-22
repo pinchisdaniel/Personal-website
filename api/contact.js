@@ -39,17 +39,18 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: "reCAPTCHA verification failed.", codes });
     }
 
+    // Gmail needs an App Password here (Google Account > Security > App passwords), not the
+    // normal account password. Google shows it as "abcd efgh ijkl mnop"; spaces are stripped.
+    const mailUser = (process.env.EMAIL_USER || "").trim();
+    const mailPass = (process.env.EMAIL_PASS || "").replace(/\s+/g, "");
     const transporter = nodemailer.createTransport({
       service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
+      auth: { user: mailUser, pass: mailPass },
     });
 
     await transporter.sendMail({
-      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      from: `"Portfolio Contact" <${mailUser}>`,
+      to: mailUser,
       replyTo: email,
       subject: `New Message from ${name || "Anonymous"} (${project || "General"})`,
       text: `
